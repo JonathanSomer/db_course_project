@@ -1,0 +1,150 @@
+/*
+	Query 1: 
+	Top 10 most popular events in month X
+*/
+{
+	"events": [
+		{
+			"event_id": 12345, // maybe?
+			"event_name": "a string",
+			"event_type": "string", // `festival`, `concert` etc..
+			"popularity": 0.25, // a number between 0-1
+			"age_res": 18, // an age 0-100
+			"event_url": "www.event.com/this_event",
+			"event_date": "0000-00-00", // YYYYMMDD
+			"venue_name": "a string", // 
+			"venue_country": "france",
+			"venue_city": "paris",
+			"artist_name": [
+				"jimi hendrix",
+				"kurt kubain",
+			],
+			"artist_url": "www.artist.com/this_artist"
+		}
+		// this is an array, there will be more of these
+	]
+}
+
+
+/*
+	Query 2: 
+	Which city has the largest number of genres in month X
+*/
+{
+	"country": "france",
+	"city": "paris",
+	"month": "0000-00-00",
+	"genres": [
+		"pop",
+		"rock",
+		"metal"
+	]
+}
+
+
+/*
+	Query 3: 
+	Which city has the largest number of events in month X
+*/
+{
+	"country": "france",
+	"city": "paris",
+	"month": "0000-00-00",
+}
+
+
+
+/*
+	Query 4: "high season"
+	In which city and month can I attend the most events this year?
+*/
+{
+	"country": "france",
+	"city": "paris",
+	"month": "0000-00-00",
+}
+
+
+/*
+	Query 5: 
+	I like artist X, give me events where the performer has the same genre as him.
+*/
+{
+	"events": [
+		{
+			"event_id": 12345, // maybe?
+			"event_name": "a string",
+			"event_type": "string", // `festival`, `concert` etc..
+			"popularity": 0.25, // a number between 0-1
+			"age_res": 18, // an age 0-100
+			"event_url": "www.event.com/this_event",
+			"event_date": "0000-00-00", // YYYYMMDD
+			"venue_name": "a string", // 
+			"venue_country": "france",
+			"venue_city": "paris",
+			"artist_name": [
+				"jimi hendrix",
+				"kurt kubain",
+			],
+			"artist_url": "www.artist.com/this_artist"
+		}
+		// this is an array, there will be more of these
+	]
+}
+
+
+
+/*
+	Query 6:
+	I want to see all the events of the artist who has the highest average rating
+*/
+{
+	"events": [
+		{
+			"event_id": 12345, // maybe?
+			"event_name": "a string",
+			"event_type": "string", // `festival`, `concert` etc..
+			"popularity": 0.25, // a number between 0-1
+			"age_res": 18, // an age 0-100
+			"event_url": "www.event.com/this_event",
+			"event_date": "0000-00-00", // YYYYMMDD
+			"venue_name": "a string", // 
+			"venue_country": "france",
+			"venue_city": "paris",
+			"artist_name": [
+				"jimi hendrix",
+				"kurt kubain",
+			],
+			"artist_url": "www.artist.com/this_artist"
+		}
+		// this is an array, there will be more of these
+	]
+}
+
+
+/*
+	Query 7: "full text"
+	I want to see events where the artist received a review with the words I mentioned
+*/
+{
+	"events": [
+		{
+			"event_id": 12345, // maybe?
+			"event_name": "a string",
+			"event_type": "string", // `festival`, `concert` etc..
+			"popularity": 0.25, // a number between 0-1
+			"age_res": 18, // an age 0-100
+			"event_url": "www.event.com/this_event",
+			"event_date": "0000-00-00", // YYYYMMDD
+			"venue_name": "a string", // 
+			"venue_country": "france",
+			"venue_city": "paris",
+			"artist_name": [
+				"jimi hendrix",
+				"kurt kubain",
+			],
+			"artist_url": "www.artist.com/this_artist"
+		}
+		// this is an array, there will be more of these
+	]
+}
