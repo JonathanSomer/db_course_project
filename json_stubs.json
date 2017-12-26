@@ -148,3 +148,20 @@
 		// this is an array, there will be more of these
 	]
 }
+
+
+/*
+	Query 8:
+	return all reviews for artist
+*/
+{
+	"reviews": [
+		{
+			"stars_rating": 3, //
+			"review_text": "bla bla bla",
+			"username": "a name"
+		}
+		// this is an array, there will be more of these
+	]
+}
+
