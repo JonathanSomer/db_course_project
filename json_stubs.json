@@ -1,6 +1,7 @@
 /*
 	Query 1: 
 	Top 10 most popular events in month X
+	route: http://127.0.0.1:5000/top_10/7
 */
 {
 	"events": [
@@ -68,6 +69,7 @@
 /*
 	Query 5: 
 	I like artist X, give me events where the performer has the same genre as him.
+	route: http://127.0.0.1:5000/similar_artists_events/jimi_hendrix
 */
 {
 	"events": [
