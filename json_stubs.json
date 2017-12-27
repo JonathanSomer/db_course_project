@@ -30,6 +30,7 @@
 /*
 	Query 2: 
 	Which city has the largest number of genres in month X
+	route: http://localhost:5000/most_genre_city/12
 */
 {
 	"country": "france",
@@ -46,6 +47,7 @@
 /*
 	Query 3: 
 	Which city has the largest number of events in month X
+	route: http://localhost:5000/most_events_city/12
 */
 {
 	"country": "france",
@@ -58,6 +60,7 @@
 /*
 	Query 4: "high season"
 	In which city and month can I attend the most events this year?
+	route: http://localhost:5000/high_season	
 */
 {
 	"country": "france",
@@ -99,6 +102,7 @@
 /*
 	Query 6:
 	I want to see all the events of the artist who has the highest average rating
+	route: http://localhost:5000/highest_rated_artist_events/jimi_hendrix
 */
 {
 	"events": [
@@ -127,6 +131,7 @@
 /*
 	Query 7: "full text"
 	I want to see events where the artist received a review with the words I mentioned
+	route: http://localhost:5000/events_by_artist_review/awesome
 */
 {
 	"events": [
@@ -155,6 +160,7 @@
 /*
 	Query 8:
 	return all reviews for artist
+	route: http://localhost:5000/reviews_by_artist/jimi
 */
 {
 	"reviews": [
