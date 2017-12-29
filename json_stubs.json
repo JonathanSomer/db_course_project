@@ -4,26 +4,32 @@
 	route: http://127.0.0.1:5000/top_10/7
 */
 {
-	"events": [
-		{
-			"event_id": 12345, // maybe?
-			"event_name": "a string",
-			"event_type": "string", // `festival`, `concert` etc..
-			"popularity": 0.25, // a number between 0-1
-			"age_res": 18, // an age 0-100
-			"event_url": "www.event.com/this_event",
-			"event_date": "0000-00-00", // YYYYMMDD
-			"venue_name": "a string", // 
-			"venue_country": "france",
-			"venue_city": "paris",
-			"artist_name": [
-				"jimi hendrix",
-				"kurt kubain",
-			],
-			"artist_url": "www.artist.com/this_artist"
-		}
-		// this is an array, there will be more of these
-	]
+  "events": [
+    {
+      "event_id": 12345,
+      // maybe?
+      "event_name": "a string",
+      "event_type": "string",
+      // `festival`, `concert` etc..
+      "popularity": 0.25,
+      // a number between 0-1
+      "age_res": 18,
+      // an age 0-100
+      "event_url": "www.event.com/this_event",
+      "event_date": "0000-00-00",
+      // YYYYMMDD
+      "venue_name": "a string",
+      //
+      "venue_country": "france",
+      "venue_city": "paris",
+      "artist_name": [
+        "jimi hendrix",
+        "kurt kubain",
+      ],
+      "artist_url": "www.artist.com/this_artist"
+    }
+    // this is an array, there will be more of these
+  ]
 }
 
 
@@ -33,14 +39,14 @@
 	route: http://localhost:5000/most_genre_city/12
 */
 {
-	"country": "france",
-	"city": "paris",
-	"month": "0000-00-00",
-	"genres": [
-		"pop",
-		"rock",
-		"metal"
-	]
+  "country": "france",
+  "city": "paris",
+  "month": "0000-00-00",
+  "genres": [
+    "pop",
+    "rock",
+    "metal"
+  ]
 }
 
 
@@ -50,9 +56,9 @@
 	route: http://localhost:5000/most_events_city/12
 */
 {
-	"country": "france",
-	"city": "paris",
-	"month": "0000-00-00",
+  "country": "france",
+  "city": "paris",
+  "month": "0000-00-00",
 }
 
 
@@ -63,9 +69,9 @@
 	route: http://localhost:5000/high_season	
 */
 {
-	"country": "france",
-	"city": "paris",
-	"month": "0000-00-00",
+  "country": "france",
+  "city": "paris",
+  "month": "0000-00-00",
 }
 
 
@@ -75,26 +81,32 @@
 	route: http://127.0.0.1:5000/similar_artists_events/jimi_hendrix
 */
 {
-	"events": [
-		{
-			"event_id": 12345, // maybe?
-			"event_name": "a string",
-			"event_type": "string", // `festival`, `concert` etc..
-			"popularity": 0.25, // a number between 0-1
-			"age_res": 18, // an age 0-100
-			"event_url": "www.event.com/this_event",
-			"event_date": "0000-00-00", // YYYYMMDD
-			"venue_name": "a string", // 
-			"venue_country": "france",
-			"venue_city": "paris",
-			"artist_name": [
-				"jimi hendrix",
-				"kurt kubain",
-			],
-			"artist_url": "www.artist.com/this_artist"
-		}
-		// this is an array, there will be more of these
-	]
+  "events": [
+    {
+      "event_id": 12345,
+      // maybe?
+      "event_name": "a string",
+      "event_type": "string",
+      // `festival`, `concert` etc..
+      "popularity": 0.25,
+      // a number between 0-1
+      "age_res": 18,
+      // an age 0-100
+      "event_url": "www.event.com/this_event",
+      "event_date": "0000-00-00",
+      // YYYYMMDD
+      "venue_name": "a string",
+      //
+      "venue_country": "france",
+      "venue_city": "paris",
+      "artist_name": [
+        "jimi hendrix",
+        "kurt kubain",
+      ],
+      "artist_url": "www.artist.com/this_artist"
+    }
+    // this is an array, there will be more of these
+  ]
 }
 
 
@@ -105,26 +117,32 @@
 	route: http://localhost:5000/highest_rated_artist_events/jimi_hendrix
 */
 {
-	"events": [
-		{
-			"event_id": 12345, // maybe?
-			"event_name": "a string",
-			"event_type": "string", // `festival`, `concert` etc..
-			"popularity": 0.25, // a number between 0-1
-			"age_res": 18, // an age 0-100
-			"event_url": "www.event.com/this_event",
-			"event_date": "0000-00-00", // YYYYMMDD
-			"venue_name": "a string", // 
-			"venue_country": "france",
-			"venue_city": "paris",
-			"artist_name": [
-				"jimi hendrix",
-				"kurt kubain",
-			],
-			"artist_url": "www.artist.com/this_artist"
-		}
-		// this is an array, there will be more of these
-	]
+  "events": [
+    {
+      "event_id": 12345,
+      // maybe?
+      "event_name": "a string",
+      "event_type": "string",
+      // `festival`, `concert` etc..
+      "popularity": 0.25,
+      // a number between 0-1
+      "age_res": 18,
+      // an age 0-100
+      "event_url": "www.event.com/this_event",
+      "event_date": "0000-00-00",
+      // YYYYMMDD
+      "venue_name": "a string",
+      //
+      "venue_country": "france",
+      "venue_city": "paris",
+      "artist_name": [
+        "jimi hendrix",
+        "kurt kubain",
+      ],
+      "artist_url": "www.artist.com/this_artist"
+    }
+    // this is an array, there will be more of these
+  ]
 }
 
 
@@ -134,26 +152,32 @@
 	route: http://localhost:5000/events_by_artist_review/awesome
 */
 {
-	"events": [
-		{
-			"event_id": 12345, // maybe?
-			"event_name": "a string",
-			"event_type": "string", // `festival`, `concert` etc..
-			"popularity": 0.25, // a number between 0-1
-			"age_res": 18, // an age 0-100
-			"event_url": "www.event.com/this_event",
-			"event_date": "0000-00-00", // YYYYMMDD
-			"venue_name": "a string", // 
-			"venue_country": "france",
-			"venue_city": "paris",
-			"artist_name": [
-				"jimi hendrix",
-				"kurt kubain",
-			],
-			"artist_url": "www.artist.com/this_artist"
-		}
-		// this is an array, there will be more of these
-	]
+  "events": [
+    {
+      "event_id": 12345,
+      // maybe?
+      "event_name": "a string",
+      "event_type": "string",
+      // `festival`, `concert` etc..
+      "popularity": 0.25,
+      // a number between 0-1
+      "age_res": 18,
+      // an age 0-100
+      "event_url": "www.event.com/this_event",
+      "event_date": "0000-00-00",
+      // YYYYMMDD
+      "venue_name": "a string",
+      //
+      "venue_country": "france",
+      "venue_city": "paris",
+      "artist_name": [
+        "jimi hendrix",
+        "kurt kubain",
+      ],
+      "artist_url": "www.artist.com/this_artist"
+    }
+    // this is an array, there will be more of these
+  ]
 }
 
 
@@ -163,13 +187,14 @@
 	route: http://localhost:5000/reviews_by_artist/jimi
 */
 {
-	"reviews": [
-		{
-			"stars_rating": 3, //
-			"review_text": "bla bla bla",
-			"username": "a name"
-		}
-		// this is an array, there will be more of these
-	]
+  "reviews": [
+    {
+      "stars_rating": 3,
+      //
+      "review_text": "bla bla bla",
+      "username": "a name"
+    }
+    // this is an array, there will be more of these
+  ]
 }
 

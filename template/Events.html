@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BrainzKick - Events</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="Events_style.css">
+    <link type="image/png" href="https://image.flaticon.com/icons/png/128/55/55864.png" rel="shortcut icon">
+    <script type="text/javascript" src="events_js.js"></script>
+
+</head>
+<body>
+
+
+<!--the navbar class in bootstrap-->
+<nav class="navbar navbar-default">
+    <!--gather the insides of the nav in a container-->
+    <div class="container">
+        <!--giving the header as a link, usually to home page as the brand's name-->
+        <div class="navbar-header">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-nav-demo" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">BrainzKick</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling, id matches the data-toggle in the toggle button-->
+        <div class="collapse navbar-collapse" id="bs-nav-demo">
+            <!--adding tags on the left side-->
+            <ul class="nav navbar-nav">
+                <!--each tag in the navbar-->
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Locations</a></li>
+            </ul>
+            <!--adding tags on the right side-->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Sign up</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" id="main_container">
+
+    <h1>Use our queries engine<br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdiscover musical events
+        <br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspand let the magic begin...<br/><br/>
+    </h1>
+
+    <button class="tablink" onclick="openQuery('query1', this)" id="defaultOpen">Best of the month</button>
+    <button class="tablink" onclick="openQuery('query5', this)">Similar to your favorite</button>
+    <button class="tablink" onclick="openQuery('query6', this)">Top artist's events</button>
+    <button class="tablink" onclick="openQuery('query7', this)">Filter by reviews</button>
+
+    <div id="query1" class="tabcontent">
+        <h3><br/>Best of the month</h3>
+        <p>Get the 10 most popular events in any month you want!</p>
+        <input name="q1_month" type="month" placeholder="Month - Year" required>
+        <button class="get_button" id="q1_get">Show me!</button>
+
+    </div>
+    <div id="query5" class="tabcontent">
+        <h3><br/>Similar to your favorite</h3>
+        <p>Choose your favorite artist and find event with same genre!</p>
+        <input name="q5_artist" type="text" placeholder="Artist's name" required>
+        <button class="get_button" id="q5_get">Show me!</button>
+    </div>
+
+    <div id="query6" class="tabcontent">
+        <h3><br/>Top artist's events</h3>
+        <p>Check out all the events of the artist who has the highest average rating!</p>
+        <button class="get_button" id="q6_get">Show me!</button>
+    </div>
+
+    <div id="query7" class="tabcontent">
+        <h3><br/>Filter by reviews</h3>
+        <p>See events where the artist received a review contains any words you want!</p>
+        <input name="q7_words" type="text" placeholder="Choose your words" required>
+        <button class="get_button" id="q7_get">Show me!</button>
+    </div>
+
+</div>
+
+</body>

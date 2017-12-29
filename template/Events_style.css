@@ -1,0 +1,105 @@
+
+
+body{
+    background: url("http://3.bp.blogspot.com/-8hlNavxtVDQ/VD8c5Eqb7oI/AAAAAAAAHZI/CYhXK3VZSjk/s1600/concert-crowd.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#main_container>h1{
+    font-size: 50px;
+    font-family: 'Tangerine', cursive;
+}
+
+.navbar{
+    background: purple;
+}
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+    margin-left: -15px;
+    color: white;
+    font-style: oblique;
+    font-size: 26px;
+}
+
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+    font-style: oblique;
+    font-size: 18px;
+}
+.navbar-default .navbar-nav>li>a:hover {
+    color: white;
+    font-weight: bold;
+}
+
+#main_container{
+    width: 85%;
+    background: rgba(255, 255, 255, 0.77) !important;
+    margin: 40px auto;
+    padding: 20px;
+    color: black
+
+}
+
+/* Style the tab buttons */
+.tablink {
+    background-color: purple;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+}
+
+
+
+/* Change background color of buttons on hover */
+.tablink:hover {
+    background-color: rgba(128, 0, 128, 0.42);
+}
+
+/* Set default styles for tab content */
+.tabcontent {
+    color: black;
+    display: none;
+    padding: 50px;
+    text-align: center;
+}
+
+.tabcontent>h3{
+    font-size: 36px;
+}
+
+.tabcontent>p{
+    font-size: 26px;
+}
+
+input{
+        /*margin-left: 32%;*/
+    font-style: italic;
+    text-align: center;
+    font-size: 1.3em;
+    width: 30%;
+    padding: 7px 20px;
+    border: double black;
+    border-radius: 9px;
+}
+
+.get_button {
+    background-color: purple;
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    font-size: 23px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 9px;
+}
+
+
+
