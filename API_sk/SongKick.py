@@ -56,12 +56,12 @@ def getTablesFromArtistsFile():
     wa.writerow(['artist_MB_id', 'event_id'])
     wb.writerow(['id', 'displayName', 'type', 'popularity', 'ageRestriction', 'venue_id', 'date', 'uri'])
     wc.writerow(['id', 'displayName', 'city', 'country'])
+    performers_num = 0
+    counter = 0
     # Repeat for each artist in the text file
-    i = 0  # performers counter
-    j = 0  # artists counter
     for line in fileA:
         try:
-            music_brainz_id = line.strip()#.decode("utf-8-sig").encode("utf-8")
+            music_brainz_id = line.strip()  # .decode("utf-8-sig").encode("utf-8")
             result = convert(songkick.artistsmbid_calendar.get(music_brainz_id))
             try:
                 events_list = result['resultsPage']['results']['event']
@@ -70,42 +70,42 @@ def getTablesFromArtistsFile():
                     if not ((music_brainz_id, event['id']) in events_ids):
                         events_ids.add((music_brainz_id, event['id']))
                         wa.writerow([music_brainz_id, event['id']])
-                        # update events table
-                if not (event['id'] in events):
-                    events.add(event['id'])
-                    age = event['ageRestriction']
-                    if not age: age = 0
-                    wb.writerow([event['id'], event['displayName'], event['type'], event['popularity'], age,
-                                event['venue']['id'], event['start']['date'], event['uri']])
+                    # update events table
+                    if not (event['id'] in events):
+                        events.add(event['id'])
+                        age = event['ageRestriction']
+                        if not age: age = 0
+                        wb.writerow([event['id'], event['displayName'], event['type'], event['popularity'], age,
+                                     event['venue']['id'], event['start']['date'], event['uri']])
                     # update venues table
-                if not (event['venue']['id'] in venues):
-                    loc = event['location']['city'].split(',', 3)
-                    city = loc[0]
-                    country = loc[1]
-                    country2 = None
-                    try:
-                        country2 = loc[2]
-                    except:
-                        pass
-                    ven = event['venue']
-                    venues.add(ven['id'])
-                    wc.writerow([ven['id'], ven['displayName'], city, country, country2])
+                    if not (event['venue']['id'] in venues):
+                        loc = event['location']['city'].split(',', 3)
+                        city = loc[0]
+                        country = loc[1]
+                        country2 = None
+                        try:
+                            country2 = loc[2]
+                        except:
+                            pass
+                        ven = event['venue']
+                        venues.add(ven['id'])
+                        wc.writerow([ven['id'], ven['displayName'], city, country, country2])
                 wy.writerow([music_brainz_id])
-
-                i += 1
+                performers_num += 1
+                print "Num of performers = ", str(performers_num)
             except:
                 wz.writerow([music_brainz_id])
         except:
             wz.writerow([music_brainz_id])
-        if j % 500 == 0:
-            print "Counter=", str(j)
-            print "Num of performers = ", str(i)
-        j += 1
+        if counter % 500 == 0:
+            print "Counter=", str(counter)
+        counter += 1
     fileA.close()
     fa.close()
     fb.close()
     fc.close()
     fz.close()
     fy.close()
+
 
 getTablesFromArtistsFile()
