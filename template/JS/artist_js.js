@@ -1,8 +1,8 @@
 function executeArtistQuery(x) {
     $(".posts").append("<h4>Wait for it...</h4>");
-    $.getJSON("http://127.0.0.1:5000/top_10/" + x + y, function (data) {
-                events = data;
-            });
+    // $.getJSON("http://127.0.0.1:5000/top_10/" + x + y, function (data) {
+    //             events = data;
+    //         });
 }
 
 
