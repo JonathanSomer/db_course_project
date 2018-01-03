@@ -1,4 +1,3 @@
-
 function openQuery(queryNum, elmnt) {
     // Hide all elements with class="tabcontent" by default */
     var i, tabcontent, tablinks;
@@ -81,6 +80,7 @@ $(document).ready(function () {
     $('#q5_get').on("click", function () {
         var x = document.getElementById('q5_artist').value;
         if (x) {
+            x = x.split(' ').join('_');
             executeEventQuery(5, x);
         }
     });
@@ -94,6 +94,7 @@ $(document).ready(function () {
     $('#q7_get').on("click", function () {
         var x = document.getElementById("q7_words").value;
         if (x) {
+            x = x.split(' ').join('_');
             executeEventQuery(7, x);
         }
     });

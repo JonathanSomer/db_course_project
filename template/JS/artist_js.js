@@ -23,7 +23,8 @@ $(document).ready(function () {
     //_get butten
     $('#artist_btn').on("click", function () {
         var x = document.getElementById('artist_input').value;
-        if(x){
+        if (x) {
+            x = x.split(' ').join('_');
             executeArtistQuery(x)
         }
     });

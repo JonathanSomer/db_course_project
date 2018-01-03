@@ -1,4 +1,12 @@
-1. Problem activating flask and routing
-2. Removing input in query 6
-3. Adding a query of artists instead of query 8
-4. removing artists urls from event queries?
+
+
+Ori to Zomer:
+
+1. Please remove input from routing in query 6
+2. Adding a query of artists instead of query 8 (view the conversation of me and Asaf)
+3. Removing artists urls from event queries? and show names only, if the user will want he will open the Artists page and search.
+4. when using routings the error is:
+    "No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:63342' is therefore not allowed access."
+    The problem seems to be because of Cross-Origin Resource Sharing (CORS) and according to what Iv'e seen the solution may be:
+     a.configure the permissions from the server side.
+     b. changing the routings localhost to be as the web: "http://localhost:63342/"...
