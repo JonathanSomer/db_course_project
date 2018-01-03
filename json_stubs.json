@@ -1,40 +1,43 @@
-/*
+{
+  "results": [
+  /*
 	Query 1: 
 	Top 10 most popular events in month X
 	route: http://127.0.0.1:5000/top_10/7
 */
-{
-  "events": [
-    {
-      "event_id": 12345,
-      // maybe?
-      "event_name": "a string",
-      "event_type": "string",
-      // `festival`, `concert` etc..
-      "popularity": 0.25,
-      // a number between 0-1
-      "age_res": 18,
-      // an age 0-100
-      "event_url": "www.event.com/this_event",
-      "event_date": "0000-00-00",
-      // YYYYMMDD
-      "venue_name": "a string",
-      //
-      "venue_country": "france",
-      "venue_city": "paris",
-      "artist_name": [
-        "jimi hendrix",
-        "kurt kubain",
-      ],
-      "artist_url": "www.artist.com/this_artist"
-    }
-    // this is an array, there will be more of these
-  ]
-}
+
+  {
+    "events": [
+      {
+        "event_id": 12345,
+        // maybe?
+        "event_name": "a string",
+        "event_type": "string",
+        // `festival`, `concert` etc..
+        "popularity": 0.25,
+        // a number between 0-1
+        "age_res": 18,
+        // an age 0-100
+        "event_url": "www.event.com/this_event",
+        "event_date": "0000-00-00",
+        // YYYYMMDD
+        "venue_name": "a string",
+        //
+        "venue_country": "france",
+        "venue_city": "paris",
+        "artist_name": [
+          "jimi hendrix",
+          "kurt kubain"
+        ],
+        "artist_url": "www.artist.com/this_artist"
+      }
+      // this is an array, there will be more of these
+    ]
+  },
 
 
 /*
-	Query 2: 
+	Query 2:
 	Which city has the largest number of genres in month X
 	route: http://localhost:5000/most_genre_city/12
 */
@@ -47,36 +50,36 @@
     "rock",
     "metal"
   ]
-}
+},
 
 
 /*
-	Query 3: 
+	Query 3:
 	Which city has the largest number of events in month X
 	route: http://localhost:5000/most_events_city/12
 */
 {
   "country": "france",
   "city": "paris",
-  "month": "0000-00-00",
-}
+  "month": "0000-00-00"
+},
 
 
 
 /*
 	Query 4: "high season"
 	In which city and month can I attend the most events this year?
-	route: http://localhost:5000/high_season	
+	route: http://localhost:5000/high_season
 */
 {
   "country": "france",
   "city": "paris",
-  "month": "0000-00-00",
-}
+  "month": "0000-00-00"
+},
 
 
 /*
-	Query 5: 
+	Query 5:
 	I like artist X, give me events where the performer has the same genre as him.
 	route: http://127.0.0.1:5000/similar_artists_events/jimi_hendrix
 */
@@ -101,13 +104,13 @@
       "venue_city": "paris",
       "artist_name": [
         "jimi hendrix",
-        "kurt kubain",
+        "kurt kubain"
       ],
       "artist_url": "www.artist.com/this_artist"
     }
     // this is an array, there will be more of these
   ]
-}
+},
 
 
 
@@ -137,13 +140,13 @@
       "venue_city": "paris",
       "artist_name": [
         "jimi hendrix",
-        "kurt kubain",
+        "kurt kubain"
       ],
       "artist_url": "www.artist.com/this_artist"
     }
     // this is an array, there will be more of these
   ]
-}
+},
 
 
 /*
@@ -172,13 +175,13 @@
       "venue_city": "paris",
       "artist_name": [
         "jimi hendrix",
-        "kurt kubain",
+        "kurt kubain"
       ],
       "artist_url": "www.artist.com/this_artist"
     }
     // this is an array, there will be more of these
   ]
-}
+},
 
 
 /*
@@ -197,4 +200,5 @@
     // this is an array, there will be more of these
   ]
 }
-
+    ]
+}

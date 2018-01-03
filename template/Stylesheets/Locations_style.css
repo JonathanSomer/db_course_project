@@ -14,15 +14,20 @@ body{
     color: white;
     font-style: oblique;
     font-size: 26px;
+    background: inherit;
+    border: none;
 }
 
 
-.navbar-default .navbar-nav>li>a {
+.navbar-default .navbar-nav>li>button {
     color: white;
+    background: inherit;
+    border: none;
+    margin-top: 15px;
     font-style: oblique;
     font-size: 18px;
 }
-.navbar-default .navbar-nav>li>a:hover {
+.navbar-default .navbar-nav>li>button:hover {
     color: white;
     font-weight: bold;
 }
@@ -30,6 +35,7 @@ body{
 
 #main_container{
     width: 85%;
+    background-attachment: fixed;
     background: rgba(255, 255, 255, 0.77) ;
     margin: 40px auto;
     padding: 20px;
@@ -51,7 +57,9 @@ body{
     cursor: pointer;
     padding: 14px 16px;
     font-size: 17px;
-    width: 33%;
+    width: 100%;
+    border-radius: 0%;
+
 }
 
 
@@ -97,6 +105,17 @@ input{
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 9px;
+}
+
+#poweredBy {
+    margin-top: 10px;
+    width: 30%;
+}
+
+.posts > h4 {
+    font-style: italic;
+    text-align: center;
+    font-size: 28px;
 }
 
 

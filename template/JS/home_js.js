@@ -1,6 +1,14 @@
-$(document).ready(function(){
-    //Handles menu drop down
-    $('.dropdown-menu').find('form').click(function (e) {
-        e.stopPropagation();
+$(document).ready(function () {
+    //events buttens
+    $('.eventsB').on("click", function () {
+        window.location.href = "Events.html";
+    });
+    //location buttens
+    $(".locationB").on("click", function () {
+        window.location.href = "Locations.html";
+    });
+    //artist buttens
+    $(".artistB").on("click", function () {
+        window.location.href = "Artists.html";
     });
 });

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -15,6 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+
 
     <title>BrainzKick - Home</title>
     <link rel="stylesheet" type="text/css" href="Stylesheets/Home_style.css">
@@ -39,46 +41,66 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">BrainzKick</a>
+            <button class="navbar-brand">BrainzKick</button>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling, id matches the data-toggle in the toggle button-->
         <div class="collapse navbar-collapse" id="bs-nav-demo">
             <!--adding tags on the left side-->
             <ul class="nav navbar-nav">
                 <!--each tag in the navbar-->
-                <li><a href="#">Events</a></li>
-                <li><a href="#">Locations</a></li>
+                <li>
+                    <button class="eventsB">Events</button>
+                </li>
+                <li>
+                    <button class="locationB">Locations</button>
+                </li>
+                <li>
+                    <button class="artistB">Artists</button>
+                </li>
             </ul>
-            <!--adding tags on the right side-->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Sign up</a></li>
-                <li><a href="#">Login</a></li>
+                <li><img class="pull-right" src="powered-by-songkick-white.png" id="poweredBy"></li>
             </ul>
         </div>
     </div>
 </nav>
 
 
-<div class="container">
-    <div class="jumbotron">
-        <!--outsource icon+header-->
-        <h1 id="brand">BrainzKick</h1>
-        <h2 id="motivation">Find your next musical adventure!<br/></h2>
-        <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-5">
-                <h2>events</h2>
-                <h4>Find the event you are looking for!</h4>
-                <h4>Using our event search engine you can view </br>the <B>events you really want!</B></h4>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!-- /.col-lg-6 -->
-            <div class="col-lg-1"></div>
-            <div class="col-lg-5">
-                <h2>Locations</h2>
-                <h4>Discover where you want to be!</h4>
-                <h4>Using our event search engine you can see<br/> <B>where the good stuff happens!</B></h4>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div><!-- /.col-lg-6 -->
+<div class="container" id="main_container">
+    <!--outsource icon+header-->
+    <h1 id="brand">BrainzKick</h1>
+    <h2 id="motivation">Find your next musical adventure!<br/></h2>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            <h2>events</h2>
+            <h4>Find the event you are looking for!</h4>
+            <h4>Using our event search engine you can view </br>the <B>events you really want!</B></h4>
+            <p>
+                <button class="eventsB">View details &raquo;</button>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            <h2>Locations</h2>
+            <h4>Discover where you want to be!</h4>
+            <h4>Using our event search engine you can see<br/> <B>where the good stuff happens!</B></h4>
+            <p>
+                <button class="locationB">View details &raquo;</button>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            <h2>Artists</h2>
+            <h4>Share some thoughts!</h4>
+            <h4>Watch artist's reviews<br/> <B>and share what you think!</B></h4>
+            <p>
+                <button class="artistB">View details &raquo;</button>
+            </p>
         </div>
     </div>
 </div>
