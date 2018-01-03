@@ -7,8 +7,9 @@ Ori to Zomer:
 3. Removing artists urls from event queries? and show names only, if the user will want he will open the Artists page and search.
 4. when using routings the error is:
     "No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:63342' is therefore not allowed access."
-    The problem seems to be because of Cross-Origin Resource Sharing (CORS) and according to what Iv'e seen the solution may be:
-     a.configure the permissions from the server side.
-     b. changing the routings localhost to be as the web: "http://localhost:63342/"...
+    The problem seems to be because "Cross-Origin Resource Sharing" (known as "CORS") is probably needed.
+    According to what Iv'e seen the solution may be:
+     a. configure the permissions from the server side with CORS.
+     b. changing the routings localhost to be as the web: "localhost:63342/"
 5. I use the "month" field as "2018-05", Asaf said the queries uses month as "05" and year as "2018" (different fields with string type).
     Why do we need timestamps?
