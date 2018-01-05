@@ -1,7 +1,10 @@
 from flask import Flask,jsonify,json
 from logging.config import dictConfig
 from flaskext.mysql import MySQL
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
  
 # mysql = MySQL()
 # app.config['MYSQL_DATABASE_USER'] = 'root'
