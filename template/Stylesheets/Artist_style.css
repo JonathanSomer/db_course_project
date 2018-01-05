@@ -74,9 +74,8 @@ input{
     width: 30%;
 }
 
-.posts>#artist_name{
-    font-family: 'Tangerine', cursive;;
-    color: purple;
-    font-size: 800%;
+.posts>.row{
+    border-bottom: solid 1px #c4c4c4;
+    padding-bottom: 30px;
 }
 

@@ -36,8 +36,8 @@ function executeEventQuery(qNum, x, y) {
                 events = data;
             });
     }
+    debugger;
     $(".posts").empty();
-    console.log(events);
     if (events) {
         for (var i = 0; i < events.length; i++) {
             var event = events[i];
