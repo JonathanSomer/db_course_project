@@ -1,17 +1,22 @@
 from flask import Flask,jsonify,json
 from logging.config import dictConfig
-from flaskext.mysql import MySQL
 from flask_cors import CORS
+from flask_mysqldb import MySQL
+from flask import render_template
+
+
 
 app = Flask(__name__)
 CORS(app)
- 
-# mysql = MySQL()
-# app.config['MYSQL_DATABASE_USER'] = 'root'
-# app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
-# app.config['MYSQL_DATABASE_DB'] = 'EmpData'
-# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-# mysql.init_app(app)
+
+app.config.update(
+	MYSQL_HOST='127.0.0.1',
+	MYSQL_PORT=3306,
+	MYSQL_DB='DbMysql03',
+	MYSQL_PASSWORD='DbMysql03',
+	MYSQL_USER='DbMysql03'
+)
+mysql = MySQL(app)
 
 
 events_data = {
@@ -118,7 +123,11 @@ reviews = {
 
 @app.route('/')
 def main_page():
-    return "main page"
+    # cur = mysql.connection.cursor()
+    # cur.execute('''SELECT * FROM artists LIMIT 10''')
+    # rv = cur.fetchall()
+    # return str(rv)
+    return render_template('Home.html')
 
 @app.route('/top_10/<int:month_number>')
 def top_10_events_in_month_X(month_number):
@@ -130,9 +139,9 @@ def similar_artists_events(artist):
     print('GET similar artists events %s' % (artist))
     return jsonify(events_data)
 
-@app.route('/highest_rated_artist_events/<string:artist>')
-def highest_rated_artist_events(artist):
-    print('GET highest rated artist events %s' % (artist))
+@app.route('/highest_rated_artist_events')
+def highest_rated_artist_events():
+    print('GET highest rated artist events')
     return jsonify(events_data)
 
 @app.route('/events_by_artist_review/<string:text_in_review>')

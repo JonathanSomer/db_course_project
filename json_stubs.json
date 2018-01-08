@@ -117,7 +117,7 @@
 /*
 	Query 6:
 	I want to see all the events of the artist who has the highest average rating
-	route: http://localhost:5000/highest_rated_artist_events/jimi_hendrix
+	route: http://localhost:5000/highest_rated_artist_events/
 */
 {
   "events": [
@@ -150,9 +150,9 @@
 
 
 /*
-	Query 7: "full text"
-	I want to see events where the artist received a review with the words I mentioned
-	route: http://localhost:5000/events_by_artist_review/awesome
+  Query 7: "full text"
+  I want to see events where the artist received a review with the words I mentioned
+  route: http://localhost:5000/events_by_artist_review/awesome
 */
 {
   "events": [
@@ -175,21 +175,33 @@
       "venue_city": "paris",
       "artist_name": [
         "jimi hendrix",
-        "kurt kubain"
+        "kurt kubain",
       ],
       "artist_url": "www.artist.com/this_artist"
     }
     // this is an array, there will be more of these
   ]
-},
+}
 
 
 /*
-	Query 8:
-	return all reviews for artist
-	route: http://localhost:5000/reviews_by_artist/jimi
+  Query 8:
+  return all reviews for artist
+  route: http://localhost:5000/reviews_by_artist/jimi
 */
 {
+  "artist_id": "sdf435iojf",
+  "artist_name": "Jack Johnson",
+  "artist_type": "person",
+  "artist_origin_country": "US",
+  "artist_genres_list": ["rock", "pop","indie"],
+  //url's associated with the artist:
+  "url_list": [
+    {
+      "type": "official hompage",
+      "url":"homepage.com",
+    }
+  ],
   "reviews": [
     {
       "stars_rating": 3,
@@ -199,6 +211,4 @@
     }
     // this is an array, there will be more of these
   ]
-}
-    ]
 }
