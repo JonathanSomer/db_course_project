@@ -10,30 +10,42 @@ function openQuery(queryNum, elmnt) {
     document.getElementById(queryNum).style.display = "block";
 }
 
-function executeLocationQuery(qNum, x, y){
-    $(".posts").append("<h4>Wait for it...</h4>");
-    var locations;
+function executeLocationQuery(qNum, x) {
+    $(".posts").append("<h3>Wait for it...</h3>");
+    var address, content;
     switch (qNum) {
         case 2:
-            $.getJSON("http://localhost:5000/most_genre_city/" + x + y, function (data) {
-                locations = data;
-            });
+            address = "http://localhost:5000/most_genre_city/" + x;
             break;
         case 3:
-            $.getJSON("http://localhost:5000/most_events_city/" + x +y, function (data) {
-                locations = data;
-            });
+            address = "http://localhost:5000/most_events_city/" + x;
             break;
-
         case 4:
-            $.getJSON("http://localhost:5000/high_season", function (data) {
-                locations = data;
-            });
+            address = "http://localhost:5000/high_season";
             break;
     }
-    $(".posts").empty();
-    console.log(locations);
+    $.getJSON(address, function (data) {
+        $(".posts").empty();
+        if (data) {
+            content = "<h2>" + data.city + "</h2><h4><u>Country:</u> " + data.country + "</h4><h4><u>Month:</u> " + data.month + "</h4>";
+            if (qNum == 2 && data.genres) {
+                content += "<h4>Genres:</h4><div class='row'>";
+                for (var j = 0; j < data.genres.length; j++) {
+                    if (j != 0 && j % 4 == 0) {
+                        content += "</div><div class='row'>";
+                    }
+                    content += "<div class='col-lg-3'><p>" + data.genres[j] + "</p></div>";
+                }
+                content += "</div>";
+            }
+            $(".posts").append(content);
+        }
+        else {
+            $(".posts").append("<h3>There seem to have a problem with this request, try something else...</h3>");
+        }
+    });
 }
+
 
 $(document).ready(function () {
     //events buttens
@@ -53,8 +65,7 @@ $(document).ready(function () {
     $('#q2_get').on("click", function () {
         var x = document.getElementById('q2_month').value;
         if (x) {
-            var tmp = x.split('-');
-            executeLocationQuery(2, tmp[0], tmp[1]);
+            executeLocationQuery(2, x);
         }
     });
 
@@ -62,8 +73,7 @@ $(document).ready(function () {
     $('#q3_get').on("click", function () {
         var x = document.getElementById('q3_month').value;
         if (x) {
-            var tmp = x.split('-');
-            executeLocationQuery(3, tmp[0], tmp[1]);
+            executeLocationQuery(3, x);
         }
     });
 
