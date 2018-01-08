@@ -38,7 +38,7 @@
 /*
 	Query 2:
 	Which city has the largest number of genres in month X
-	route: http://localhost:5000/most_genre_city/12
+	route: http://localhost:5000/most_genre_city/2018-5
 */
 {
   "country": "france",
