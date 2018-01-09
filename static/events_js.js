@@ -11,44 +11,44 @@ function openQuery(queryNum, elmnt) {
 }
 
 
-var events;
+var eventss;
 function executeEventQuery(qNum, x) {
     $(".posts").append("<h4>Wait for it...</h4>");
     switch (qNum) {
         case 1:
             $.getJSON("http://127.0.0.1:5000/top_10/" + x, function (data) {
-                events = data;
+                eventss = data;
             });
             break;
         case 5:
             $.getJSON("http://127.0.0.1:5000/similar_artists_events/" + x, function (data) {
-                events = data;
+                eventss = data;
             });
             break;
 
         case 6:
             $.getJSON("http://localhost:5000/highest_rated_artist_events/", function (data) {
-                events = data;
+                eventss = data;
                 console.log(data);
-                console.log(events);
+                console.log(eventss);
             });
             break;
     }
     $(".posts").empty();
-    if (events) {
-        events = events.events;
-        if (events) {
-            if (events.length > 0) {
-                for (var i = 0; i < events.length; i++) {
-                    var event = events[i];
-                    content = "<div class='row'>";
-                    content += "<div class='post col-md-6'><h2>" + event.event_name + "</h2><p><B>Event id:</B> " + event.event_id + "</p><p><B>Event type:</B> " + event.event_type + "</p><p><B>Popularity:</B> " + event.popularity + "</p><p><B>Date:</B> " + event.event_date + "</p><p><B>Event url:</B> " + event.event_url + "</p> <p><B>Venue: </B>" + event.venue_name + ", " + event.venue_city + ", " + event.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
+    if (eventss) {
+        eventss = eventss.events;
+        if (eventss) {
+            if (eventss.length > 0) {
+                for (var i = 0; i < eventss.length; i++) {
+                    var eventt = eventss[i];
+                    var content = "<div class='row'>";
+                    content += "<div class='post col-md-6'><h2>" + eventt.event_name + "</h2><p><B>Event id:</B> " + eventt.event_id + "</p><p><B>Event type:</B> " + eventt.event_type + "</p><p><B>Popularity:</B> " + eventt.popularity + "</p><p><B>Date:</B> " + eventt.event_date + "</p><p><B>Event url:</B> " + eventt.event_url + "</p> <p><B>Venue: </B>" + eventt.venue_name + ", " + eventt.venue_city + ", " + eventt.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
                     content += "<div class='row'>";
-                    for (var j = 0; j < event.artist_name.length; j++) {
+                    for (var j = 0; j < eventt.artist_name.length; j++) {
                         if (j != 0 && j % 4 == 0) {
                             content += "</div><div class='row'>";
                         }
-                        content += "<div class='col-lg-3'><p>" + event.artist_name[j] + "</p></div>";
+                        content += "<div class='col-lg-3'><p>" + eventt.artist_name[j] + "</p></div>";
                     }
                     content += "</div>";
                     $(".posts").append(content);

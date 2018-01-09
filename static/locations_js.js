@@ -10,32 +10,32 @@ function openQuery(queryNum, elmnt) {
     document.getElementById(queryNum).style.display = "block";
 }
 
-var locations
+var locationss;
 function executeLocationQuery(qNum, x) {
     $(".posts").append("<h4>Wait for it...</h4>");
     switch (qNum) {
         case 2:
             $.getJSON("http://localhost:5000/most_genre_city/" + x, function (data) {
-                locations = data;
+                locationss = data;
             });
             break;
         case 3:
             $.getJSON("http://localhost:5000/most_events_city/" + x, function (data) {
-                locations = data;
+                locationss = data;
             });
             break;
 
         case 4:
             $.getJSON("http://localhost:5000/high_season", function (data) {
-                locations = data;
+                locationss = data;
             });
             break;
     }
     $(".posts").empty();
-    if (locations) {
-        content = "<h2>" + locations.city + "</h2><h4><u>Country:</u> " + locations.country + "</h4><h4><u>Month:</u> " + locations.month + "</h4>";
+    if (locationss) {
+        var content = "<h2>" + locationss.city + "</h2><h4><u>Country:</u> " + locationss.country + "</h4><h4><u>Month:</u> " + locationss.month + "</h4>";
         if (qNum == 2 && data.genres) {
-            content += "<h4>Num of genres:" + locations.genres + "</h4>";
+            content += "<h4>Num of genres:" + locationss.genres + "</h4>";
             $(".posts").append(content);
         }
     }
