@@ -10,17 +10,17 @@ function openQuery(queryNum, elmnt) {
     document.getElementById(queryNum).style.display = "block";
 }
 
-function executeLocationQuery(qNum, x, y) {
+var locations
+function executeLocationQuery(qNum, x) {
     $(".posts").append("<h4>Wait for it...</h4>");
-    var locations;
     switch (qNum) {
         case 2:
-            $.getJSON("http://localhost:5000/most_genre_city/" + x + y, function (data) {
+            $.getJSON("http://localhost:5000/most_genre_city/" + x, function (data) {
                 locations = data;
             });
             break;
         case 3:
-            $.getJSON("http://localhost:5000/most_events_city/" + x + y, function (data) {
+            $.getJSON("http://localhost:5000/most_events_city/" + x, function (data) {
                 locations = data;
             });
             break;

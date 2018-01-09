@@ -10,12 +10,13 @@ function openQuery(queryNum, elmnt) {
     document.getElementById(queryNum).style.display = "block";
 }
 
-function executeEventQuery(qNum, x, y) {
+
+var events;
+function executeEventQuery(qNum, x) {
     $(".posts").append("<h4>Wait for it...</h4>");
-    var events;
     switch (qNum) {
         case 1:
-            $.getJSON("http://127.0.0.1:5000/top_10/" + x + y, function (data) {
+            $.getJSON("http://127.0.0.1:5000/top_10/" + x, function (data) {
                 events = data;
             });
             break;
@@ -26,9 +27,10 @@ function executeEventQuery(qNum, x, y) {
             break;
 
         case 6:
-            debugger;
             $.getJSON("http://localhost:5000/highest_rated_artist_events/", function (data) {
                 events = data;
+                console.log(data);
+                console.log(events);
             });
             break;
     }
@@ -40,7 +42,7 @@ function executeEventQuery(qNum, x, y) {
                 for (var i = 0; i < events.length; i++) {
                     var event = events[i];
                     content = "<div class='row'>";
-                    content += "<div class='post col-md-6'><h2>" + event.event_name + "</h2><p>Event id: " + event.event_id + "</p><p>Event type: " + event.event_type + "</p><p>Popularity: " + event.popularity + "</p><p>Date: " + event.event_date + "</p><p>Event url: " + event.event_url + "</p> <p>Venue: " + event.venue_name + ", " + event.venue_city + ", " + event.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
+                    content += "<div class='post col-md-6'><h2>" + event.event_name + "</h2><p><B>Event id:</B> " + event.event_id + "</p><p><B>Event type:</B> " + event.event_type + "</p><p><B>Popularity:</B> " + event.popularity + "</p><p><B>Date:</B> " + event.event_date + "</p><p><B>Event url:</B> " + event.event_url + "</p> <p><B>Venue: </B>" + event.venue_name + ", " + event.venue_city + ", " + event.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
                     content += "<div class='row'>";
                     for (var j = 0; j < event.artist_name.length; j++) {
                         if (j != 0 && j % 4 == 0) {
@@ -67,6 +69,7 @@ function executeEventQuery(qNum, x, y) {
 
 
 $(document).ready(function () {
+
     //home buttens
     $(".navbar-brand").on("click", function () {
         // window.location.href = "Home.html";
