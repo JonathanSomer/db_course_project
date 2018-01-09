@@ -147,64 +147,46 @@
 
 
 /*
-  Query 7: "full text"
-  I want to see events where the artist received a review with the words I mentioned
-  route: http://localhost:5000/events_by_artist_review/awesome
+Query 7: "full text"
+	I want to see all the reviews which contain this text
+	route: http://localhost:5000/events_by_artist_review/awesome
 */
 {
-  "events": [
-    {
-      "event_id": 12345,
-      // maybe?
-      "event_name": "a string",
-      "event_type": "string",
-      // `festival`, `concert` etc..
-      "popularity": 0.25,
-      // a number between 0-1
-      "age_res": 18,
-      // an age 0-100
-      "event_url": "www.event.com/this_event",
-      "event_date": "0000-00-00",
-      // YYYYMMDD
-      "venue_name": "a string",
-      //
-      "venue_country": "france",
-      "venue_city": "paris",
-      "artist_name": [
-        "jimi hendrix",
-        "kurt kubain",
-      ],
-    }
-    // this is an array, there will be more of these
-  ]
+	"reviews": [{
+		"review_id" = 1,
+		"username": "a string",
+		"artist_name": "a string",
+		"review": "text -  string",
+		"star_rating": 5
+	}]
 }
 
 
 /*
-  Query 8:
-  return all reviews for artist
-  route: http://localhost:5000/reviews_by_artist/jimi
+	Query 8:
+	return all reviews for artist
+	route: http://localhost:5000/reviews_by_artist/jimi
 */
 {
-  "artist_id": "sdf435iojf",
-  "artist_name": "Jack Johnson",
-  "artist_type": "person",
-  "artist_origin_country": "US",
-  "artist_genres_list": ["rock", "pop","indie"],
-  //url's associated with the artist:
-  "url_list": [
-    {
-      "type": "official hompage",
-      "url":"homepage.com",
-    }
-  ],
-  "reviews": [
-    {
-      "stars_rating": 3,
-      //
-      "review_text": "bla bla bla",
-      "username": "a name"
-    }
-    // this is an array, there will be more of these
-  ]
+	"artist_id": "sdf435iojf",
+	"artist_name": "Jack Johnson",
+	"artist_type": "person",
+	"artist_origin_country": "US",
+	"artist_genres_list": ["rock",
+		"pop",
+		"indie"
+	],
+	"url_list": [{
+		"type": "official hompage",
+		"url": "homepage.com"
+	}],
+	"reviews": [{
+			"review_id" = 1,
+			"username": "a string",
+			"artist_name": "a string",
+			"review": "text -  string",
+			"star_rating": 5
+		}
+
+	]
 }
