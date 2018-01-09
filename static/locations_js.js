@@ -1,4 +1,4 @@
-function openQuery(queryNum, elmnt) {
+function openQuery(queryNum) {
     // Hide all elements with class="tabcontent" by default */
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -9,6 +9,7 @@ function openQuery(queryNum, elmnt) {
     // Show the specific tab content
     document.getElementById(queryNum).style.display = "block";
 }
+
 
 var locationss;
 function executeLocationQuery(qNum, x) {
@@ -28,16 +29,18 @@ function executeLocationQuery(qNum, x) {
         case 4:
             $.getJSON("http://localhost:5000/high_season", function (data) {
                 locationss = data;
+                console.log(locationss);
             });
             break;
     }
     $(".posts").empty();
+    debugger;
     if (locationss) {
         var content = "<h2>" + locationss.city + "</h2><h4><u>Country:</u> " + locationss.country + "</h4><h4><u>Month:</u> " + locationss.month + "</h4>";
         if (qNum == 2 && data.genres) {
             content += "<h4>Num of genres:" + locationss.genres + "</h4>";
-            $(".posts").append(content);
         }
+        $(".posts").append(content);
     }
     else {
         $(".posts").append("<h4>There are no locations to show for your request</h4>");

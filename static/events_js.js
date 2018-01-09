@@ -42,7 +42,7 @@ function executeEventQuery(qNum, x) {
                 for (var i = 0; i < eventss.length; i++) {
                     var eventt = eventss[i];
                     var content = "<div class='row'>";
-                    content += "<div class='post col-md-6'><h2>" + eventt.event_name + "</h2><p><B>Event id:</B> " + eventt.event_id + "</p><p><B>Event type:</B> " + eventt.event_type + "</p><p><B>Popularity:</B> " + eventt.popularity + "</p><p><B>Date:</B> " + eventt.event_date + "</p><p><B>Event url:</B> " + eventt.event_url + "</p> <p><B>Venue: </B>" + eventt.venue_name + ", " + eventt.venue_city + ", " + eventt.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
+                    content += "<div class='post col-md-6'><h2>" + eventt.event_name + "</h2><p><B>Event type:</B> " + eventt.event_type + "</p><p><B>Popularity:</B> " + eventt.popularity + "</p><p><B>Date:</B> " + eventt.event_date + "</p><p><B>Event url:</B> " + eventt.event_url + "</p> <p><B>Venue: </B>" + eventt.venue_name + ", " + eventt.venue_city + ", " + eventt.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
                     content += "<div class='row'>";
                     for (var j = 0; j < eventt.artist_name.length; j++) {
                         if (j != 0 && j % 4 == 0) {

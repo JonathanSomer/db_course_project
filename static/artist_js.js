@@ -1,12 +1,14 @@
+var artist;
 function executeArtistQuery(x) {
     $(".posts").append("<h4>Wait for it...</h4>");
-    var artist;
     if (x) {
         $.getJSON("http://localhost:5000/reviews_by_artist/" + x, function (data) {
+            console.log(data);
             artist = data;
         });
         $(".posts").empty();
         if (artist) {
+            console.log(artist);
             var content = "<h1>" + artist.artist_name + "</h1><h4>Artist id: " + artist.artist_id + "</h4><h4>Artist's type: " + artist.artist_type + "</h4><h4>Artist's origin: " + artist.artist_origin_country + "</h4><h4>Artist;s genres:</h4><p>";
             for (var i = 0; i < artist.artist_genres_list.length; i++) {
                 content += artist.artist_genres_list[i] + "&nbsp";
