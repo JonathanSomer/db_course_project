@@ -26,15 +26,11 @@ function executeEventQuery(qNum, x, y) {
             break;
 
         case 6:
+            debugger;
             $.getJSON("http://localhost:5000/highest_rated_artist_events/", function (data) {
                 events = data;
             });
             break;
-
-        case 7:
-            $.getJSON("http://localhost:5000/events_by_artist_review/" + x, function (data) {
-                events = data;
-            });
     }
     $(".posts").empty();
     if (events) {
