@@ -11,7 +11,6 @@ function openQuery(queryNum, elmnt) {
 }
 
 function executeEventQuery(qNum, x, y) {
-    debugger;
     $(".posts").append("<h4>Wait for it...</h4>");
     var events;
     switch (qNum) {

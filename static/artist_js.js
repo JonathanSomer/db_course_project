@@ -1,8 +1,9 @@
 function executeArtistQuery(x) {
     $(".posts").append("<h4>Wait for it...</h4>");
+    var artist;
     if (x) {
         $.getJSON("http://localhost:5000/reviews_by_artist/" + x, function (data) {
-            var artist = data;
+            artist = data;
         });
         $(".posts").empty();
         if (artist) {
@@ -14,6 +15,13 @@ function executeArtistQuery(x) {
             for (var i = 0; i < artist.url_list.length; i++) {
                 content += "<p>" + artist.url_list[i].type + ": " + artist.url_list[i].url + "</p>";
             }
+            content += "<div form id='adding_form'><input id='adding_username' type='text' placeholder='Username' required>" +
+                "<input id='adding_password' type='password' placeholder='Password' required>" +
+                "</divform><select id='adding_rank' required><option value=''>Rank</option><option value='1'>1</option>" +
+                "<option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>" +
+                "<option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option>" +
+                "<option value='10'>10</option></select><p>Enter comment:</p><textarea id='adding_comment' placeholder='Comment' rows='5' cols='100'></textarea>" +
+                "<div><button id='adding_btn'>Add comment</button></div></div>";
             reviews = artist.reviews;
             var ids = [];
             for (var i = 0; i < reviews.length; i++) {
@@ -70,4 +78,12 @@ $(document).ready(function () {
             executeArtistQuery(x)
         }
     });
+
+        //adding_review butten
+    $('#adding_btn').on("click", function () {
+        var usr = document.getElementById('adding_username').value;
+        var pass = document.getElementById('adding_password').value;
+        var rank = document.getElementById('adding_rank').value;
+        var comment = document.getElementById('adding_comment').value;
+        });
 });

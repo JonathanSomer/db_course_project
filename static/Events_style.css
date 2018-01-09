@@ -90,6 +90,7 @@ input {
     padding: 7px 20px;
     border: double black;
     border-radius: 9px;
+    min-width: 220px;
 }
 
 .get_button {
@@ -101,7 +102,6 @@ input {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 9px;
-    min-width: 220px;
 }
 
 #poweredBy {
