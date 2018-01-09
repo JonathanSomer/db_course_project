@@ -18,11 +18,11 @@
             crossorigin="anonymous"></script>
 
 
-    <title>BrainzKick - Locations</title>
-    <link rel="stylesheet" type="text/css" href="../static/Locations_style.css">
-    <script type="text/javascript" src="../static/locations_js.js"></script>
-    <!--   <script type="text/javascript" src="{{url_for('static', filename='locations_js.js')}}"></script>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='Locations_style.css')}}"> TODO -->
+    <title>BrainzKick - Reviews page</title>
+    <link rel="stylesheet" type="text/css" href="../static/Review_style.css">
+    <script type="text/javascript" src="../static/reviews_js.js"></script>
+    <!--    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='Reviews_style.css')}}>
+    <script type="text/javascript" src="{{url_for('static', filename='reviews_js.js')}}"></script> TODO -->
     <link type="image/png" href="https://image.flaticon.com/icons/png/128/55/55864.png" rel="shortcut icon">
 
 
@@ -75,49 +75,16 @@
 
 <div class="container" id="main_container">
 
-    <h1>Use our queries engine<br/>&nbsp discover best cities to visit
-        <br/>&nbsp&nbsp and let the magic begin...<br/><br/>
+    <h1>Just enter meaningful keywords
+        <br/>&nbsp&nbsp and  find all reviews contain it<br/><br/>
     </h1>
-    <div class="row">
-        <div class="col-lg-4">
-            <button class="tablink" onclick="openQuery('query2', this)" id="defaultOpen">The most diverse place yo can
-                go
-            </button>
-        </div>
-        <div class="col-lg-4">
-            <button class="tablink" onclick="openQuery('query3', this)">All you can get in one month</button>
-        </div>
-        <div class="col-lg-4">
-            <button class="tablink" onclick="openQuery('query4', this)">High season</button>
-        </div>
-
-    </div>
 
 
-    <div id="query2" class="tabcontent">
-        <h3><br/>The most diverse place yo can go</h3>
-        <p>Discover which city has the largest number of different genres events in any month you want!</p>
-        <input id="q2_month" type="month" placeholder="Month - Year" required>
-        <button class="get_button" id="q2_get">Show me!</button>
-    </div>
-    <div id="query3" class="tabcontent">
-        <h3><br/>All you can get in one month</h3>
-        <p>Discover Which city has the largest number of events in any month you want!</p>
-        <input id="q3_month" type="month" placeholder="Month - Year" required>
-        <button class="get_button" id="q3_get">Show me!</button>
-    </div>
+    <input id="review_input" type="text" placeholder="Key words" required>
+    <button class="get_button" id="review_btn">Show me!</button>
 
-    <div id="query4" class="tabcontent">
-        <h3><br/>High season</h3>
-        <p>Discover In which city and month you can attend the most events this year</p>
-        <button class="get_button" id="q4_get">Show me!</button>
-    </div>
-
-    <div class="posts"></div>
-
+    <div class="col-xs-12 posts"></div>
 
 </div>
 
-
 </body>
-</html>

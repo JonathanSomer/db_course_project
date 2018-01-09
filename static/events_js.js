@@ -10,47 +10,46 @@ function openQuery(queryNum, elmnt) {
     document.getElementById(queryNum).style.display = "block";
 }
 
-function executeEventQuery(qNum, x) {
-    $(".posts").append("<h3>Wait for it...</h3>");
-    var events, address, artist, content;
+function executeEventQuery(qNum, x, y) {
+    $(".posts").append("<h4>Wait for it...</h4>");
+    var events;
     switch (qNum) {
         case 1:
-            address = "http://127.0.0.1:5000/top_10/" + x;
+            $.getJSON("http://127.0.0.1:5000/top_10/" + x + y, function (data) {
+                events = data;
+            });
             break;
         case 5:
-            address = "http://127.0.0.1:5000/similar_artists_events/" + x;
+            $.getJSON("http://127.0.0.1:5000/similar_artists_events/" + x, function (data) {
+                events = data;
+            });
             break;
+
         case 6:
-            address = "http://localhost:5000/highest_rated_artist_events";
+            $.getJSON("http://localhost:5000/highest_rated_artist_events/", function (data) {
+                events = data;
+            });
             break;
+
         case 7:
-            address = "http://localhost:5000/events_by_artist_review/" + x;
+            $.getJSON("http://localhost:5000/events_by_artist_review/" + x, function (data) {
+                events = data;
+            });
     }
-    $.getJSON(address, function (data) {
-        $(".posts").empty();
-        if (data) {
-            events = data.events;
-            if (events) {
-                for (var i = 0; i < events.length; i++) {
-                    var event = events[i];
-                    content = "<div class='row'>";
-                    content += "<div class='post col-md-6'><h2>" + event.event_name + "</h2><p>Event id: " + event.event_id + "</p><p>Event type: " + event.event_type + "</p><p>Popularity: " + event.popularity + "</p><p>Date: " + event.event_date + "</p><p>Event url: " + event.event_url + "</p> <p>Venue: " + event.venue_name + ", " + event.venue_city + ", " + event.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
-                    content += "<div class='row'>";
-                    for (var j = 0; j < event.artist_name.length; j++) {
-                        if (j != 0 && j % 4 == 0) {
-                            content += "</div><div class='row'>";
-                        }
-                        content += "<div class='col-lg-3'><p>" + event.artist_name[j] + "</p></div>";
-                    }
-                    content += "</div>";
-                    $(".posts").append(content);
-                }
-            }
-            else {
-                $(".posts").append("<h3>There seem to have a problem with this request, try something else...</h3>");
+    $(".posts").empty();
+    if (events) {
+        for (var i = 0; i < events.length; i++) {
+            var event = events[i];
+            $(".posts").append("<div class='row'>");
+            var content = "<div class='post col-lg-1'><h2>event.event_name</h2><p>Event id: " + event.event_id + "</p><p>Event type: " + event.event_type + "</p><p>Popularity: " + event.popularity + "</p><p>Date: " + event.event_date + "</p><p>Event url: " + event.event_url + "</p> <p>Venue: " + event.venue_name + ", " + event.venue_city + ", " + event.venue_country + "</p><p><u>Performers:</u></p></div>"
+            $(".posts").append(content);
+            for (var j = 0; j < event.artist_name.length; j++) {
+                artist = "<p>&nbsp&nbsp&nbsp" + event.artist_name[j] + "</p>"
+                $(".posts").append(artist);
             }
         }
-    });
+    }
+    //    What if no events? TODO
 }
 
 
@@ -58,14 +57,25 @@ $(document).ready(function () {
     //home buttens
     $(".navbar-brand").on("click", function () {
         window.location.href = "Home.html";
+        // window.location.href = "/"; TODO
+
     });
     //location buttens
     $(".locationB").on("click", function () {
         window.location.href = "Locations.html";
+        // window.location.href = "/Locations"; TODO
+
     });
     //artist buttens
     $(".artistB").on("click", function () {
         window.location.href = "Artists.html";
+        // window.location.href = "/Artists"; TODO
+
+    });
+    //reviews buttens
+    $(".reviewsB").on("click", function () {
+        window.location.href = "/Reviews.html";
+        // window.location.href = "/Reviews"; TODO
     });
 
     // q1_get butten

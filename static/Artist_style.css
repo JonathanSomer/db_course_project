@@ -74,5 +74,8 @@ input{
     width: 30%;
 }
 
-
+.posts>.row{
+    border-bottom: solid 1px #c4c4c4;
+    padding-bottom: 30px;
+}
 

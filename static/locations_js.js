@@ -10,55 +10,58 @@ function openQuery(queryNum, elmnt) {
     document.getElementById(queryNum).style.display = "block";
 }
 
-function executeLocationQuery(qNum, x) {
-    $(".posts").append("<h3>Wait for it...</h3>");
-    var address, content;
+function executeLocationQuery(qNum, x, y) {
+    $(".posts").append("<h4>Wait for it...</h4>");
+    var locations;
     switch (qNum) {
         case 2:
-            address = "http://localhost:5000/most_genre_city/" + x;
+            $.getJSON("http://localhost:5000/most_genre_city/" + x + y, function (data) {
+                locations = data;
+            });
             break;
         case 3:
-            address = "http://localhost:5000/most_events_city/" + x;
+            $.getJSON("http://localhost:5000/most_events_city/" + x + y, function (data) {
+                locations = data;
+            });
             break;
+
         case 4:
-            address = "http://localhost:5000/high_season";
+            $.getJSON("http://localhost:5000/high_season", function (data) {
+                locations = data;
+            });
             break;
     }
-    $.getJSON(address, function (data) {
-        $(".posts").empty();
-        if (data) {
-            content = "<h2>" + data.city + "</h2><h4><u>Country:</u> " + data.country + "</h4><h4><u>Month:</u> " + data.month + "</h4>";
-            if (qNum == 2 && data.genres) {
-                content += "<h4>Genres:</h4><div class='row'>";
-                for (var j = 0; j < data.genres.length; j++) {
-                    if (j != 0 && j % 4 == 0) {
-                        content += "</div><div class='row'>";
-                    }
-                    content += "<div class='col-lg-3'><p>" + data.genres[j] + "</p></div>";
-                }
-                content += "</div>";
-            }
-            $(".posts").append(content);
+    $(".posts").empty();
+    if (locations) {
+        var content = "<h1>" + locations.city + "</h1><p>" + locations.country + "</p><p>" + locations.month + "</p>";
+        if (qNum == 4) {
+            content += "<p>Number of genres: " + locations.genres + "</p>"
         }
-        else {
-            $(".posts").append("<h3>There seem to have a problem with this request, try something else...</h3>");
-        }
-    });
+        $(".posts").append(content);
+    }
+//    What if no locations? TODO
 }
-
 
 $(document).ready(function () {
     //events buttens
     $('.eventsB').on("click", function () {
         window.location.href = "Events.html";
+        // window.location.href = "/Events"; TODO
     });
     //home buttens
     $(".navbar-brand").on("click", function () {
         window.location.href = "Home.html";
+        // window.location.href = "/"; TODO
     });
     //artist buttens
     $(".artistB").on("click", function () {
-        window.location.href = "Artists.html";
+        window.location.href = "/Artists.html";
+        // window.location.href = "/Artists"; TODO
+    });
+    //reviews buttens
+    $(".reviewsB").on("click", function () {
+        window.location.href = "/Reviews.html";
+        // window.location.href = "/Reviews"; TODO
     });
 
     // q2_get butten
