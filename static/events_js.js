@@ -110,13 +110,13 @@ $(document).ready(function () {
         executeEventQuery(6);
     });
 
-    //q7_get butten
-    $('#q7_get').on("click", function () {
-        var x = document.getElementById("q7_words").value;
-        if (x) {
-            x = x.split(' ').join('_');
-            executeEventQuery(7, x);
-        }
-    });
+    // //q7_get butten
+    // $('#q7_get').on("click", function () {
+    //     var x = document.getElementById("q7_words").value;
+    //     if (x) {
+    //         x = x.split(' ').join('_');
+    //         executeEventQuery(7, x);
+    //     }
+    // });
 });
 

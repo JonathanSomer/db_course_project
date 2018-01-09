@@ -114,5 +114,10 @@ input {
     font-size: 28px;
 }
 
+.posts > .row {
+    border-bottom: solid 1px purple;
+    padding-bottom: 30px;
+}
+
 
 
