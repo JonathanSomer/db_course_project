@@ -58,12 +58,12 @@ $(document).ready(function () {
     });
     //artist buttens
     $(".artistB").on("click", function () {
-        window.location.href = "/Artists.html";
+        window.location.href = "Artists.html";
         // window.location.href = "/Artists"; TODO
     });
     //reviews buttens
     $(".reviewsB").on("click", function () {
-        window.location.href = "/Reviews.html";
+        window.location.href = "Reviews.html";
         // window.location.href = "/Reviews"; TODO
     });
 
