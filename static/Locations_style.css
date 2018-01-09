@@ -1,15 +1,15 @@
-body{
+body {
     background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/NyK9kaHKxik18z0d7/city-girl-tourist-carefully-studying-a-map_slqmgyobl_thumbnail-full01.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
 
-.navbar{
+.navbar {
     background: purple;
 }
 
-.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-left: -15px;
     color: white;
     font-style: oblique;
@@ -18,8 +18,7 @@ body{
     border: none;
 }
 
-
-.navbar-default .navbar-nav>li>button {
+.navbar-default .navbar-nav > li > button {
     color: white;
     background: inherit;
     border: none;
@@ -27,22 +26,22 @@ body{
     font-style: oblique;
     font-size: 18px;
 }
-.navbar-default .navbar-nav>li>button:hover {
+
+.navbar-default .navbar-nav > li > button:hover {
     color: white;
     font-weight: bold;
 }
 
-
-#main_container{
+#main_container {
     width: 85%;
     background-attachment: fixed;
-    background: rgba(255, 255, 255, 0.77) ;
+    background: rgba(255, 255, 255, 0.77);
     margin: 40px auto;
     padding: 20px;
     color: black
 }
 
-#main_container>h1{
+#main_container > h1 {
     font-size: 50px;
     font-family: 'Tangerine', cursive;
 }
@@ -62,8 +61,6 @@ body{
 
 }
 
-
-
 /* Change background color of buttons on hover */
 .tablink:hover {
     background-color: rgba(128, 0, 128, 0.42);
@@ -77,16 +74,16 @@ body{
     text-align: center;
 }
 
-.tabcontent>h3{
+.tabcontent > h3 {
     font-size: 36px;
 }
 
-.tabcontent>p{
+.tabcontent > p {
     font-size: 26px;
 }
 
-input{
-        /*margin-left: 32%;*/
+input {
+    /*margin-left: 32%;*/
     font-style: italic;
     text-align: center;
     font-size: 1.3em;
@@ -94,6 +91,7 @@ input{
     padding: 7px 20px;
     border: double black;
     border-radius: 9px;
+    min-width: 220px;
 }
 
 .get_button {

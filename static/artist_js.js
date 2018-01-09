@@ -1,24 +1,40 @@
-// function executeArtistQuery(x) {
-//     if (x) {
-//         $.getJSON("http://localhost:5000/reviews_by_artist/" + x, function (data) {
-//             artist = data;
-//         }
-//         debugger;
-//         // $(".posts").empty();
-//         // if (events) {
-//         //     for (var i = 0; i < events.length; i++) {
-//         //         var event = events[i];
-//         //         $(".posts").append("<div class='row'>");
-//         //         var content = "<div class='post col-lg-1'><h2>event.event_name</h2><p>Event id: " + event.event_id + "</p><p>Event type: " + event.event_type + "</p><p>Popularity: " + event.popularity + "</p><p>Date: " + event.event_date + "</p><p>Event url: " + event.event_url + "</p> <p>Venue: " + event.venue_name + ", " + event.venue_city + ", " + event.venue_country + "</p><p><u>Performers:</u></p></div>"
-//         //         $(".posts").append(content);
-//         //         for (var j = 0; j < event.artist_name.length; j++) {
-//         //             artist = "<p>&nbsp&nbsp&nbsp" + event.artist_name[j] + "</p>"
-//         //             $(".posts").append(artist);
-//         //         }
-//         //     }
-//         // }
-//     }
-// }
+function executeArtistQuery(x) {
+    $(".posts").append("<h4>Wait for it...</h4>");
+    if (x) {
+        $.getJSON("http://localhost:5000/reviews_by_artist/" + x, function (data) {
+            var artist = data;
+        });
+        $(".posts").empty();
+        if (artist) {
+            var content = "<h1>" + artist.artist_name + "</h1><h4>Artist id: " + artist.artist_id + "</h4><h4>Artist's type: " + artist.artist_type + "</h4><h4>Artist's origin: " + artist.artist_origin_country + "</h4><h4>Artist;s genres:</h4><p>";
+            for (var i = 0; i < artist.artist_genres_list.length; i++) {
+                content += artist.artist_genres_list[i] + "&nbsp";
+            }
+            content += "</p><h4>Artist's URLs:</h4>";
+            for (var i = 0; i < artist.url_list.length; i++) {
+                content += "<p>" + artist.url_list[i].type + ": " + artist.url_list[i].url + "</p>";
+            }
+            reviews = artist.reviews;
+            var ids = [];
+            for (var i = 0; i < reviews.length; i++) {
+                ids.append(reviews[i].review_id)
+                content = "<div class='row'><h4> Review id: " + reviews[i].review_id + "</h4><p>Username:"
+                    + reviews[i].username + "</p><p>Artist: " + reviews[i].artist_name + "</p><p>Ranking: "
+                    + reviews[i].star_rating + "</p><p>reviews[i].review</p>";
+
+                content += "</div>";
+            }
+            $(".posts").append(content);
+        }
+        else {
+            $(".posts").append("<h3>There seem to have a problem with this request, try something else...</h3>");
+        }
+    }
+    else {
+        $(".posts").empty();
+        $(".posts").append("<h3>please enter artist's name</h3>");
+    }
+}
 
 
 $(document).ready(function () {

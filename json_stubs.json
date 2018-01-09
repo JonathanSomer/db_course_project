@@ -153,7 +153,7 @@ Query 7: "full text"
 */
 {
 	"reviews": [{
-		"review_id" = 1,
+		"review_id": 1,
 		"username": "a string",
 		"artist_name": "a string",
 		"review": "text -  string",
@@ -181,7 +181,7 @@ Query 7: "full text"
 		"url": "homepage.com"
 	}],
 	"reviews": [{
-			"review_id" = 1,
+			"review_id": 1,
 			"username": "a string",
 			"artist_name": "a string",
 			"review": "text -  string",

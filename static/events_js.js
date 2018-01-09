@@ -37,8 +37,8 @@ function executeEventQuery(qNum, x, y) {
             });
     }
     $(".posts").empty();
-    if (data) {
-        events = data.events;
+    if (events) {
+        events = events.events;
         if (events) {
             for (var i = 0; i < events.length; i++) {
                 var event = events[i];
