@@ -38,10 +38,9 @@ function executeLocationQuery(qNum, x, y) {
             content += "<h4>Num of genres:" + locations.genres + "</h4>";
             $(".posts").append(content);
         }
-        else {
-            $(".posts").append("<h3>There seem to have a problem with this request, try something else...</h3>");
-        }
-//    What if no locations? TODO
+    }
+    else {
+        $(".posts").append("<h4>There are no locations to show for your request</h4>");
     }
 }
 

@@ -27,12 +27,12 @@ function executeArtistQuery(x) {
             $(".posts").append(content);
         }
         else {
-            $(".posts").append("<h3>There seem to have a problem with this request, try something else...</h3>");
+            $(".posts").append("<h4>It seems we have nothing about the artist you are looking for, try something else...</h4>");
         }
     }
     else {
         $(".posts").empty();
-        $(".posts").append("<h3>please enter artist's name</h3>");
+        $(".posts").append("<h4>please enter artist's name</h4>");
     }
 }
 

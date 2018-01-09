@@ -21,12 +21,12 @@ function executeReviewsQuery(x) {
             }
             else {
                 debugger;
-                $(".posts").append("<h3>There seem to have a problem with this request, try something else...</h3>");
+                $(".posts").append("<h4>It seems these key words don't appear in none of the comments, try something else...</h4>");
             }
         }
         else {
             $(".posts").empty();
-            $(".posts").append("<h3>please enter key words</h3>");
+            $(".posts").append("<h4>please enter key words</h4>");
         }
 
     }
