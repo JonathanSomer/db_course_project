@@ -33,13 +33,16 @@ function executeLocationQuery(qNum, x, y) {
     }
     $(".posts").empty();
     if (locations) {
-        var content = "<h1>" + locations.city + "</h1><p>" + locations.country + "</p><p>" + locations.month + "</p>";
-        if (qNum == 4) {
-            content += "<p>Number of genres: " + locations.genres + "</p>"
+        content = "<h2>" + locations.city + "</h2><h4><u>Country:</u> " + locations.country + "</h4><h4><u>Month:</u> " + locations.month + "</h4>";
+        if (qNum == 2 && data.genres) {
+            content += "<h4>Num of genres:" + locations.genres + "</h4>";
+            $(".posts").append(content);
         }
-        $(".posts").append(content);
-    }
+        else {
+            $(".posts").append("<h3>There seem to have a problem with this request, try something else...</h3>");
+        }
 //    What if no locations? TODO
+    }
 }
 
 $(document).ready(function () {

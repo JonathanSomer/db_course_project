@@ -37,19 +37,29 @@ function executeEventQuery(qNum, x, y) {
             });
     }
     $(".posts").empty();
-    if (events) {
-        for (var i = 0; i < events.length; i++) {
-            var event = events[i];
-            $(".posts").append("<div class='row'>");
-            var content = "<div class='post col-lg-1'><h2>event.event_name</h2><p>Event id: " + event.event_id + "</p><p>Event type: " + event.event_type + "</p><p>Popularity: " + event.popularity + "</p><p>Date: " + event.event_date + "</p><p>Event url: " + event.event_url + "</p> <p>Venue: " + event.venue_name + ", " + event.venue_city + ", " + event.venue_country + "</p><p><u>Performers:</u></p></div>"
-            $(".posts").append(content);
-            for (var j = 0; j < event.artist_name.length; j++) {
-                artist = "<p>&nbsp&nbsp&nbsp" + event.artist_name[j] + "</p>"
-                $(".posts").append(artist);
+    if (data) {
+        events = data.events;
+        if (events) {
+            for (var i = 0; i < events.length; i++) {
+                var event = events[i];
+                content = "<div class='row'>";
+                content += "<div class='post col-md-6'><h2>" + event.event_name + "</h2><p>Event id: " + event.event_id + "</p><p>Event type: " + event.event_type + "</p><p>Popularity: " + event.popularity + "</p><p>Date: " + event.event_date + "</p><p>Event url: " + event.event_url + "</p> <p>Venue: " + event.venue_name + ", " + event.venue_city + ", " + event.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
+                content += "<div class='row'>";
+                for (var j = 0; j < event.artist_name.length; j++) {
+                    if (j != 0 && j % 4 == 0) {
+                        content += "</div><div class='row'>";
+                    }
+                    content += "<div class='col-lg-3'><p>" + event.artist_name[j] + "</p></div>";
+                }
+                content += "</div>";
+                $(".posts").append(content);
             }
         }
+        else {
+            $(".posts").append("<h3>There seem to have a problem with this request, try something else...</h3>");
+        }
     }
-    //    What if no events? TODO
+//    What if no events? TODO
 }
 
 

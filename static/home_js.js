@@ -16,7 +16,7 @@ $(document).ready(function () {
     });
     //reviews buttens
     $(".reviewsB").on("click", function () {
-        window.location.href = "/Reviews.html";
+        window.location.href = "Reviews.html";
         // window.location.href = "/Reviews"; TODO
     });
 });
