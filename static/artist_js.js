@@ -40,26 +40,26 @@ function executeArtistQuery(x) {
 $(document).ready(function () {
     //events buttens
     $('.eventsB').on("click", function () {
-        window.location.href = "Events.html";
-        // window.location.href = "/Events"; TODO
+        // window.location.href = "Events.html";
+        window.location.href = "/Events";
 
     });
     //location buttens
     $(".locationB").on("click", function () {
-        window.location.href = "Locations.html";
-        // window.location.href = "/Locations"; TODO
+        // window.location.href = "Locations.html";
+        window.location.href = "/Locations";
 
     });
     //home buttens
     $(".navbar-brand").on("click", function () {
-        window.location.href = "Home.html";
-        // window.location.href = "/"; TODO
+        // window.location.href = "Home.html";
+        window.location.href = "/";
 
     });
     //reviews buttens
     $(".reviewsB").on("click", function () {
-        window.location.href = "Reviews.html";
-        // window.location.href = "/Reviews"; TODO
+        // window.location.href = "Reviews.html";
+        window.location.href = "/Reviews";
     });
 
     //_get butten

@@ -48,23 +48,23 @@ function executeLocationQuery(qNum, x, y) {
 $(document).ready(function () {
     //events buttens
     $('.eventsB').on("click", function () {
-        window.location.href = "Events.html";
-        // window.location.href = "/Events"; TODO
+        // window.location.href = "Events.html";
+        window.location.href = "/Events";
     });
     //home buttens
     $(".navbar-brand").on("click", function () {
-        window.location.href = "Home.html";
-        // window.location.href = "/"; TODO
+        // window.location.href = "Home.html";
+        window.location.href = "/";
     });
     //artist buttens
     $(".artistB").on("click", function () {
-        window.location.href = "Artists.html";
-        // window.location.href = "/Artists"; TODO
+        // window.location.href = "Artists.html";
+        window.location.href = "/Artists";
     });
     //reviews buttens
     $(".reviewsB").on("click", function () {
-        window.location.href = "Reviews.html";
-        // window.location.href = "/Reviews"; TODO
+        // window.location.href = "Reviews.html";
+        window.location.href = "/Reviews";
     });
 
     // q2_get butten
