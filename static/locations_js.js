@@ -18,27 +18,32 @@ function executeLocationQuery(qNum, x) {
         case 2:
             $.getJSON("http://localhost:5000/most_genre_city/" + x, function (data) {
                 locationss = data;
+                handleCallback(qNum)
             });
             break;
         case 3:
             $.getJSON("http://localhost:5000/most_events_city/" + x, function (data) {
                 locationss = data;
+                handleCallback(qNum)
             });
             break;
 
         case 4:
             $.getJSON("http://localhost:5000/high_season", function (data) {
                 locationss = data;
-                console.log(locationss);
+                handleCallback(qNum)
             });
             break;
     }
+}
+
+function handleCallback(q) {
     $(".posts").empty();
     debugger;
     if (locationss) {
         var content = "<h2>" + locationss.city + "</h2><h4><u>Country:</u> " + locationss.country + "</h4><h4><u>Month:</u> " + locationss.month + "</h4>";
-        if (qNum == 2 && data.genres) {
-            content += "<h4>Num of genres:" + locationss.genres + "</h4>";
+        if (q == 2 && data.number_of_genres) {
+            content += "<h4>Num of genres:" + locationss.number_of_genres + "</h4>";
         }
         $(".posts").append(content);
     }

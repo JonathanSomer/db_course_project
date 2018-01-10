@@ -18,22 +18,27 @@ function executeEventQuery(qNum, x) {
         case 1:
             $.getJSON("http://127.0.0.1:5000/top_10/" + x, function (data) {
                 eventss = data;
+                handleCallback()
             });
             break;
         case 5:
             $.getJSON("http://127.0.0.1:5000/similar_artists_events/" + x, function (data) {
                 eventss = data;
+                handleCallback()
             });
             break;
 
         case 6:
             $.getJSON("http://localhost:5000/highest_rated_artist_events/", function (data) {
                 eventss = data;
-                console.log(data);
-                console.log(eventss);
+                handleCallback()
             });
             break;
     }
+
+}
+
+function handleCallback() {
     $(".posts").empty();
     if (eventss) {
         eventss = eventss.events;
