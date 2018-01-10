@@ -69,6 +69,10 @@ button {
     width: 30%;
 }
 
+#main_container > .row {
+    margin-bottom: 30px;
+}
+
 
 
 

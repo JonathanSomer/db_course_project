@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -19,8 +21,10 @@
 
 
     <title>BrainzKick - Artist page</title>
-    <link rel="stylesheet" type="text/css" href="Stylesheets/Artist_style.css">
-    <script type="text/javascript" src="JS/artist_js.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="../static/Artist_style.css">
+    <script type="text/javascript" src="../static/artist_js.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Artist_style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='artist_js.js') }}"></script>
     <link type="image/png" href="https://image.flaticon.com/icons/png/128/55/55864.png" rel="shortcut icon">
 
 
@@ -57,9 +61,15 @@
                 <li>
                     <button class="artistB">Artists</button>
                 </li>
+                <li>
+                    <button class="reviewsB">Reviews</button>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><img class="pull-right" src="powered-by-songkick-white.png" id="poweredBy"></li>
+                <!--<li><img class="pull-right" src="../static/powered-by-songkick-white.png" id="poweredBy"></li>  -->
+                <li><img class="pull-right" src="{{ url_for('static', filename='powered-by-songkick-white.png') }}"
+                         id="poweredBy"></li>
+
             </ul>
         </div>
     </div>
@@ -71,7 +81,7 @@
     <input id="artist_input" type="text" placeholder="Artist's name" required>
     <button class="get_button" id="artist_btn">Show me!</button>
 
-    <div class="col-xs-12 posts"></div>
+    <div class="posts"></div>
 
 </div>
 

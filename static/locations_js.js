@@ -1,4 +1,4 @@
-function openQuery(queryNum, elmnt) {
+function openQuery(queryNum) {
     // Hide all elements with class="tabcontent" by default */
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -10,51 +10,70 @@ function openQuery(queryNum, elmnt) {
     document.getElementById(queryNum).style.display = "block";
 }
 
-function executeLocationQuery(qNum, x, y){
+
+var locationss;
+function executeLocationQuery(qNum, x) {
     $(".posts").append("<h4>Wait for it...</h4>");
-    var locations;
     switch (qNum) {
         case 2:
-            $.getJSON("http://localhost:5000/most_genre_city/" + x + y, function (data) {
-                locations = data;
+            $.getJSON("http://localhost:5000/most_genre_city/" + x, function (data) {
+                locationss = data;
             });
             break;
         case 3:
-            $.getJSON("http://localhost:5000/most_events_city/" + x +y, function (data) {
-                locations = data;
+            $.getJSON("http://localhost:5000/most_events_city/" + x, function (data) {
+                locationss = data;
             });
             break;
 
         case 4:
             $.getJSON("http://localhost:5000/high_season", function (data) {
-                locations = data;
+                locationss = data;
+                console.log(locationss);
             });
             break;
     }
     $(".posts").empty();
-    console.log(locations);
+    debugger;
+    if (locationss) {
+        var content = "<h2>" + locationss.city + "</h2><h4><u>Country:</u> " + locationss.country + "</h4><h4><u>Month:</u> " + locationss.month + "</h4>";
+        if (qNum == 2 && data.genres) {
+            content += "<h4>Num of genres:" + locationss.genres + "</h4>";
+        }
+        $(".posts").append(content);
+    }
+    else {
+        $(".posts").append("<h4>There are no locations to show for your request</h4>");
+    }
 }
 
 $(document).ready(function () {
     //events buttens
     $('.eventsB').on("click", function () {
-        window.location.href = "Events.html";
+        // window.location.href = "Events.html";
+        window.location.href = "/Events";
     });
     //home buttens
     $(".navbar-brand").on("click", function () {
-        window.location.href = "Home.html";
+        // window.location.href = "Home.html";
+        window.location.href = "/";
     });
     //artist buttens
     $(".artistB").on("click", function () {
-        window.location.href = "Artists.html";
+        // window.location.href = "Artists.html";
+        window.location.href = "/Artists";
+    });
+    //reviews buttens
+    $(".reviewsB").on("click", function () {
+        // window.location.href = "Reviews.html";
+        window.location.href = "/Reviews";
     });
 
     // q2_get butten
     $('#q2_get').on("click", function () {
         var x = document.getElementById('q2_month').value;
         if (x) {
-            var tmp = x.split('-');
-            executeLocationQuery(2, tmp[0], tmp[1]);
+            executeLocationQuery(2, x);
         }
     });
 
@@ -62,8 +81,7 @@ $(document).ready(function () {
     $('#q3_get').on("click", function () {
         var x = document.getElementById('q3_month').value;
         if (x) {
-            var tmp = x.split('-');
-            executeLocationQuery(3, tmp[0], tmp[1]);
+            executeLocationQuery(3, x);
         }
     });
 

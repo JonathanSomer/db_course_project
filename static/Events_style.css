@@ -90,6 +90,7 @@ input {
     padding: 7px 20px;
     border: double black;
     border-radius: 9px;
+    min-width: 220px;
 }
 
 .get_button {
@@ -112,6 +113,11 @@ input {
     font-style: italic;
     text-align: center;
     font-size: 28px;
+}
+
+.posts > .row {
+    border-bottom: solid 1px purple;
+    padding-bottom: 30px;
 }
 
 

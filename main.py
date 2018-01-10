@@ -27,7 +27,7 @@ events_data = {
 			"age_res": 18,
 			"event_url": "www.event.com/this_event",
 			"event_date": "0000-00-00",
-			"venue_name": "a string", 
+			"venue_name": "a string",
 			"venue_country": "france",
 			"venue_city": "paris",
 			"artist_name": [
@@ -44,7 +44,7 @@ events_data = {
 			"age_res": 18,
 			"event_url": "www.event.com/this_event",
 			"event_date": "0000-00-00",
-			"venue_name": "a string", 
+			"venue_name": "a string",
 			"venue_country": "france",
 			"venue_city": "paris",
 			"artist_name": [
@@ -61,7 +61,7 @@ events_data = {
 			"age_res": 18,
 			"event_url": "www.event.com/this_event",
 			"event_date": "0000-00-00",
-			"venue_name": "a string", 
+			"venue_name": "a string",
 			"venue_country": "france",
 			"venue_city": "paris",
 			"artist_name": [
@@ -167,29 +167,29 @@ def top_10_events_in_month_X(year_month):
 
     cur = mysql.connection.cursor()
     query = """
-    	SELECT event_name, 
-		       event_type, 
-		       popularity, 
-		       age_res, 
-		       event_url, 
-		       event_date, 
-		       venue_name, 
-		       country                   AS venue_country, 
-		       city                      AS venue_city, 
-		       Group_concat(artist_name) AS artists_list 
-		FROM   artists, 
-		       artists_events, 
-		       venues, 
-		       (SELECT * 
-		        FROM   eventim 
-		        WHERE  Month(event_date) = {} 
-		               AND Year(event_date) = {} 
-		        ORDER  BY popularity DESC 
-		        LIMIT  10) AS top10 
-		WHERE  top10.event_id = artists_events.event_id 
-		       AND artists.artist_id = artists_events.artist_id 
-		       AND top10.venue_id = venues.venue_id 
-		GROUP  BY top10.event_id 
+    	SELECT event_name,
+		       event_type,
+		       popularity,
+		       age_res,
+		       event_url,
+		       event_date,
+		       venue_name,
+		       country                   AS venue_country,
+		       city                      AS venue_city,
+		       Group_concat(artist_name) AS artists_list
+		FROM   artists,
+		       artists_events,
+		       venues,
+		       (SELECT *
+		        FROM   eventim
+		        WHERE  Month(event_date) = {}
+		               AND Year(event_date) = {}
+		        ORDER  BY popularity DESC
+		        LIMIT  10) AS top10
+		WHERE  top10.event_id = artists_events.event_id
+		       AND artists.artist_id = artists_events.artist_id
+		       AND top10.venue_id = venues.venue_id
+		GROUP  BY top10.event_id
 		ORDER  BY popularity DESC
     """.format(month, year)
     cur.execute(query)
@@ -221,63 +221,63 @@ def reviews_by_artist(artist):
     return jsonify(reviews)
 
 
-# Query 2: 
+# Query 2:
 @app.route('/most_genre_city/<string:year_month>')
 def most_genre_city(year_month):
     year, month = year_month.split('-')
 
     cur = mysql.connection.cursor()
     query = """
-		SELECT country, 
-		       city, 
-		       genres 
-		FROM   (SELECT city, 
-		               country, 
-		               Count(*)            AS number_of_genres, 
-		               Group_concat(genre) AS Genres 
-		        FROM   (SELECT DISTINCT city, 
-		                                country, 
-		                                genre 
-		                FROM   eventim, 
-		                       artists_events, 
-		                       artist_genre, 
-		                       venues 
-		                WHERE  eventim.event_id = artists_events.event_id 
-		                       AND eventim.venue_id = venues.venue_id 
+		SELECT country,
+		       city,
+		       genres
+		FROM   (SELECT city,
+		               country,
+		               Count(*)            AS number_of_genres,
+		               Group_concat(genre) AS Genres
+		        FROM   (SELECT DISTINCT city,
+		                                country,
+		                                genre
+		                FROM   eventim,
+		                       artists_events,
+		                       artist_genre,
+		                       venues
+		                WHERE  eventim.event_id = artists_events.event_id
+		                       AND eventim.venue_id = venues.venue_id
 		                       AND Month(eventim.event_date) = {0}
-		                       AND Year(eventim.event_date) = {1} 
-		                       AND artists_events.artist_id = artist_genre.artist_id) AS 
-		               city_genre 
-		        GROUP  BY city, 
-		                  country 
-		        ORDER  BY number_of_genres DESC) AS countGenres 
-		WHERE  number_of_genres = (SELECT Max(number_of_genres) 
-		                           FROM   (SELECT city, 
-		                                          country, 
-		                                          Count(*) AS number_of_genres 
-		                                   FROM   (SELECT DISTINCT city, 
-		                                                           country, 
-		                                                           genre 
-		                                           FROM   eventim, 
-		                                                  artists_events, 
-		                                                  artist_genre, 
-		                                                  venues 
-		                                           WHERE  eventim.event_id = 
-		                                                  artists_events.event_id 
-		                                                  AND eventim.venue_id = 
-		                                                      venues.venue_id 
-		                                                  AND Month(eventim.event_date) 
-		                                                      = {0} 
-		                                                  AND Year(eventim.event_date) = 
-		                                                      {1} 
-		                                                  AND artists_events.artist_id = 
-		                                                      artist_genre.artist_id) 
-		                                          AS 
-		                                          city_genre 
-		                                   GROUP  BY city, 
-		                                             country 
-		                                   ORDER  BY number_of_genres DESC) AS 
-		                                  countGenres) 
+		                       AND Year(eventim.event_date) = {1}
+		                       AND artists_events.artist_id = artist_genre.artist_id) AS
+		               city_genre
+		        GROUP  BY city,
+		                  country
+		        ORDER  BY number_of_genres DESC) AS countGenres
+		WHERE  number_of_genres = (SELECT Max(number_of_genres)
+		                           FROM   (SELECT city,
+		                                          country,
+		                                          Count(*) AS number_of_genres
+		                                   FROM   (SELECT DISTINCT city,
+		                                                           country,
+		                                                           genre
+		                                           FROM   eventim,
+		                                                  artists_events,
+		                                                  artist_genre,
+		                                                  venues
+		                                           WHERE  eventim.event_id =
+		                                                  artists_events.event_id
+		                                                  AND eventim.venue_id =
+		                                                      venues.venue_id
+		                                                  AND Month(eventim.event_date)
+		                                                      = {0}
+		                                                  AND Year(eventim.event_date) =
+		                                                      {1}
+		                                                  AND artists_events.artist_id =
+		                                                      artist_genre.artist_id)
+		                                          AS
+		                                          city_genre
+		                                   GROUP  BY city,
+		                                             country
+		                                   ORDER  BY number_of_genres DESC) AS
+		                                  countGenres)
     """.format(month, year)
     cur.execute(query)
     r = [dict((cur.description[i][0], value)
@@ -309,13 +309,13 @@ if __name__ == '__main__':
                         help="run in debug mode (for use with PyCharm)", default=False)
     parser.add_argument("-p", "--port", dest="port",
                         help="port of server (default:%(default)s)", type=int, default=5000)
- 
+
     cmd_args = parser.parse_args()
     app_options = {"port": cmd_args.port }
- 
+
     if cmd_args.debug_mode:
         app_options["debug"] = True
         app_options["use_debugger"] = False
         app_options["use_reloader"] = False
- 
+
     app.run(**app_options)
