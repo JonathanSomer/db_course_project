@@ -1,6 +1,6 @@
 /*
 	Query 1: 
-	Top 10 most popular events in month X
+	Top 50 most popular events in month X
 	route: http://127.0.0.1:5000/top_10/2018-7
 */
 
@@ -43,7 +43,7 @@
 {
   "country": "france",
   "city": "paris",
-  "month": "0000-00-00", // added in backend not returned from db
+  "month": "2018-5", // added in backend not returned from db
   "genres": [
     "pop",
     "rock",
@@ -60,7 +60,7 @@
 {
   "country": "france",
   "city": "paris",
-  "month": "0000-00-00" // added in backend
+  "month": "2018-5" // added in backend
 },
 
 
@@ -73,20 +73,18 @@
 {
   "country": "france",
   "city": "paris",
-  "month": "0000-00-00"
+  "month": "2018-5"
 },
 
 
 /*
 	Query 5:
-	I like artist X, give me events where the performer has the same genre as him.
+	I like artist X, give me events where the performer has the same genre as him. Including him.
 	route: http://127.0.0.1:5000/similar_artists_events/jimi_hendrix
 */
 {
   "events": [
     {
-      "event_id": 12345,
-      // maybe?
       "event_name": "a string",
       "event_type": "string",
       // `festival`, `concert` etc..
@@ -120,8 +118,6 @@
 {
   "events": [
     {
-      "event_id": 12345,
-      // maybe?
       "event_name": "a string",
       "event_type": "string",
       // `festival`, `concert` etc..
@@ -159,6 +155,7 @@ Query 7: "full text"
 		"review": "text -  string",
 		"star_rating": 5
 	}]
+
 }
 
 

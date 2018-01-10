@@ -141,6 +141,9 @@ def artists():
 def locations():
     return render_template('Locations.html')
 
+@app.route('/Reviews')
+def Reviews():
+    return render_template('Reviews.html')
 
 
 
