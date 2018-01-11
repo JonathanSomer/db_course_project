@@ -18,6 +18,7 @@ function executeEventQuery(qNum, x) {
         case 1:
             $.getJSON("http://127.0.0.1:5000/top_10/" + x, function (data) {
                 eventss = data;
+                console.log(eventss);
                 handleCallback()
             });
             break;

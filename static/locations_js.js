@@ -39,7 +39,6 @@ function executeLocationQuery(qNum, x) {
 
 function handleCallback(q) {
     $(".posts").empty();
-    debugger;
     if (locationss) {
         var content = "<h2>" + locationss.city + "</h2><h4><u>Country:</u> " + locationss.country + "</h4><h4><u>Month:</u> " + locationss.month + "</h4>";
         if (q == 2 && data.number_of_genres) {
