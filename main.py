@@ -1,15 +1,11 @@
-from flask import Flask,jsonify,json
+from flask import Flask,jsonify,json,render_template
 from logging.config import dictConfig
 from flask_cors import CORS
 from flask_mysqldb import MySQL
-from flask import render_template
 import queries
 
-print("******")
-print(__name__)
 app = Flask(__name__)
 CORS(app)
-
 app.config.update(
 	MYSQL_HOST='127.0.0.1',
 	MYSQL_PORT=3306,
@@ -17,12 +13,7 @@ app.config.update(
 	MYSQL_PASSWORD='DbMysql03',
 	MYSQL_USER='DbMysql03'
 )
-
-print(app.config)
 mysql = MySQL(app)
-cur = mysql.connection.cursor()
-
-# print(serialized_results(queries.top10_events(2017, 6)))
 
 events_data = {
 	"events": [
@@ -203,7 +194,7 @@ def most_events_city(year_month):
 @app.route('/high_season')
 def high_season():
     print('GET high season')
-    return jsonify(serialized_results(queries.high_season))
+    return jsonify(serialized_results(queries.high_season()))
 
 ###### query 5 #####
 # input:  artist name
@@ -212,6 +203,7 @@ def high_season():
 @app.route('/similar_artists_events/<string:artist>')
 def similar_artists_events(artist):
     print('GET similar artists events %s' % (artist))
+    artist = " ".join(artist.split('-'))
     query = queries.similar_artists_events(artist)
     return jsonify(serialized_results(query))
 
@@ -224,7 +216,7 @@ def similar_artists_events(artist):
 @app.route('/highest_rated_artist_events/')
 def highest_rated_artist_events():
     print('GET highest rated artist events')
-    return jsonify(serialized_results(queries.highest_rated_artist_events))
+    return jsonify(serialized_results(queries.highest_rated_artist_events()))
 
 
 
@@ -248,9 +240,9 @@ def reviews_by_artist(artist):
 ###########################
 '''
 def serialized_results(query):
-    cur.execute(query)
-    return( [dict((cur.description[i][0], value) 
-    			for i, value in enumerate(row)) for row in cur.fetchall()] )
+	cur = mysql.connection.cursor()
+	cur.execute(query)
+	return( [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()] )
 
 
 

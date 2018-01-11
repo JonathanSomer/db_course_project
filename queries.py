@@ -6,7 +6,7 @@ def top10_events(year, month):
 	return """
 		SELECT 	event_name, event_type, popularity, age_res, event_url, event_date,
 				venue_name, country AS venue_country, city AS venue_city,
-				GROUP_CONCAT(artist_name) AS artists_list
+				GROUP_CONCAT(artist_name) AS artist_name
 		FROM	artists,
 				artists_events,
 				venues,
@@ -119,11 +119,11 @@ def high_season():
 # input:  artist name
 # output: events where the performer has the same genre as this artist.
 # ordered by their popularity (limited for top 50)
-def similar_artists_events(artist):
+def similar_artists_events(artist_string):
 	return """
 		SELECT 	event_name, event_type, popularity, age_res, event_url, event_date,
 				venue_name, country AS venue_country, city AS venue_city,
-				GROUP_CONCAT(artist_name) AS artists_list
+				GROUP_CONCAT(artist_name) AS artist_name
 		FROM 	eventim,venues, artists,artists_events,
 				(SELECT DISTINCT AE.event_id
 				FROM 	artists_events AS AE,
@@ -131,7 +131,7 @@ def similar_artists_events(artist):
 						FROM artists,artist_genre,
 								(SELECT artist_genre.Genre
 								FROM 	artists, artist_genre
-								WHERE 	artists.artist_name = {artist} AND
+								WHERE 	artists.artist_name = {artist_string} AND
 										artists.artist_id = artist_genre.artist_id) AS genres_of_artist
 						WHERE 	artists.artist_id = artist_genre.artist_id AND 
 								artist_genre.genre = genres_of_artist.Genre
@@ -144,7 +144,7 @@ def similar_artists_events(artist):
 		GROUP BY eventim.event_id
 		ORDER BY popularity DESC
 		LIMIT 50
-		""".format(artist = artist)
+		""".format(artist_string = "\'" + artist_string + "\'")
 
 ###### query 6 #####
 # input:  none
@@ -157,7 +157,7 @@ def highest_rated_artist_events():
 	return """
 		SELECT 	event_name, event_type, popularity, age_res, event_url, event_date,
 				venue_name, country AS venue_country, city AS venue_city,
-				GROUP_CONCAT(artist_name) AS artists_list
+				GROUP_CONCAT(artist_name) AS artist_name
 		FROM 	eventim,venues, artists,artists_events,
 				(SELECT DISTINCT AE.event_id
 				FROM 			artists_events AS AE,
