@@ -1,11 +1,11 @@
 
 
-Ori to Zomer:
+to Zomer:
 
-1. mismatch, in queries 1 to 5,6 in the artists list:
-    the field's name and not always a list is returned
-2. query 2 returns "genres" = list of genres,
-    instead of "number_of_genres" = number of genres
-3. query 3 takes only month without year
-4. query 8 returns only reviews
 5. query 7 returns events
+
+
+to SQL team:
+1. reviews are ordered by descending 'updated_at' (timestamp) -> add timestamp attribute to reviews.
+2. add query creates review with:
+    artist_id, username, text, rank, timestamp(indexed?)
