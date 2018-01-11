@@ -18,13 +18,13 @@ function executeLocationQuery(qNum, x) {
         case 2:
             $.getJSON("http://localhost:5000/most_genre_city/" + x, function (data) {
                 locationss = data;
-                handleCallback(qNum)
+                handleCallback(qNum, x)
             });
             break;
         case 3:
             $.getJSON("http://localhost:5000/most_events_city/" + x, function (data) {
                 locationss = data;
-                handleCallback(qNum)
+                handleCallback(qNum, x)
             });
             break;
 
@@ -37,11 +37,19 @@ function executeLocationQuery(qNum, x) {
     }
 }
 
-function handleCallback(q) {
+function handleCallback(q ,x) {
     $(".posts").empty();
-    if (locationss) {
-        var content = "<h2>" + locationss.city + "</h2><h4><u>Country:</u> " + locationss.country + "</h4><h4><u>Month:</u> " + locationss.month + "</h4>";
-        if (q == 2 && data.number_of_genres) {
+    if (locationss.length > 0) {
+        locationss = locationss[0];
+        var content = "<h2>" + locationss.city + "</h2><h4><u>Country:</u>" + locationss.country + "</h4>";
+        if (q == 4){
+            content += "<h4><u>Month:</u>" + locationss.event_month + "," + locationss.event_year + "</h4>";
+        }
+        else {
+            a = x.split("-");
+            content += "<h4><u>Month:</u>" + a[1] + "," + a[0] + "</h4>";
+        }
+        if (q == 2 && locationss.number_of_genres) {
             content += "<h4>Num of genres:" + locationss.number_of_genres + "</h4>";
         }
         $(".posts").append(content);

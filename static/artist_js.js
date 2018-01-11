@@ -79,7 +79,7 @@ $(document).ready(function () {
     $('#artist_btn').on("click", function () {
         var x = document.getElementById('artist_input').value;
         if (x) {
-            x = x.split(' ').join('_');
+            x = x.split(' ').join('$');
             executeArtistQuery(x)
         }
     });

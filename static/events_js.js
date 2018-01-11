@@ -42,19 +42,21 @@ function executeEventQuery(qNum, x) {
 function handleCallback() {
     $(".posts").empty();
     if (eventss) {
-        eventss = eventss.events;
         if (eventss) {
             if (eventss.length > 0) {
                 for (var i = 0; i < eventss.length; i++) {
                     var eventt = eventss[i];
+                    var artistList = eventt.artist_name.split(',');
+                    console.log(artistList);
+                    debugger;
                     var content = "<div class='row'>";
                     content += "<div class='post col-md-6'><h2>" + eventt.event_name + "</h2><p><B>Event type:</B> " + eventt.event_type + "</p><p><B>Popularity:</B> " + eventt.popularity + "</p><p><B>Date:</B> " + eventt.event_date + "</p><p><B>Event url:</B> " + eventt.event_url + "</p> <p><B>Venue: </B>" + eventt.venue_name + ", " + eventt.venue_city + ", " + eventt.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
                     content += "<div class='row'>";
-                    for (var j = 0; j < eventt.artist_name.length; j++) {
+                    for (var j = 0; j < eventt.artistList; j++) {
                         if (j != 0 && j % 4 == 0) {
                             content += "</div><div class='row'>";
                         }
-                        content += "<div class='col-lg-3'><p>" + eventt.artist_name[j] + "</p></div>";
+                        content += "<div class='col-lg-3'><p>" + artistList[j] + "</p></div>";
                     }
                     content += "</div>";
                     $(".posts").append(content);
@@ -112,7 +114,7 @@ $(document).ready(function () {
     $('#q5_get').on("click", function () {
         var x = document.getElementById('q5_artist').value;
         if (x) {
-            x = x.split(' ').join('_');
+            x = x.split(' ').join('$');
             executeEventQuery(5, x);
         }
     });
@@ -122,13 +124,6 @@ $(document).ready(function () {
         executeEventQuery(6);
     });
 
-    // //q7_get butten
-    // $('#q7_get').on("click", function () {
-    //     var x = document.getElementById("q7_words").value;
-    //     if (x) {
-    //         x = x.split(' ').join('_');
-    //         executeEventQuery(7, x);
-    //     }
-    // });
+
 });
 
