@@ -3,8 +3,11 @@ from logging.config import dictConfig
 from flask_cors import CORS
 from flask_mysqldb import MySQL
 from flask import render_template
-app = Flask(__name__)
+import queries
 
+print("******")
+print(__name__)
+app = Flask(__name__)
 CORS(app)
 
 app.config.update(
@@ -14,8 +17,12 @@ app.config.update(
 	MYSQL_PASSWORD='DbMysql03',
 	MYSQL_USER='DbMysql03'
 )
-mysql = MySQL(app)
 
+print(app.config)
+mysql = MySQL(app)
+cur = mysql.connection.cursor()
+
+# print(serialized_results(queries.top10_events(2017, 6)))
 
 events_data = {
 	"events": [
@@ -73,7 +80,6 @@ events_data = {
 	]
 }
 
-
 city_data_genres = {
     "country": "france",
     "city": "paris",
@@ -84,7 +90,6 @@ city_data_genres = {
         "metal"
     ]
 }
-
 
 city_data = {
     "country": "france",
@@ -118,8 +123,6 @@ reviews = {
 }
 
 
-
-
 '''
 ###########################
 		STATIC PAGES
@@ -147,68 +150,87 @@ def Reviews():
 
 
 
-
-
 '''
 ###########################
 		  JSON
 ###########################
 '''
 
-'''
-Query 1:
-Top 10 most popular events in month X
-route: http://127.0.0.1:5000/top_10/2018-7
- '''
+###### query1 #####
+# input:  month and year in integers: 2017, 5
+# output: Top 10 most popular events in this year and month 
+# ordered by their popularity 
+# input arrives as: year-month
 @app.route('/top_10/<string:year_month>')
-def top_10_events_in_month_X(year_month):
+def top_10_events(year_month):
     print('GET top 10 events in month %s' % (year_month,))
     year, month = year_month.split('-')
+    query = queries.top10_events(year, month)
+    return jsonify({'events' : serialized_results(query)})
 
-    cur = mysql.connection.cursor()
-    query = """
-    	SELECT event_name,
-		       event_type,
-		       popularity,
-		       age_res,
-		       event_url,
-		       event_date,
-		       venue_name,
-		       country                   AS venue_country,
-		       city                      AS venue_city,
-		       Group_concat(artist_name) AS artists_list
-		FROM   artists,
-		       artists_events,
-		       venues,
-		       (SELECT *
-		        FROM   eventim
-		        WHERE  Month(event_date) = {}
-		               AND Year(event_date) = {}
-		        ORDER  BY popularity DESC
-		        LIMIT  10) AS top10
-		WHERE  top10.event_id = artists_events.event_id
-		       AND artists.artist_id = artists_events.artist_id
-		       AND top10.venue_id = venues.venue_id
-		GROUP  BY top10.event_id
-		ORDER  BY popularity DESC
-    """.format(month, year)
-    cur.execute(query)
-    r = [dict((cur.description[i][0], value)
-              for i, value in enumerate(row)) for row in cur.fetchall()]
+###### query2 #####
+# input:  month and year in integers: 2017, 5
+# output: Which city has the largest number of genres in this month and year
+# the output includes the city, the country and the number of genres
+# if there is more then one result - return only one of them
+# input arrives as: year-month
+@app.route('/most_genre_city/<string:year_month>')
+def most_genre_city(year_month):
+	print('GET most genere city %s' % (year_month))
+	year, month = year_month.split('-')
+	query = queries.most_genre_city(year, month)
+	return jsonify(serialized_results(query))
 
-    return jsonify({'events' : r})
+###### query3 #####
+# input:  month and year in integers: 2017, 5
+# output: Which city has the largest number of events in this month and year
+# if there is more then one result - return only one of them
+@app.route('/most_events_city/<string:year_month>')
+def most_events_city(year_month):
+    print('GET most events city in month: %s' % (year_month))
+    year, month = year_month.split('-')
+    query = queries.most_events_city(year, month)
+    return jsonify(serialized_results(query))
 
+###### query 4 #####
+# input:  none
+# output: In which city and month can I attend the most events this year?
+# the output includes the city, the country and the month and the current year
+# if there is more then one result - return only one of them
+#
+# This query uses the view 'event_city_month': 
+# which returns tuples of city,country,year(only the current year),month and number of events
+@app.route('/high_season')
+def high_season():
+    print('GET high season')
+    return jsonify(serialized_results(queries.high_season))
 
-
+###### query 5 #####
+# input:  artist name
+# output: events where the performer has the same genre as this artist.
+# ordered by their popularity (limited for top 50)
 @app.route('/similar_artists_events/<string:artist>')
 def similar_artists_events(artist):
     print('GET similar artists events %s' % (artist))
-    return jsonify(events_data)
+    query = queries.similar_artists_events(artist)
+    return jsonify(serialized_results(query))
 
+###### query 6 #####
+# input:  none
+# output:  events of the artist who has the highest average rating
+# ordered by their popularity (limited for top 50)
+# This query uses the view 'artists_avg_rate': 
+# returns list of artist ids with their average star rating
 @app.route('/highest_rated_artist_events/')
 def highest_rated_artist_events():
     print('GET highest rated artist events')
-    return jsonify(events_data)
+    return jsonify(serialized_results(queries.highest_rated_artist_events))
+
+
+
+
+
+
 
 @app.route('/events_by_artist_review/<string:text_in_review>')
 def events_by_artist_review(text_in_review):
@@ -220,102 +242,37 @@ def reviews_by_artist(artist):
     print('GET reviews by artist %s' % (artist))
     return jsonify(reviews)
 
-
-# Query 2:
-@app.route('/most_genre_city/<string:year_month>')
-def most_genre_city(year_month):
-    year, month = year_month.split('-')
-
-    cur = mysql.connection.cursor()
-    query = """
-		SELECT country,
-		       city,
-		       genres
-		FROM   (SELECT city,
-		               country,
-		               Count(*)            AS number_of_genres,
-		               Group_concat(genre) AS Genres
-		        FROM   (SELECT DISTINCT city,
-		                                country,
-		                                genre
-		                FROM   eventim,
-		                       artists_events,
-		                       artist_genre,
-		                       venues
-		                WHERE  eventim.event_id = artists_events.event_id
-		                       AND eventim.venue_id = venues.venue_id
-		                       AND Month(eventim.event_date) = {0}
-		                       AND Year(eventim.event_date) = {1}
-		                       AND artists_events.artist_id = artist_genre.artist_id) AS
-		               city_genre
-		        GROUP  BY city,
-		                  country
-		        ORDER  BY number_of_genres DESC) AS countGenres
-		WHERE  number_of_genres = (SELECT Max(number_of_genres)
-		                           FROM   (SELECT city,
-		                                          country,
-		                                          Count(*) AS number_of_genres
-		                                   FROM   (SELECT DISTINCT city,
-		                                                           country,
-		                                                           genre
-		                                           FROM   eventim,
-		                                                  artists_events,
-		                                                  artist_genre,
-		                                                  venues
-		                                           WHERE  eventim.event_id =
-		                                                  artists_events.event_id
-		                                                  AND eventim.venue_id =
-		                                                      venues.venue_id
-		                                                  AND Month(eventim.event_date)
-		                                                      = {0}
-		                                                  AND Year(eventim.event_date) =
-		                                                      {1}
-		                                                  AND artists_events.artist_id =
-		                                                      artist_genre.artist_id)
-		                                          AS
-		                                          city_genre
-		                                   GROUP  BY city,
-		                                             country
-		                                   ORDER  BY number_of_genres DESC) AS
-		                                  countGenres)
-    """.format(month, year)
+'''
+###########################
+	HELPER FUNCTIONS
+###########################
+'''
+def serialized_results(query):
     cur.execute(query)
-    r = [dict((cur.description[i][0], value)
-              for i, value in enumerate(row)) for row in cur.fetchall()]
-
-    return jsonify(city_data_genres)
-
-@app.route('/most_events_city/<int:month_number>')
-def most_events_city(month_number):
-    print('GET most events city in month: %d' % (month_number))
-    return jsonify(city_data)
-
-@app.route('/high_season')
-def high_season():
-    print('GET high season')
-    return jsonify(city_data)
+    return( [dict((cur.description[i][0], value) 
+    			for i, value in enumerate(row)) for row in cur.fetchall()] )
 
 
 
 '''
-###############
-  FOR DEBUGGING
-###############
+####################
+   FOR DEBUGGING
+###################
 '''
-if __name__ == '__main__':
-    import argparse
-    parser = argparse.ArgumentParser(description='Development Server Help')
-    parser.add_argument("-d", "--debug", action="store_true", dest="debug_mode",
-                        help="run in debug mode (for use with PyCharm)", default=False)
-    parser.add_argument("-p", "--port", dest="port",
-                        help="port of server (default:%(default)s)", type=int, default=5000)
+# if __name__ == '__main__':
+#     import argparse
+#     parser = argparse.ArgumentParser(description='Development Server Help')
+#     parser.add_argument("-d", "--debug", action="store_true", dest="debug_mode",
+#                         help="run in debug mode (for use with PyCharm)", default=False)
+#     parser.add_argument("-p", "--port", dest="port",
+#                         help="port of server (default:%(default)s)", type=int, default=5000)
 
-    cmd_args = parser.parse_args()
-    app_options = {"port": cmd_args.port }
+#     cmd_args = parser.parse_args()
+#     app_options = {"port": cmd_args.port }
 
-    if cmd_args.debug_mode:
-        app_options["debug"] = True
-        app_options["use_debugger"] = False
-        app_options["use_reloader"] = False
+#     if cmd_args.debug_mode:
+#         app_options["debug"] = True
+#         app_options["use_debugger"] = False
+#         app_options["use_reloader"] = False
 
-    app.run(**app_options)
+#     app.run(**app_options)

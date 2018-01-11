@@ -1,0 +1,31 @@
+create a new review flow: 
+1. FE sends username password and review.
+2. BE fetches user with username:
+	if no such user -> create one. -> create review -> return "user created + review created"
+	if has same password ->  create review -> return"review created"
+
+	user exists, wrong password -> return "wrong password"
+
+edit review:
+1. FE sends username password and new review.
+2. BE fetches user with username:
+	if no such user -> return "error, no such user exists"
+	if has same password ->  edit the review -> "success"
+
+	user exists, wrong password -> return "wrong password"
+
+delete review
+1. FE sends username password and review id
+2. BE fetches user with username:
+	if no such user -> return "error, no such user exists"
+	if has same password ->  delete the review -> "success"
+
+	user exists, wrong password -> return "wrong password"
+
+
+OR a separate create user page ???? difference would only be in creating a review - error on no such user.
+
+create user: 
+1. fetch user by username
+2. if exists - error, else - create one.
+
