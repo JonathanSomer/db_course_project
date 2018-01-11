@@ -88,31 +88,42 @@ city_data = {
     "month": "0000-00-00"
 }
 
-reviews = {
-	"reviews": [
-		{
-			"stars_rating": 3,
-			"review_text": "bla bla bla",
-			"username": "a name"
+artist_data = {
+	"artist_id": "sdf435iojf",
+	"artist_name": "Jack Johnson",
+	"artist_type": "person",
+	"artist_origin_country": "US",
+	"artist_genres_list": ["rock",
+		"pop",
+		"indie"
+	],
+	"url_list": [{
+		"type": "official hompage",
+		"url": "homepage.com"
+	}],
+	"reviews": [{
+			"review_id": 1,
+			"username": "a string",
+			"artist_name": "a string",
+			"review": "text -  string",
+			"star_rating": 5
 		},
 		{
-			"stars_rating": 3,
-			"review_text": "bla bla bla",
-			"username": "a name"
+			"review_id": 1,
+			"username": "a string",
+			"artist_name": "a string",
+			"review": "text -  string",
+			"star_rating": 5
 		},
 		{
-			"stars_rating": 3,
-			"review_text": "bla bla bla",
-			"username": "a name"
-		},
-		{
-			"stars_rating": 3,
-			"review_text": "bla bla bla",
-			"username": "a name"
+			"review_id": 1,
+			"username": "a string",
+			"artist_name": "a string",
+			"review": "text -  string",
+			"star_rating": 5
 		}
 	]
 }
-
 
 '''
 ###########################
@@ -202,10 +213,10 @@ def high_season():
 # ordered by their popularity (limited for top 50)
 @app.route('/similar_artists_events/<string:artist>')
 def similar_artists_events(artist):
+    artist = " ".join(artist.split('$'))
     print('GET similar artists events %s' % (artist))
-    artist = " ".join(artist.split('-'))
     query = queries.similar_artists_events(artist)
-    return jsonify(serialized_results(query))
+    return jsonify({'events' : serialized_results(query)})
 
 ###### query 6 #####
 # input:  none
@@ -223,16 +234,17 @@ def highest_rated_artist_events():
 
 
 
-
+# splitted with $
 @app.route('/events_by_artist_review/<string:text_in_review>')
 def events_by_artist_review(text_in_review):
     print('GET events by artist review %s' % (text_in_review))
     return jsonify(events_data)
 
+# splitted with $
 @app.route('/reviews_by_artist/<string:artist>')
 def reviews_by_artist(artist):
     print('GET reviews by artist %s' % (artist))
-    return jsonify(reviews)
+    return jsonify(artist_data)
 
 '''
 ###########################
