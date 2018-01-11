@@ -161,8 +161,8 @@ Query 7: "full text"
 
 /*
 	Query 8:
-	return all reviews for artist
-	route: http://localhost:5000/reviews_by_artist/jimi
+	return artist's info
+	route: http://localhost:5000/artist_info/jimi
 */
 {
 	"artist_id": "sdf435iojf",
@@ -172,17 +172,49 @@ Query 7: "full text"
 	"artist_genres_list": ["rock",
 		"pop",
 		"indie"
-	],
-	"url_list": [{
-		"type": "official hompage",
-		"url": "homepage.com"
-	}],
-	"reviews": [{
-			"review_id": 1,
-			"username": "a string",
-			"artist_name": "a string",
-			"review": "text -  string",
-			"star_rating": 5
-		}
 	]
+}
+
+
+/*
+  Query 9:
+  return all urls for artist
+  route: http://localhost:5000/urls/jimi
+*/
+  {
+    "url_list": [
+      {
+        "type": "official hompage",
+        "url": "homepage.com"
+      },
+      {
+        "type": "official hompage",
+        "url": "homepage.com"
+      }
+  ]
+}
+
+/*
+  Query 10:
+  return all reviews for artist
+  route: http://localhost:5000/reviews/jimi
+*/
+{
+  "reviews": 
+    [
+      {
+        "review_id": 1,
+        "username": "a string",
+        "artist_name": "a string",
+        "review": "text -  string",
+        "star_rating": 5
+      },
+      {
+        "review_id": 1,
+        "username": "a string",
+        "artist_name": "a string",
+        "review": "text -  string",
+        "star_rating": 5
+      }
+  ]
 }
