@@ -1,31 +1,63 @@
 create a new review flow: 
-1. FE sends username password and review.
+1. FE sends: {
+	"username": "orihaviv",
+	"password": "123",
+	 "review" : {
+	 			"artist_id": "adkfndakf",
+	 			"text": "bla bla", 
+	 			"rank": 5 // validation by ori 1-10
+	 			}
+	 }
 2. BE fetches user with username:
-	if no such user -> create one. -> create review -> return "user created + review created"
-	if has same password ->  create review -> return"review created"
-
-	user exists, wrong password -> return "wrong password"
+	if no such user ->  return {"status": "no such user"}
+	if exists, has same password ->  create review -> return {"status": "success"}
+	user exists, wrong password -> return {"status": "incorrect password"}
 
 edit review:
-1. FE sends username password and new review.
+1. FE sends: {
+	"username": "orihaviv",
+	"password": "123",
+	 "review" : {
+	 			"id": "123",
+	 			"text": "bla bla", 
+	 			"rank": 5 // validation by ori 1-10
+	 			}
+	 }
 2. BE fetches user with username:
-	if no such user -> return "error, no such user exists"
-	if has same password ->  edit the review -> "success"
-
-	user exists, wrong password -> return "wrong password"
+	if no such user ->  return {"status": "no such user"}
+	user exists, wrong password -> return {"status": "incorrect password"}
+	
+	if exists,  has same password,
+		fetch review 
+	 		not his review -> return {"status": "cannot edit other users reviews"}
+			his review->  edit review (update updated_at) -> return {"status": "success"}
 
 delete review
-1. FE sends username password and review id
+1. FE sends: {
+	"username": "orihaviv",
+	"password": "123",
+	 "review" : {
+	 			"id": "123",
+	 			}
+	 }
 2. BE fetches user with username:
-	if no such user -> return "error, no such user exists"
-	if has same password ->  delete the review -> "success"
+	if no such user ->  return {"status": "no such user"}
+	user exists, wrong password -> return {"status": "incorrect password"}
+	
+	if exists,  has same password,
+		fetch review 
+	 		not his review -> return {"status": "cannot delte other users reviews"}
+			his review->  delete review (update updated_at) -> return {"status": "success"}
 
-	user exists, wrong password -> return "wrong password"
-
-
-OR a separate create user page ???? difference would only be in creating a review - error on no such user.
 
 create user: 
+FE sends: 
+{
+	"username" : "aldjgn",
+	"password" : "sldkgm"
+}
+
 1. fetch user by username
-2. if exists - error, else - create one.
+2. 	if exists - {"status": "user already exists"}
+	else - {"status": "success"}
 
