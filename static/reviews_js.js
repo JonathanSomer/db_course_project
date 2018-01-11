@@ -1,9 +1,13 @@
+var reviews;
 function executeReviewsQuery(x) {
     if (x) {
         $(".posts").append("<h4>Wait for it...</h4>");
         if (x) {
             $.getJSON("http://localhost:5000/events_by_artist_review/" + x, function (data) {
                 reviews = data;
+                console.log(reviews);
+                debugger;
+                handleCallback();
             });
         }
         else {
@@ -29,7 +33,6 @@ function handleCallback() {
         }
     }
     else {
-        debugger;
         $(".posts").append("<h4>It seems these key words don't appear in none of the comments, try something else...</h4>");
     }
 }

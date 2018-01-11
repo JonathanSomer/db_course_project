@@ -2,14 +2,10 @@
 
 Ori to Zomer:
 
-1. Please remove input from routing in query 6
-2. Adding a query of artists instead of query 8 (view the conversation of me and Asaf)
-3. Removing artists urls from event queries? and show names only, if the user will want he will open the Artists page and search.
-4. when using routings the error is:
-    "No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:63342' is therefore not allowed access."
-    The problem seems to be because "Cross-Origin Resource Sharing" (known as "CORS") is probably needed.
-    According to what Iv'e seen the solution may be:
-     a. configure the permissions from the server side with CORS.
-     b. changing the routings localhost to be as the web: "localhost:63342/"
-5. I use the "month" field as "2018-05", Asaf said the queries uses month as "05" and year as "2018" (different fields with string type).
-    Why do we need timestamps?
+1. mismatch, in queries 1 to 5,6 in the artists list:
+    the field's name and not always a list is returned
+2. query 2 returns "genres" = list of genres,
+    instead of "number_of_genres" = number of genres
+3. query 3 takes only month without year
+4. query 8 returns only reviews
+5. query 7 returns events
