@@ -155,7 +155,6 @@ Query 7: "full text"
 		"review": "text -  string",
 		"star_rating": 5
 	}]
-
 }
 
 
