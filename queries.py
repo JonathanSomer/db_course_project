@@ -191,3 +191,15 @@ def get_user(username):
 	select * from users where users.username = {username_s};
 	""".format(username_s = "\'" + username + "\'")
 
+#insert review - (artistId,username,review)
+#input: artistId, username, review text
+def create_review(artist_id, username, text, star_rating):
+	return """
+	insert into reviews (artist_id, username, user_review,star_rating) values ({artist_id_s},{username_s},{text_s},{star_rating_s});	
+	""".format(
+		artist_id_s = "\'" + artist_id + "\'",
+		username_s = "\'" + username + "\'",
+		text_s = "\'" + text + "\'",
+		star_rating_s = star_rating)
+
+

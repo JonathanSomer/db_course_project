@@ -175,12 +175,25 @@ def artist_reviews(artist):
 @app.route('/create_review', methods=['POST'])
 def create_review():
 	j = request.json
-	return jsonify({"username" : j["username"]})
+	auth = authenticate(j["username"], j["password"])
+	if(auth["status"] != SUCCESS):
+		return jsonify(auth)
+
+	q = queries.create_review(j["review"]["artist_id"], 
+							  j["username"], 
+							  j["review"]["text"], 
+							  j["review"]["rank"])
+	execute(q)
+	return jsonify(status(SUCCESS))
 
 
 
 
-######## CREATE USER #######
+'''
+###########################
+		  USERS
+###########################
+'''
 SUCCESS = "success"
 NO_USER = "no such user"
 WRONG_PASSWORD = "incorrect password"
@@ -201,6 +214,17 @@ def create_user():
 		return jsonify(status(SUCCESS))
 	else:
 		return jsonify(status("username already taken"))
+
+def authenticate(username, password):
+	user_matches = serialized_results(queries.get_user(username))
+	if (len(user_matches) == 0):
+		return status(NO_USER)
+	else:
+		fetched_user = user_matches[0]
+		if (password == fetched_user["password"]):
+			return status(SUCCESS)
+		else:
+			return status(WRONG_PASSWORD)
 
 
 '''
@@ -224,8 +248,5 @@ def execute(query):
 
 def decode(string):
 	return " ".join(string.split("$"))
-
-# def authenticate(user, password):
-
 
 app.run(debug=True, use_debugger=False, use_reloader=False)
