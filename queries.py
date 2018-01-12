@@ -203,3 +203,23 @@ def create_review(artist_id, username, text, star_rating):
 		star_rating_s = star_rating)
 
 
+#edit review - (artistId,username,review)
+#input: artistId, username, review text
+def edit_review(review_id, text, star_rating):
+	return """
+	update reviews set user_review = {text_s},star_rating = {star_rating_s} where review_id = {review_id_s}	
+	""".format(
+		review_id_s = review_id,
+		text_s = "\'" + text + "\'",
+		star_rating_s = star_rating)
+
+
+def get_review(review_id):
+	return """
+		select review_id,username from reviews where review_id = {review_id_s}
+	""".format(review_id_s = review_id)
+
+def delete_review(review_id):
+	return """
+		delete from reviews where review_id = {review_id_s}
+	""".format(review_id_s = review_id)

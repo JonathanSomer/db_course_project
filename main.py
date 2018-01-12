@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, json, render_template, request
+from flask import Flask, jsonify, json, render_template, request, abort
 from logging.config import dictConfig
 from flask_cors import CORS
 from flask_mysqldb import MySQL
@@ -186,7 +186,57 @@ def create_review():
 	execute(q)
 	return jsonify(status(SUCCESS))
 
+'''
+	Edit review:
+  route: http://localhost:5000/edit_review
+'''
+@app.route('/edit_review', methods=['POST'])
+def edit_review():
+	j = request.json
+	auth = authenticate(j["username"], j["password"])
+	if(auth["status"] != SUCCESS):
+		return jsonify(auth)
 
+	if (belongs_to_user(j["review"]["id"], j["username"])):
+		q = queries.edit_review(j["review"]["id"], 
+								  j["review"]["text"], 
+								  j["review"]["rank"])
+		execute(q)
+	else:
+		return jsonify(status("cannot edit other users reviews"))
+
+	return jsonify(status(SUCCESS))
+
+'''
+	Delete review:
+  route: http://localhost:5000/edit_review
+'''
+@app.route('/delete_review', methods=['POST'])
+def delete_review():
+	j = request.json
+	auth = authenticate(j["username"], j["password"])
+	if(auth["status"] != SUCCESS):
+		return jsonify(auth)
+		
+	if (belongs_to_user(j["review"]["id"], j["username"])):
+		q = queries.delete_review(j["review"]["id"])
+		execute(q)
+	else:
+		return jsonify(status("cannot delete other users reviews"))
+
+	return jsonify(status(SUCCESS))
+
+
+def belongs_to_user(review_id, username):
+	matches = serialized_results(queries.get_review(review_id))
+	if(len(matches) == 0):
+		return False
+	else:
+		fetched_review = matches[0]
+		if (fetched_review["username"] == username):
+			return True
+		else: 
+			return False
 
 
 '''
@@ -234,16 +284,27 @@ def authenticate(username, password):
 '''
 def serialized_results(query):
 	cur = mysql.connection.cursor()
-	cur.execute(query)
-	res = ( [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()] )
-	cur.close()
-	return res
+	try:
+		cur.execute(query)
+		res = ( [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()] )
+		cur.close()
+		return res
+	except:
+		print("The following query has failed: ")
+		print(query)
+		abort(400)
 
 def execute(query):
 	cur = mysql.connection.cursor()
-	cur.execute(query)
-	mysql.connection.commit()
-	cur.close()
+	try:
+		cur.execute(query)
+		mysql.connection.commit()
+		cur.close()
+	except:
+		print("The following query has failed: ")
+		print(query)
+		abort(400)
+		
 
 
 def decode(string):
