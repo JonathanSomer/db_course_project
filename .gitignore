@@ -1,5 +1,5 @@
 # jetBrains
-.idea/
+.idea/*
 *.iml
 *.iws
  
