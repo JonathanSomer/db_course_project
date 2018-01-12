@@ -13,6 +13,7 @@ function openQuery(queryNum) {
 
 var locationss;
 function executeLocationQuery(qNum, x) {
+    $(".posts").empty();
     $(".posts").append("<h4>Wait for it...</h4>");
     switch (qNum) {
         case 2:
@@ -37,20 +38,20 @@ function executeLocationQuery(qNum, x) {
     }
 }
 
-function handleCallback(q ,x) {
+function handleCallback(q, x) {
     $(".posts").empty();
     if (locationss.length > 0) {
         locationss = locationss[0];
-        var content = "<h2>" + locationss.city + "</h2><h4><u>Country:</u>" + locationss.country + "</h4>";
-        if (q == 4){
-            content += "<h4><u>Month:</u>" + locationss.event_month + "," + locationss.event_year + "</h4>";
+        var content = "<h2>" + locationss.city + "</h2><h4><u>Country:&nbsp&nbsp</u>" + locationss.country + "</h4>";
+        if (q == 4) {
+            content += "<h4><u>Month:&nbsp&nbsp</u>" + locationss.event_month + "," + locationss.event_year + "</h4>";
         }
         else {
             a = x.split("-");
-            content += "<h4><u>Month:</u>" + a[1] + "," + a[0] + "</h4>";
+            content += "<h4><u>Month:&nbsp&nbsp</u>" + a[1] + "," + a[0] + "</h4>";
         }
         if (q == 2 && locationss.number_of_genres) {
-            content += "<h4>Num of genres:" + locationss.number_of_genres + "</h4>";
+            content += "<h4>Num of genres:&nbsp&nbsp" + locationss.number_of_genres + "</h4>";
         }
         $(".posts").append(content);
     }

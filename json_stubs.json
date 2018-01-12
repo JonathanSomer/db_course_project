@@ -8,8 +8,6 @@
   {
     "events": [
       {
-        "event_id": 12345,
-        // maybe?
         "event_name": "a string",
         "event_type": "string",
         // `festival`, `concert` etc..

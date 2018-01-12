@@ -1,6 +1,7 @@
 var reviews;
 function executeReviewsQuery(x) {
     if (x) {
+        $(".posts").empty();
         $(".posts").append("<h4>Wait for it...</h4>");
         if (x) {
             $.getJSON("http://localhost:5000/events_by_artist_review/" + x, function (data) {
