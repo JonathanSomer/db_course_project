@@ -133,16 +133,7 @@ def events_by_artist_review(text_in_review):
     print('GET events by artist review %s' % (text_in_review))
     return jsonify(events_data)
 
-# DEPRECATED:
-# splitted with $
-
-
-@app.route('/reviews_by_artist/<string:artist>')
-def reviews_by_artist(artist):
-    print('GET reviews by artist %s' % (artist))
-    return jsonify(artist_data)
-
-# ARTIST PAGE:
+### ARTIST PAGE: ###
 
 '''
 	Query 8:
