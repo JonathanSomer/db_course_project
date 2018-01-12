@@ -310,4 +310,4 @@ def execute(query):
 def decode(string):
 	return " ".join(string.split("$"))
 
-app.run(debug=True, use_debugger=False, use_reloader=False)
+# app.run(debug=True, use_debugger=False, use_reloader=False)

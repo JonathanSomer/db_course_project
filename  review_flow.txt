@@ -10,8 +10,8 @@ create a new review flow:
 	 }
 2. BE fetches user with username:
 	if no such user ->  return {"status": "no such user"}
-	if exists, has same password ->  create review -> return {"status": "success"}
 	user exists, wrong password -> return {"status": "incorrect password"}
+	if exists, has same password ->  create review -> return {"status": "success"}
 
 edit review:
 1. FE sends: {
