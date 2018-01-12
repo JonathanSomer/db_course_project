@@ -61,7 +61,6 @@ def Reviews():
 # input arrives as: year-month
 @app.route('/top_10/<string:year_month>')
 def top_10_events(year_month):
-    print('GET top 10 events in month %s' % (year_month,))
     year, month = year_month.split('-')
     query = queries.top10_events(year, month)
     return jsonify({'events': serialized_results(query)})
@@ -74,7 +73,6 @@ def top_10_events(year_month):
 # input arrives as: year-month
 @app.route('/most_genre_city/<string:year_month>')
 def most_genre_city(year_month):
-	print('GET most genere city %s' % (year_month))
 	year, month = year_month.split('-')
 	query = queries.most_genre_city(year, month)
 	return jsonify(serialized_results(query))
@@ -85,7 +83,6 @@ def most_genre_city(year_month):
 # if there is more then one result - return only one of them
 @app.route('/most_events_city/<string:year_month>')
 def most_events_city(year_month):
-    print('GET most events city in month: %s' % (year_month))
     year, month = year_month.split('-')
     query = queries.most_events_city(year, month)
     return jsonify(serialized_results(query))
@@ -101,7 +98,6 @@ def most_events_city(year_month):
 # and number of events
 @app.route('/high_season')
 def high_season():
-    print('GET high season')
     return jsonify(serialized_results(queries.high_season()))
 
 ###### query 5 #####
@@ -111,7 +107,6 @@ def high_season():
 @app.route('/similar_artists_events/<string:artist>')
 def similar_artists_events(artist):
     artist = decode(artist)
-    print('GET similar artists events %s' % (artist))
     query = queries.similar_artists_events(artist)
     return jsonify({'events': serialized_results(query)})
 
@@ -123,14 +118,12 @@ def similar_artists_events(artist):
 # returns list of artist ids with their average star rating
 @app.route('/highest_rated_artist_events/')
 def highest_rated_artist_events():
-    print('GET highest rated artist events')
     return jsonify(serialized_results(queries.highest_rated_artist_events()))
 
 
 # splitted with $
 @app.route('/events_by_artist_review/<string:text_in_review>')
 def events_by_artist_review(text_in_review):
-    print('GET events by artist review %s' % (text_in_review))
     return jsonify(events_data)
 
 ### ARTIST PAGE: ###
@@ -143,7 +136,6 @@ def events_by_artist_review(text_in_review):
 @app.route('/artist_info/<string:artist>')
 def artist_info(artist):
 	artist = decode(artist)
-	print('GET artist info %s' % (artist))
 	return jsonify(stub_data.artist_info())
 
 '''
@@ -154,7 +146,6 @@ def artist_info(artist):
 @app.route('/urls/<string:artist>')
 def artist_urls(artist):
 	artist = decode(artist)
-	print('GET artist urls %s' % (artist))
 	return jsonify(stub_data.artist_urls())
 
 
@@ -166,7 +157,6 @@ def artist_urls(artist):
 @app.route('/reviews/<string:artist>')
 def artist_reviews(artist):
 	artist = decode(artist)
-	print('GET artist reviews %s' % (artist))
 	return jsonify(stub_data.artist_reviews())
 
 
