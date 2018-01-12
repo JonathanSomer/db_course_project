@@ -176,6 +176,12 @@ def highest_rated_artist_events():
 		LIMIT 50
 		"""
 
+'''
+###########################
+		  USERS
+###########################
+'''
+
 # create new-user
 # input: username and password
 def create_user(username, password):
@@ -191,6 +197,14 @@ def get_user(username):
 	select * from users where users.username = {username_s};
 	""".format(username_s = "\'" + username + "\'")
 
+
+'''
+###########################
+	EDIT-CREATE-DELETE
+	  REVIEW FLOW
+###########################
+'''
+
 #insert review - (artistId,username,review)
 #input: artistId, username, review text
 def create_review(artist_id, username, text, star_rating):
@@ -201,7 +215,6 @@ def create_review(artist_id, username, text, star_rating):
 		username_s = "\'" + username + "\'",
 		text_s = "\'" + text + "\'",
 		star_rating_s = star_rating)
-
 
 #edit review - (artistId,username,review)
 #input: artistId, username, review text
@@ -223,3 +236,49 @@ def delete_review(review_id):
 	return """
 		delete from reviews where review_id = {review_id_s}
 	""".format(review_id_s = review_id)
+
+
+'''
+###########################
+	  ARTIST PAGE:
+###########################
+'''
+
+#artist information
+# input: artist name
+# output: id ,name, origin_country, type, artist genres list 
+def artist_info(artist):
+	return """
+	SELECT 	artists.artist_id ,artist_name,artist_origin_country,artist_type,group_concat(genre) as artist_genres_list 
+	FROM 	artists,artist_genre
+	where 	artist_name = {artist_string} And artists.artist_id = artist_genre.artist_id 
+	group by artist_genre.artist_id
+	""".format(artist_string = "\'" + artist + "\'")
+
+
+# select artist urls
+# input: artist name
+# output - artist urls by url type
+def artist_urls(artist):
+	return """
+	select  url_type as type,artist_url.artist_url
+	from	artist_url,artists
+	where	artist_name = {artist_string} And artists.artist_id = artist_url.artist_id
+	group by url_type
+	""".format(artist_string = "\'" + artist + "\'")
+
+
+
+
+# select artist reviews
+# input: artist name
+# output - all artist reviews
+def artist_reviews(artist):
+	return """
+	SELECT 	review_id ,username,artist_name,user_review as review, star_rating
+	from	artists,reviews
+	where	artists.artist_id = reviews.artist_id And artist_name = {artist_string}
+	""".format(artist_string = "\'" + artist + "\'")
+
+
+

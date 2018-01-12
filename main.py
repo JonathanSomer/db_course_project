@@ -127,7 +127,11 @@ def events_by_artist_review(text_in_review):
     return jsonify(stub_data.events_data())
 
 
-### ARTIST PAGE: ###
+'''
+###########################
+	  ARTIST PAGE:
+###########################
+'''
 
 '''
 	Query 8:
@@ -137,7 +141,7 @@ def events_by_artist_review(text_in_review):
 @app.route('/artist_info/<string:artist>')
 def artist_info(artist):
 	artist = decode(artist)
-	return jsonify(stub_data.artist_info())
+	return jsonify(serialized_results(queries.artist_info(artist)))
 
 '''
   Query 9:
@@ -147,7 +151,7 @@ def artist_info(artist):
 @app.route('/urls/<string:artist>')
 def artist_urls(artist):
 	artist = decode(artist)
-	return jsonify(stub_data.artist_urls())
+	return jsonify(serialized_results(queries.artist_urls(artist)))
 
 
 '''
@@ -158,7 +162,8 @@ def artist_urls(artist):
 @app.route('/reviews/<string:artist>')
 def artist_reviews(artist):
 	artist = decode(artist)
-	return jsonify(stub_data.artist_reviews())
+	return jsonify(serialized_results(queries.artist_reviews(artist)))
+
 
 
 '''
