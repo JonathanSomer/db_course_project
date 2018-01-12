@@ -118,7 +118,7 @@ def similar_artists_events(artist):
 # returns list of artist ids with their average star rating
 @app.route('/highest_rated_artist_events/')
 def highest_rated_artist_events():
-    return jsonify(serialized_results(queries.highest_rated_artist_events()))
+    return jsonify({'events': serialized_results(queries.highest_rated_artist_events())})
 
 
 # splitted with $
