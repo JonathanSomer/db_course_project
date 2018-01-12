@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, json, render_template
+from flask import Flask, jsonify, json, render_template, request
 from logging.config import dictConfig
 from flask_cors import CORS
 from flask_mysqldb import MySQL
@@ -124,7 +124,8 @@ def highest_rated_artist_events():
 # splitted with $
 @app.route('/events_by_artist_review/<string:text_in_review>')
 def events_by_artist_review(text_in_review):
-    return jsonify(events_data)
+    return jsonify(stub_data.events_data())
+
 
 ### ARTIST PAGE: ###
 
@@ -162,13 +163,69 @@ def artist_reviews(artist):
 
 '''
 ###########################
+	EDIT-CREATE-DELETE
+	  REVIEW FLOW
+###########################
+'''
+
+'''
+	Create review:
+  route: http://localhost:5000/create_review
+'''
+@app.route('/create_review', methods=['POST'])
+def create_review():
+	j = request.json
+	return jsonify({"username" : j["username"]})
+
+
+
+
+######## CREATE USER #######
+SUCCESS = "success"
+NO_USER = "no such user"
+WRONG_PASSWORD = "incorrect password"
+
+def status(s):
+	return {"status" : s}
+
+'''
+	Create user:
+ 	route: http://localhost:5000/create_user
+'''
+@app.route('/create_user', methods=['POST'])
+def create_user():
+	j = request.json
+	username_taken = len(serialized_results(queries.get_user(j["username"]))) > 0
+	if (not username_taken):
+		execute(queries.create_user(j["username"], j["password"]))
+		return jsonify(status(SUCCESS))
+	else:
+		return jsonify(status("username already taken"))
+
+
+'''
+###########################
 	HELPER FUNCTIONS
 ###########################
 '''
 def serialized_results(query):
 	cur = mysql.connection.cursor()
 	cur.execute(query)
-	return( [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()] )
+	res = ( [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()] )
+	cur.close()
+	return res
+
+def execute(query):
+	cur = mysql.connection.cursor()
+	cur.execute(query)
+	mysql.connection.commit()
+	cur.close()
+
 
 def decode(string):
 	return " ".join(string.split("$"))
+
+# def authenticate(user, password):
+
+
+app.run(debug=True, use_debugger=False, use_reloader=False)

@@ -175,3 +175,19 @@ def highest_rated_artist_events():
 		order by popularity desc
 		LIMIT 50
 		"""
+
+# create new-user
+# input: username and password
+def create_user(username, password):
+	return """
+	insert into users (username, password) values ({username_s}, {password_s});
+	""".format(username_s = "\'" + username + "\'", password_s = "\'" + password + "\'" )
+
+#select user
+# input: username
+# output: username+passord
+def get_user(username):
+	return """
+	select * from users where users.username = {username_s};
+	""".format(username_s = "\'" + username + "\'")
+
