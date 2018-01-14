@@ -41,9 +41,8 @@ function executeEventQuery(qNum, x) {
 
 function handleCallback() {
     $(".posts").empty();
-    console.log(eventss);
-    debugger;
     if (eventss) {
+        eventss = eventss.events;
         if (eventss.length > 0) {
             for (var i = 0; i < eventss.length; i++) {
                 var eventt = eventss[i];

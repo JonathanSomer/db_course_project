@@ -27,6 +27,7 @@ body{
     margin-top: 15px;
     font-style: oblique;
     font-size: 18px;
+    margin-right: 10px;
 }
 
 .navbar-default .navbar-nav > li > button:hover {
@@ -72,7 +73,7 @@ input{
 
 #poweredBy {
     margin-top: 10px;
-    width: 30%;
+    width: 120px;
 }
 
 /*.posts>.row{*/

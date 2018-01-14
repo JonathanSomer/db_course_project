@@ -1,6 +1,6 @@
 
 body {
-    background: url("https://image.redbull.com/rbcom/010/2016-08-01/1331809697834_1/0010/1/1500/1000/1/a-fan-takes-centre-stage-at-lollapalooza-2016-music-festival.jpg");
+    background: url("http://ak8.picdn.net/shutterstock/videos/10360958/thumb/4.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -34,54 +34,7 @@ body {
     font-weight: bold;
 }
 
-
-.container>h2{
-    margin-top: 0%;
-}
-
-button {
-    /*font-size: 18px;*/
-    background: none;
-    color: black;
-    border-color: purple;
-    border-radius: 9px;
-
-}
-
-#brand {
-    font-family: Chalkduster, fantasy;
-    color: purple;
-    font-size: 780%;
-}
-
-#motivation {
-    font-size: 280%;
-}
-
-#main_container {
-    width: 85%;
-    background: rgba(255, 255, 255, 0.77);
-    padding-left: 5%;
-    color: black
-}
-
 #poweredBy {
     margin-top: 10px;
     width: 120px;
 }
-
-#main_container > .row {
-    margin-bottom: 30px;
-}
-
-
-
-
-
-
-
-
-
-
-
-

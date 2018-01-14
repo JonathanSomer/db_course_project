@@ -20,7 +20,7 @@ function continue_to_urls(x) {
     if (artist) {
         $.getJSON("http://localhost:5000/urls/" + x, function (data2) {
             urls = data2;
-            continue_to_revs();
+            continue_to_revs(x);
         });
     }
     else {
@@ -42,7 +42,6 @@ function handleCallback() {
         console.log(artist);
         console.log(urls);
         console.log(revs);
-        debugger;
         var genres = artist.artist_genres_list.split(',')
         var content = "<h1>" + artist.artist_name + "</h1><h4>Artist id: " + artist.artist_id + "</h4><h4>Artist's type: " + artist.artist_type + "</h4><h4>Artist's origin: " + artist.artist_origin_country + "</h4><h4>Artist's genres:</h4>";
         content += "<div class='row'>";
@@ -59,10 +58,10 @@ function handleCallback() {
         }
         var ids = [];
         for (i = 0; i < revs.length; i++) {
-            ids.append(revs[i].review_id)
-            content = "<div class='row'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:"
+            ids.push(revs[i].review_id);
+            content += "<div class='row'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:"
                 + revs[i].username + "</p><p>Artist: " + revs[i].artist_name + "</p><p>Ranking: "
-                + revs[i].star_rating + "</p><p>revs[i].review</p>";
+                + revs[i].star_rating + "</p><p>"+revs[i].review+"</p>";
 
             content += "</div>";
         }
