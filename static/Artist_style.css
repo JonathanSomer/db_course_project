@@ -1,13 +1,12 @@
 
-
-body{
+body {
     background: url("https://cdn.barnimages.com/wp-content/uploads/2015/06/PG1906_BarnImages.com-10-1024x683@2x.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
 
-.navbar{
+.navbar {
     background: purple;
 }
 
@@ -35,7 +34,6 @@ body{
     font-weight: bold;
 }
 
-
 #main_container {
     width: 85%;
     background: rgba(255, 255, 255, 0.77);
@@ -44,11 +42,11 @@ body{
     color: black
 }
 
-.container>p{
+.container > p {
     font-size: 26px;
 }
 
-input{
+input {
     margin-left: 32%;
     font-style: italic;
     text-align: center;
@@ -76,8 +74,64 @@ input{
     width: 120px;
 }
 
-/*.posts>.row{*/
-    /*border-bottom: solid 1px purple;*/
-    /*padding-bottom: 30px;*/
-/*}*/
+#formContainer {
+    display: block;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.77);
+    color: white;
+    position: fixed;
+    /*width: 100%;*/
+}
+
+.reviewsRow > button {
+    background: none;
+    color: black;
+    border-color: purple;
+    border-radius: 9px;
+    margin-right: 10px;
+}
+
+#popupContact > input {
+    margin-left: 0;
+    font-style: italic;
+    text-align: center;
+    font-size: 14px;
+    width: 20%;
+    padding: 7px 20px;
+    border: double black;
+    border-radius: 9px;
+    min-width: 220px;
+}
+
+.posts > .reviewsRow {
+    border-top: solid 1px purple;
+    padding-top: 30px;
+    margin-left: 20px;
+}
+
+#addReview{
+    background: none;
+    color: black;
+    border-color: purple;
+    border-radius: 9px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#adding_rank {
+    color: black;
+}
+
+#adding_comment {
+    color: black;
+}
+
+#adding_btn {
+    color: black;
+}
+
+
+
 

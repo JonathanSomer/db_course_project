@@ -1,3 +1,39 @@
+function executeEdit(revId) {
+
+}
+
+function executeDelete(revId) {
+
+}
+
+var comment_add_form_html = "<div id='formContainer'><div id='popupContact'><h2>Add comment</h2><input " +
+    "id='adding_username' type='text' placeholder='Username' required><input id='adding_password' " +
+    "type='password' placeholder='Password' required><textarea id='adding_comment' placeholder='Comment' rows='5' cols='80'>" +
+    "</textarea> <select id='adding_rank' required><option value=''>Rank</option><option value='1'>1</option>" +
+    "<option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>" +
+    "<option value='6'>6</option><option value='7'>7</option><option value='8'>8</option>" +
+    "<option value='9'>9</option><option value='10'>10</option></select><button id='adding_btn'>Add</button></div></div>";
+function executeAdd() {
+
+
+}
+
+
+
+var artistsList;
+function executeFullTextArtistQuery(x) {
+    $(".posts").empty();
+    $.getJSON("kjgbkhgkhbhbvl,v,jhvl,jvl,v,jvk,kk,jfjj,khcmgcjvj" + x, function (data1) {
+        artistsList = data1
+    });
+    showArtistsList();
+}
+
+function showArtistsList() {
+
+}
+
+
 var artist;
 var urls;
 var revs;
@@ -32,11 +68,11 @@ function continue_to_urls(x) {
 function continue_to_revs(x) {
     $.getJSON("http://localhost:5000/reviews/" + x, function (data3) {
         revs = data3;
-        handleCallback();
+        showArtistPage();
     });
 }
 
-function handleCallback() {
+function showArtistPage() {
     $(".posts").empty();
     if (artist) {
         console.log(artist);
@@ -56,12 +92,13 @@ function handleCallback() {
         for (i = 0; i < urls.length; i++) {
             content += "<p><b>" + urls[i].type + ": </b>" + urls[i].artist_url + "</p>";
         }
-        var ids = [];
+        content += "<div><button onClick='executeAdd()' id='addReview'><B>Add  a review!!!</B></button></div>";
         for (i = 0; i < revs.length; i++) {
-            ids.push(revs[i].review_id);
-            content += "<div class='row'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:"
+            content += "<div class='row reviewsRow'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:"
                 + revs[i].username + "</p><p>Artist: " + revs[i].artist_name + "</p><p>Ranking: "
-                + revs[i].star_rating + "</p><p>" + revs[i].review + "</p>";
+                + revs[i].star_rating + "</p><p>" + revs[i].review + "</p><button onClick='executeEdit(this.id)' " +
+                "id='editReview_" + revs[i].review_id + "'>Edit</button><button onClick='executeDelete(this.id)' " +
+                "id='deleteReview_" + revs[i].review_id + "'>Delete</button>";
 
             content += "</div>";
         }
@@ -107,25 +144,15 @@ $(document).ready(function () {
     $('#artist_btn').on("click", function () {
         var x = document.getElementById('artist_input').value;
         if (x) {
-            x = x.split(' ').join('$');
-            executeArtistQuery(x)
+            if (x.length < 4) {
+                x = x.split(' ').join('$');
+                executeArtistQuery(x)
+            }
+            else {
+                x = x.split(' ').join('$');
+                executeFullTextArtistQuery(x);
+            }
         }
     });
-
-    //adding_review butten
-    // $('#adding_btn').on("click", function () {
-    //     var usr = document.getElementById('adding_username').value;
-    //     var pass = document.getElementById('adding_password').value;
-    //     var rank = document.getElementById('adding_rank').value;
-    //     var comment = document.getElementById('adding_comment').value;
-    // });
 });
 
-
-// content += "<div form id='adding_form'><input id='adding_username' type='text' placeholder='Username' required>" +
-//     "<input id='adding_password' type='password' placeholder='Password' required>" +
-//     "</divform><select id='adding_rank' required><option value=''>Rank</option><option value='1'>1</option>" +
-//     "<option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>" +
-//     "<option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option>" +
-//     "<option value='10'>10</option></select><p>Enter comment:</p><textarea id='adding_comment' placeholder='Comment' rows='5' cols='100'></textarea>" +
-//     "<div><button id='adding_btn'>Add comment</button></div></div>";

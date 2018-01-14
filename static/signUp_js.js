@@ -1,16 +1,37 @@
+var usr;
+var pass;
+var passV;
+var message;
 function handleSignIn(usr, pass, passV) {
     $(".posts").empty();
-    debugger;
-    if (usr.length == 0 || pass.length == 0 || passV.length == 0){
-        $(".posts").append("<h4>Please enter all required details</h4>");
+    if (usr.length == 0 || pass.length == 0 || passV.length == 0) {
+        message = "Please enter all required details";
+        postMessage();
     }
     else if (pass != passV) {
-        $(".posts").append("<h4>Please enter a matching password validation</h4>");
+        message = "Please enter a matching password validation";
+        postMessage();
     }
-    else{
-
+    else {
+        console.log(JSON.stringify({"username": usr, "password": pass}));
+        debugger;
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:5000/create_user",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({'username': usr, 'password': pass}),
+            success: function (result) {
+                message = result.status;
+                postMessage();
+            }
+        });
     }
 
+}
+
+function postMessage() {
+    $(".posts").append("<h4>" + message + "</h4>");
 }
 
 
@@ -41,9 +62,9 @@ $(document).ready(function () {
     });
     //signUpBtn butten
     $('#mainSignUpBtn').on("click", function () {
-        var usr = document.getElementById('username').value;
-        var pass = document.getElementById('password').value;
-        var passV = document.getElementById('passwordValidation').value;
+        usr = document.getElementById('username').value;
+        pass = document.getElementById('password').value;
+        passV = document.getElementById('passwordValidation').value;
         handleSignIn(usr, pass, passV);
     });
 });
