@@ -13,12 +13,12 @@ function openQuery(queryNum, elmnt) {
 
 var eventss;
 function executeEventQuery(qNum, x) {
+    $(".posts").empty();
     $(".posts").append("<h4>Wait for it...</h4>");
     switch (qNum) {
         case 1:
             $.getJSON("http://127.0.0.1:5000/top_10/" + x, function (data) {
                 eventss = data;
-                console.log(eventss);
                 handleCallback()
             });
             break;
@@ -41,38 +41,34 @@ function executeEventQuery(qNum, x) {
 
 function handleCallback() {
     $(".posts").empty();
+    console.log(eventss);
+    debugger;
     if (eventss) {
-        if (eventss) {
-            if (eventss.length > 0) {
-                for (var i = 0; i < eventss.length; i++) {
-                    var eventt = eventss[i];
-                    var artistList = eventt.artist_name.split(',');
-                    console.log(artistList);
-                    debugger;
-                    var content = "<div class='row'>";
-                    content += "<div class='post col-md-6'><h2>" + eventt.event_name + "</h2><p><B>Event type:</B> " + eventt.event_type + "</p><p><B>Popularity:</B> " + eventt.popularity + "</p><p><B>Date:</B> " + eventt.event_date + "</p><p><B>Event url:</B> " + eventt.event_url + "</p> <p><B>Venue: </B>" + eventt.venue_name + ", " + eventt.venue_city + ", " + eventt.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
-                    content += "<div class='row'>";
-                    for (var j = 0; j < eventt.artistList; j++) {
-                        if (j != 0 && j % 4 == 0) {
-                            content += "</div><div class='row'>";
-                        }
-                        content += "<div class='col-lg-3'><p>" + artistList[j] + "</p></div>";
+        if (eventss.length > 0) {
+            for (var i = 0; i < eventss.length; i++) {
+                var eventt = eventss[i];
+                var artistList = eventt.artist_name.split(',');
+                var content = "<div class='row'>";
+                content += "<div class='post col-md-6'><h2>" + eventt.event_name + "</h2><p><B>Event type: &nbsp&nbsp</B> " + eventt.event_type + "</p><p><B>Popularity: &nbsp&nbsp</B> " + eventt.popularity + "</p><p><B>Date: &nbsp&nbsp</B> " + eventt.event_date + "</p><p><B>Event url: &nbsp&nbsp</B><a href=" + eventt.event_url + ">Songkick's event URL</a></p><p><B>Venue: &nbsp&nbsp</B>" + eventt.venue_name + ", " + eventt.venue_city + ", " + eventt.venue_country + "</p></div><div class='post col-md-6 performers'><h4><u>Performers:</u></h4>";
+                content += "<div class='row'>";
+                for (var j = 0; j < artistList.length; j++) {
+                    if (j != 0 && j % 4 == 0) {
+                        content += "</div><div class='row'>";
                     }
-                    content += "</div>";
-                    $(".posts").append(content);
+                    content += "<div class='col-lg-3'><p>" + artistList[j] + "</p></div>";
                 }
-            }
-            else {
-                $(".posts").append("<h4>There are no events to show for your request</h4>");
+                content += "</div>";
+                $(".posts").append(content);
             }
         }
         else {
-            $(".posts").append("<h4>There seem to have a problem with this request, try something else... (err1)</h4>");
+            $(".posts").append("<h4>There are no events to show for your request</h4>");
         }
     }
     else {
-        $(".posts").append("<h4>There seem to have a problem with this request, try something else... (err2)</h4>");
+        $(".posts").append("<h4>There seem to have a problem with this request, try something else... (err1)</h4>");
     }
+
 }
 
 
