@@ -142,16 +142,12 @@
 
 /*
 Query 7: "full text"
-	I want to see all the reviews which contain this text
-	route: http://localhost:5000/events_by_artist_review/awesome
+	I want to see all the artists' names which contain this text
+	route: http://localhost:5000/artists_by_name/james
 */
 {
-	"reviews": [{
-		"review_id": 1,
-		"username": "a string",
-		"artist_name": "a string",
-		"review": "text -  string",
-		"star_rating": 5
+	"artists": [{
+		artist_name: "string"
 	}]
 }
 
