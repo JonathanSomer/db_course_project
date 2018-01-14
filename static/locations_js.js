@@ -76,11 +76,16 @@ $(document).ready(function () {
         // window.location.href = "Artists.html";
         window.location.href = "/Artists";
     });
-    //reviews buttens
-    $(".reviewsB").on("click", function () {
-        // window.location.href = "Reviews.html";
-        window.location.href = "/Reviews";
+    //signUp buttens
+    $(".signUpB").on("click", function () {
+        // window.location.href = "Artists.html";
+        window.location.href = "/SignUp";
     });
+    //reviews buttens
+    // $(".reviewsB").on("click", function () {
+    //     // window.location.href = "Reviews.html";
+    //     window.location.href = "/Reviews";
+    // });
 
     // q2_get butten
     $('#q2_get').on("click", function () {

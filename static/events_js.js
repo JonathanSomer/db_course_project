@@ -96,6 +96,11 @@ $(document).ready(function () {
         // window.location.href = "Reviews.html";
         window.location.href = "/Reviews";
     });
+    //signUp buttens
+    $(".signUpB").on("click", function () {
+        // window.location.href = "Artists.html";
+        window.location.href = "/SignUp";
+    });
 
     // q1_get butten
     $('#q1_get').on("click", function () {

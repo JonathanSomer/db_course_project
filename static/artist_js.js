@@ -61,7 +61,7 @@ function handleCallback() {
             ids.push(revs[i].review_id);
             content += "<div class='row'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:"
                 + revs[i].username + "</p><p>Artist: " + revs[i].artist_name + "</p><p>Ranking: "
-                + revs[i].star_rating + "</p><p>"+revs[i].review+"</p>";
+                + revs[i].star_rating + "</p><p>" + revs[i].review + "</p>";
 
             content += "</div>";
         }
@@ -92,11 +92,16 @@ $(document).ready(function () {
         window.location.href = "/";
 
     });
-    //reviews buttens
-    $(".reviewsB").on("click", function () {
-        // window.location.href = "Reviews.html";
-        window.location.href = "/Reviews";
+    //signUp buttens
+    $(".signUpB").on("click", function () {
+        // window.location.href = "Artists.html";
+        window.location.href = "/SignUp";
     });
+    //reviews buttens
+    // $(".reviewsB").on("click", function () {
+    //     // window.location.href = "Reviews.html";
+    //     window.location.href = "/Reviews";
+    // });
 
     //_get butten
     $('#artist_btn').on("click", function () {

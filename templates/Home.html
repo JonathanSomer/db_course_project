@@ -61,13 +61,13 @@
                 <li>
                     <button class="artistB">Artists</button>
                 </li>
-                <li>
-                    <button class="reviewsB">Reviews</button>
-                </li>
+                {#                <li>#}
+                {#                    <button class="reviewsB">Reviews</button>#}
+                {#                </li>#}
             </ul>
             <ul class="navbar-right nav navbar-nav" id="right_nav">
                 <li>
-                    <button>SignUp</button>
+                    <button class="signUpB">SignUp</button>
                 </li>
                 <!-- <li><img class="pull-right" src="../static/powered-by-songkick-white.png" id="poweredBy"></li> -->
                 <li><img src="{{ url_for('static', filename='powered-by-songkick-white.png') }}" id="poweredBy"></li>
@@ -91,6 +91,8 @@
                 <button class="eventsB">View details &raquo;</button>
             </p>
         </div>
+    </div>
+    <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-5">
             <h2>Locations</h2>
@@ -102,9 +104,6 @@
         </div>
     </div>
     <div class="row">
-
-    </div>
-    <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-5">
             <h2>Artists</h2>
@@ -114,7 +113,7 @@
                 <button class="artistB">View details &raquo;</button>
             </p>
         </div>
-        <div class="col-lg-1"></div>
+<!--        <div class="col-lg-1"></div>
         <div class="col-lg-5">
             <h2>Reviews</h2>
             <h4>Discover artists</h4>
@@ -122,7 +121,7 @@
             <p>
                 <button class="reviewsB">View details &raquo;</button>
             </p>
-        </div>
+        </div> -->
     </div>
 </div>
 
