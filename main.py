@@ -122,9 +122,9 @@ def highest_rated_artist_events():
 
 
 # splitted with $
-@app.route('/events_by_artist_review/<string:text_in_review>')
+@app.route('/reviews_full_text/<string:text_in_review>')
 def events_by_artist_review(text_in_review):
-    return jsonify(stub_data.events_data())
+    return jsonify(stub_data.artist_reviews())
 
 
 '''
