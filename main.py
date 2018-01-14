@@ -47,6 +47,9 @@ def locations():
 def Reviews():
     return render_template('Reviews.html')
 
+@app.route('/SignUp')
+def SignUp():
+    return render_template('SignUp.html')
 
 '''
 ###########################
