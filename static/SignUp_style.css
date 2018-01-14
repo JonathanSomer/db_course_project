@@ -1,6 +1,6 @@
 
 body {
-    background: url("http://ak8.picdn.net/shutterstock/videos/10360958/thumb/4.jpg");
+    background: url("http://www.brandandmortar.com/wp-content/uploads/2016/01/man-person-apple-iphone-940x523.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -37,4 +37,44 @@ body {
 #poweredBy {
     margin-top: 10px;
     width: 120px;
+}
+
+#main_container {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.formItem {
+    margin: 2%;
+}
+
+.formItem > input {
+    font-style: italic;
+    text-align: center;
+    font-size: 1.3em;
+    width: 30%;
+    padding: 7px 20px;
+    border: double black;
+    border-radius: 9px;
+    min-width: 220px;
+}
+
+.formItem > button {
+    background-color: purple;
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    font-size: 23px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 9px;
+}
+
+.posts {
+    background-attachment: fixed;
+    background: rgba(255, 255, 255, 0.77);
+    margin: 40px auto;
+    padding: 20px;
+    color: black;
+    text-align: center;
 }

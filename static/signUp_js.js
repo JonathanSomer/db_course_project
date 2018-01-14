@@ -1,6 +1,20 @@
+function handleSignIn(usr, pass, passV) {
+    $(".posts").empty();
+    debugger;
+    if (usr.length == 0 || pass.length == 0 || passV.length == 0){
+        $(".posts").append("<h4>Please enter all required details</h4>");
+    }
+    else if (pass != passV) {
+        $(".posts").append("<h4>Please enter a matching password validation</h4>");
+    }
+    else{
+
+    }
+
+}
+
 
 $(document).ready(function () {
-
     //home buttens
     $(".navbar-brand").on("click", function () {
         // window.location.href = "Home.html";
@@ -19,14 +33,17 @@ $(document).ready(function () {
         window.location.href = "/Artists";
 
     });
-    //home buttens
-    $(".navbar-brand").on("click", function () {
-        // window.location.href = "Home.html";
-        window.location.href = "/";
+    //events buttens
+    $('.eventsB').on("click", function () {
+        // window.location.href = "Events.html";
+        window.location.href = "/Events";
+
     });
-    //signUp buttens
-    $(".signUpB").on("click", function () {
-        // window.location.href = "SignUp.html";
-        window.location.href = "/SignUp";
+    //signUpBtn butten
+    $('#mainSignUpBtn').on("click", function () {
+        var usr = document.getElementById('username').value;
+        var pass = document.getElementById('password').value;
+        var passV = document.getElementById('passwordValidation').value;
+        handleSignIn(usr, pass, passV);
     });
 });

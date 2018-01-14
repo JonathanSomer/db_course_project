@@ -21,8 +21,6 @@
 
 
     <title>BrainzKick - Sign Up</title>
-    <!--<link rel="stylesheet" type="text/css" href="../static/Home_style.css">
-    <script type="text/javascript" src="../static/home_js.js"></script> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='SignUp_style.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='signUp_js.js') }}"></script>
     <link type="image/png" href="https://image.flaticon.com/icons/png/128/55/55864.png" rel="shortcut icon">
@@ -59,9 +57,9 @@
                 <li>
                     <button class="artistB">Artists</button>
                 </li>
-{#                <li>#}
-{#                    <button class="reviewsB">Reviews</button>#}
-{#                </li>#}
+                {#                <li>#}
+                {#                    <button class="reviewsB">Reviews</button>#}
+                {#                </li>#}
             </ul>
             <ul class="navbar-right nav navbar-nav" id="right_nav">
                 <li>
@@ -73,3 +71,26 @@
         </div>
     </div>
 </nav>
+
+<div class="posts">
+    <h4>Join the family!</h4>
+</div>
+
+<div class="container" id="main_container">
+        <div class="formItem">
+            <input id='username' type='text' placeholder='User name'>
+        </div>
+        <div class="formItem">
+            <input id='password' type='password' placeholder='Password'>
+        </div>
+        <div class="formItem">
+            <input id='passwordValidation' type='password' placeholder='Password validation'>
+        </div>
+        <div class="formItem">
+            <button id="mainSignUpBtn">Sign Up</button>
+        </div>
+</div>
+
+
+</body>
+</html>

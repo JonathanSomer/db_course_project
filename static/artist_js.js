@@ -113,12 +113,12 @@ $(document).ready(function () {
     });
 
     //adding_review butten
-    $('#adding_btn').on("click", function () {
-        var usr = document.getElementById('adding_username').value;
-        var pass = document.getElementById('adding_password').value;
-        var rank = document.getElementById('adding_rank').value;
-        var comment = document.getElementById('adding_comment').value;
-    });
+    // $('#adding_btn').on("click", function () {
+    //     var usr = document.getElementById('adding_username').value;
+    //     var pass = document.getElementById('adding_password').value;
+    //     var rank = document.getElementById('adding_rank').value;
+    //     var comment = document.getElementById('adding_comment').value;
+    // });
 });
 
 

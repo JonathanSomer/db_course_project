@@ -16,7 +16,7 @@ $(document).ready(function () {
     });
     //signUp buttens
     $(".signUpB").on("click", function () {
-        // window.location.href = "Artists.html";
+        // window.location.href = "SignUp.html";
         window.location.href = "/SignUp";
     });
     //reviews buttens
