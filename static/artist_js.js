@@ -111,9 +111,11 @@ function executeFullTextArtistQuery() {
 
 
 // load artists list to page
-var btn = [];
-var t = [];
+var btn;
+var t;
 function showArtistsList() {
+    btn=[];
+    t = [];
     if (artistsList.length == 0) {
         $(".posts").append("<h4>It seems there are no results for artists with that name, perhaps try something else...</h4>");
     }
