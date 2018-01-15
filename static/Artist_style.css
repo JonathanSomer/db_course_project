@@ -91,25 +91,13 @@ input {
     margin-right: 10px;
 }
 
-#popupContact > input {
-    margin-left: 0;
-    font-style: italic;
-    text-align: center;
-    font-size: 14px;
-    width: 20%;
-    padding: 7px 20px;
-    border: double black;
-    border-radius: 9px;
-    min-width: 220px;
-}
-
 .posts > .reviewsRow {
     border-top: solid 1px purple;
     padding-top: 30px;
     margin-left: 20px;
 }
 
-#addReview{
+#addReview {
     background: none;
     color: black;
     border-color: purple;
@@ -120,16 +108,33 @@ input {
     font-size: 20px;
 }
 
-#adding_rank {
-    color: black;
+#adding_username {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#adding_password {
+    margin-left: 0px;
+    width: 100%;
 }
 
 #adding_comment {
-    color: black;
+    margin-left: 0px;
+    width: 100%;
+}
+
+#adding_rank {
+    margin-left: 0px;
+    width: 100%;
 }
 
 #adding_btn {
+    background: none;
     color: black;
+    border-color: purple;
+    border-radius: 9px;
+    margin-right: 10px;
+    width: 100%;
 }
 
 

@@ -6,32 +6,46 @@ function executeDelete(revId) {
 
 }
 
-var comment_add_form_html = "<div id='formContainer'><div id='popupContact'><h2>Add comment</h2><input " +
-    "id='adding_username' type='text' placeholder='Username' required><input id='adding_password' " +
-    "type='password' placeholder='Password' required><textarea id='adding_comment' placeholder='Comment' rows='5' cols='80'>" +
-    "</textarea> <select id='adding_rank' required><option value=''>Rank</option><option value='1'>1</option>" +
-    "<option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>" +
-    "<option value='6'>6</option><option value='7'>7</option><option value='8'>8</option>" +
-    "<option value='9'>9</option><option value='10'>10</option></select><button id='adding_btn'>Add</button></div></div>";
-function executeAdd() {
-
-
-}
-
-
-
-var artistsList;
-function executeFullTextArtistQuery(x) {
-    $(".posts").empty();
-    $.getJSON("kjgbkhgkhbhbvl,v,jhvl,jvl,v,jvk,kk,jfjj,khcmgcjvj" + x, function (data1) {
-        artistsList = data1
+var message;
+function executeAdd(usr, pass, rank, comment) {
+    if (rank == "" || comment == "") {
+        message = "Please enter rank and comment";
+        postAddMessage();
+    }
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:5000/create_user",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            'username': usr, 'password': pass, 'review': {
+                'artist_id': artist.artist_id, 'text': comment, 'rank': rank
+            }
+        }),
+        success: function (result) {
+            message = result.status;
+            postAddMessage();
+        }
     });
-    showArtistsList();
+}
+function postAddMessage() {
+    $("#additionResult").append(message);
 }
 
-function showArtistsList() {
 
-}
+// var artistsList;
+// function executeFullTextArtistQuery(x) {
+//     x = x.split(' ').join('$');
+//     $(".posts").empty();
+//     $.getJSON("kjgbkhgkhbhbvl,v,jhvl,jvl,v,jvk,kk,jfjj,khcmgcjvj" + x, function (data1) {
+//         artistsList = data1
+//     });
+//     showArtistsList();
+// }
+//
+// function showArtistsList() {
+//
+// }
 
 
 var artist;
@@ -39,6 +53,7 @@ var urls;
 var revs;
 var reviews;
 function executeArtistQuery(x) {
+    x = x.split(' ').join('$');
     $(".posts").empty();
     $(".posts").append("<h4>Wait for it...</h4>");
     if (x) {
@@ -64,13 +79,13 @@ function continue_to_urls(x) {
         $(".posts").append("<h4>Artist not found in our database ):</h4>");
     }
 }
-
 function continue_to_revs(x) {
     $.getJSON("http://localhost:5000/reviews/" + x, function (data3) {
         revs = data3;
         showArtistPage();
     });
 }
+
 
 function showArtistPage() {
     $(".posts").empty();
@@ -87,12 +102,12 @@ function showArtistPage() {
             }
             content += "<div class='col-lg-2'><p>" + genres[i] + "</p></div>";
         }
-
         content += "</div><h4>Artist's URLs:</h4>";
         for (i = 0; i < urls.length; i++) {
             content += "<p><b>" + urls[i].type + ": </b>" + urls[i].artist_url + "</p>";
         }
-        content += "<div><button onClick='executeAdd()' id='addReview'><B>Add  a review!!!</B></button></div>";
+        content += "<a id='addReview' data-toggle='modal' data-target='#add_comment_modal' data-original-title>" +
+            "<B>Add  a review</B></a>";
         for (i = 0; i < revs.length; i++) {
             content += "<div class='row reviewsRow'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:"
                 + revs[i].username + "</p><p>Artist: " + revs[i].artist_name + "</p><p>Ranking: "
@@ -134,25 +149,28 @@ $(document).ready(function () {
         // window.location.href = "Artists.html";
         window.location.href = "/SignUp";
     });
-    //reviews buttens
-    // $(".reviewsB").on("click", function () {
-    //     // window.location.href = "Reviews.html";
-    //     window.location.href = "/Reviews";
-    // });
-
     //_get butten
     $('#artist_btn').on("click", function () {
         var x = document.getElementById('artist_input').value;
         if (x) {
             if (x.length < 4) {
-                x = x.split(' ').join('$');
                 executeArtistQuery(x)
             }
             else {
-                x = x.split(' ').join('$');
                 executeFullTextArtistQuery(x);
             }
         }
     });
+
+    //add comment butten
+    $('#adding_btn').on("click", function () {
+        var usr = document.getElementById('adding_username').value;
+        var pass = document.getElementById('adding_password').value;
+        var rank = document.getElementById('adding_rank').value;
+        var comment = document.getElementById('adding_comment').value;
+        executeAdd(usr, pass, rank, comment);
+
+    });
+
 });
 
