@@ -120,7 +120,7 @@ function showArtistsList() {
         $(".posts").append("<h4>It seems there are no results for artists with that name, perhaps try something else...</h4>");
     }
     else {
-        var content = "<h4>Results: (press to see more)</h4>";
+        var content = "<h4  class='resultsH'>Results: (press to see more)</h4>";
         $(".posts").append(content);
         for (var j = 0; j < artistsList.length; j++) {
             btn.push(document.createElement("BUTTON"));
@@ -198,8 +198,8 @@ function showArtistPage() {
         for (i = 0; i < urls.length; i++) {
             content += "<p><b>" + urls[i].type + ":&nbsp</b><a href=" + urls[i].artist_url + " target='_blank'>" + urls[i].artist_url + "</a></p>";
         }
-        content += "<a id='addReview' data-toggle='modal' data-target='#add_comment_modal' data-original-title>" +
-            "<B>Add  a review</B></a>";
+        content += "<button id='addReview' data-toggle='modal' data-target='#add_comment_modal' data-original-title>" +
+            "<B>Add  a review</B></button>";
         for (i = 0; i < revs.length; i++) {
             content += "<div class='row reviewsRow'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:&nbsp"
                 + revs[i].username + "</p><p>Artist: " + revs[i].artist_name + "</p><p>Ranking: "

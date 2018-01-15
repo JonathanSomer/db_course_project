@@ -93,15 +93,20 @@ input {
 
 .posts > .reviewsRow {
     border-top: solid 1px purple;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    margin-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-left: 10px;
 }
 
 #addReview {
     color: black;
     font-size: 20px;
-
+    border: 1px solid purple;
+    padding: 10px;
+    border-radius: 9px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: none;
 }
 
 #adding_username {
@@ -181,10 +186,16 @@ input {
     width: 90%;
 }
 
-.artistsNames{
+.artistsNames {
     background: none;
     border: none;
-    margin: 10px;
+    margin-bottom: 2px;
+    width: 100%;
 }
+
+.resultsH {
+    text-align: center;
+}
+
 
 
