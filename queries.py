@@ -282,4 +282,12 @@ def artist_reviews(artist):
 	""".format(artist_string = "\'" + artist + "\'")
 
 
-
+###### query7 #####
+#input:  char sequence which contains word with length > 3
+#output: list of all the artists' names in which the input sequence appears
+def artists_by_name(artist):
+	return """
+	select artist_name from artists_full_text where match (artist_name)
+	AGAINST ({artist_string} IN NATURAL LANGUAGE MODE)
+	limit 50
+	""".format(artist_string = "\'" + artist + "\'")

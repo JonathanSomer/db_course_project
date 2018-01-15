@@ -124,10 +124,11 @@ def highest_rated_artist_events():
     return jsonify({'events': serialized_results(queries.highest_rated_artist_events())})
 
 
-# splitted with $
-@app.route('/reviews_full_text/<string:text_in_review>')
-def events_by_artist_review(text_in_review):
-    return jsonify(stub_data.artist_reviews())
+# text splitted with $
+@app.route('/artists_by_name/<string:artist>')
+def artists_by_name(artist):
+	artist = decode(artist)
+	return jsonify({'artists' : serialized_results(queries.artists_by_name(artist))})
 
 
 '''
