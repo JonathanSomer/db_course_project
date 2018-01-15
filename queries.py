@@ -278,6 +278,7 @@ def artist_reviews(artist):
 	SELECT 	review_id ,username,artist_name,user_review as review, star_rating
 	from	artists,reviews
 	where	artists.artist_id = reviews.artist_id And artist_name = {artist_string}
+	order by review_id desc
 	""".format(artist_string = "\'" + artist + "\'")
 
 
