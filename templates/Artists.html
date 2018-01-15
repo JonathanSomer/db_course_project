@@ -61,9 +61,7 @@
                 <li>
                     <button class="artistB">Artists</button>
                 </li>
-                {#                <li>#}
-                {#                    <button class="reviewsB">Reviews</button>#}
-                {#                </li>#}
+
             </ul>
             <ul class="navbar-right nav navbar-nav" id="right_nav">
                 <li>
@@ -89,7 +87,7 @@
         <div class='modal-dialog'>
             <div class='panel panel-primary'>
                 <div class='modal-body' style='padding: 5px;'>
-                    <h4 id="additionResult"></h4>
+                    <h4 id="editionResult"></h4>
                     <div class='row'>
                         <div class='col-lg-6 col-md-6 col-sm-6' style='padding-bottom: 10px;'>
                             <input id='adding_username' type='text' placeholder='Username' required></div>
@@ -106,11 +104,6 @@
                                 <option value='3'>3</option>
                                 <option value='4'>4</option>
                                 <option value='5'>5</option>
-                                <option value='6'>6</option>
-                                <option value='7'>7</option>
-                                <option value='8'>8</option>
-                                <option value='9'>9</option>
-                                <option value='10'>10</option>
                             </select>
                         </div>
                     </div>
@@ -130,34 +123,73 @@
             </div>
         </div>
     </div>
-</div>
 
 
-<!--
-    <div id="formContainer">
-        <div id="popupContact">
-            <h2>Add comment</h2>
-            <input id='adding_username' type='text' placeholder='Username' required>
-            <input id='adding_password' type='password' placeholder='Password' required>
-            <textarea id='adding_comment' placeholder='Comment' rows='5' cols='80'></textarea>
-            <select id='adding_rank' required>
-                <option value=''>Rank</option>
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-                <option value='3'>3</option>
-                <option value='4'>4</option>
-                <option value='5'>5</option>
-                <option value='6'>6</option>
-                <option value='7'>7</option>
-                <option value='8'>8</option>
-                <option value='9'>9</option>
-                <option value='10'>10</option>
-            </select>
-            <button id="adding_btn">Add</button>
+    <div class='modal fade' id='edit_comment_modal' tabindex='-1' role='dialog' aria-labelledby='contactLabel'
+         aria-hidden='true'>
+        <div class='modal-dialog'>
+            <div class='panel panel-primary'>
+                <div class='modal-body' style='padding: 5px;'>
+                    <h4 id="editionResult"></h4>
+                    <div class='row'>
+                        <div class='col-lg-6 col-md-6 col-sm-6' style='padding-bottom: 10px;'>
+                            <input id='edit_username' type='text' placeholder='Username' required></div>
+                        <div class='col-lg-6 col-md-6 col-sm-6' style='padding-bottom: 10px;'>
+                            <input id='edit_password' type='password' placeholder='Password' required>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-lg-12 col-md-12 col-sm-12' style='padding-bottom: 10px;'>
+                            <select id='edit_rank' required>
+                                <option value=''>Rank</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-lg-12 col-md-12 col-sm-12'>
+                                <textarea id='edit_comment' style='resize:vertical;' placeholder='Comment...'
+                                          rows='6' required></textarea>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-lg-12 col-md-12 col-sm-12'>
+                            <button id="edit_btn">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
--->
-</div>
+
+    <div class='modal fade' id='delete_comment_modal' tabindex='-1' role='dialog' aria-labelledby='contactLabel'
+         aria-hidden='true'>
+        <div class='modal-dialog'>
+            <div class='panel panel-primary'>
+                <div class='modal-body' style='padding: 5px;'>
+                    <h4 id="deletionResult"></h4>
+                    <div class='row'>
+                        <div class='col-lg-6 col-md-6 col-sm-6' style='padding-bottom: 10px;'>
+                            <input id='delete_username' type='text' placeholder='Username' required></div>
+                        <div class='col-lg-6 col-md-6 col-sm-6' style='padding-bottom: 10px;'>
+                            <input id='delete_password' type='password' placeholder='Password' required>
+                        </div>
+                        <div class='row'>
+                            <div class='col-lg-12 col-md-12 col-sm-12'>
+                                <button id="delete_btn">Delete</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </body>
 </html>

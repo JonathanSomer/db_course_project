@@ -1,20 +1,69 @@
-function executeEdit(revId) {
-
-}
-
-function executeDelete(revId) {
-
-}
-
-var message;
-function executeAdd(usr, pass, rank, comment) {
+var edit_message;
+function executeEdit(usr, pass, rank, comment) {
+    $("#editionResult").empty();
     if (rank == "" || comment == "") {
         message = "Please enter rank and comment";
         postAddMessage();
     }
     $.ajax({
         type: "POST",
-        url: "http://localhost:5000/create_user",
+        url: "http://localhost:5000/edit_review",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            'username': usr, 'password': pass, 'review': {
+                'id': chosenRevId, 'text': comment, 'rank': rank
+            }
+        }),
+        success: function (result) {
+            edit_message = result.status;
+            postEditMessage();
+        }
+    });
+}
+
+function postEditMessage() {
+    $("#editionResult").append(edit_message);
+    if (edit_message == "success") {
+        executeArtistQuery(artist.artist_name);
+    }
+}
+
+var delete_message;
+function executeDelete(usr, pass) {
+        $("#deletionResult").empty();
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:5000/delete_review",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            'username': usr, 'password': pass, 'review': {
+                'id': chosenRevId
+            }
+        }),
+        success: function (result) {
+            delete_message = result.status;
+            postDeleteMessage();
+        }
+    });
+}
+function postDeleteMessage() {
+    $("#deletionResult").append(delete_message);
+    if (delete_message == "success") {
+        executeArtistQuery(artist.artist_name);
+    }
+}
+
+var add_message;
+function executeAdd(usr, pass, rank, comment) {
+    if (rank == "" || comment == "") {
+        add_message = "Please enter rank and comment";
+        postAddMessage();
+    }
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:5000/create_review",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify({
@@ -23,13 +72,16 @@ function executeAdd(usr, pass, rank, comment) {
             }
         }),
         success: function (result) {
-            message = result.status;
+            add_message = result.status;
             postAddMessage();
         }
     });
 }
 function postAddMessage() {
-    $("#additionResult").append(message);
+    $("#additionResult").append(add_message);
+    if (add_message == "success") {
+        executeArtistQuery(artist.artist_name);
+    }
 }
 
 
@@ -79,6 +131,7 @@ function continue_to_urls(x) {
         $(".posts").append("<h4>Artist not found in our database ):</h4>");
     }
 }
+
 function continue_to_revs(x) {
     $.getJSON("http://localhost:5000/reviews/" + x, function (data3) {
         revs = data3;
@@ -86,14 +139,11 @@ function continue_to_revs(x) {
     });
 }
 
-
+var chosenRevId;
 function showArtistPage() {
     $(".posts").empty();
     if (artist) {
-        console.log(artist);
-        console.log(urls);
-        console.log(revs);
-        var genres = artist.artist_genres_list.split(',')
+        var genres = artist.artist_genres_list.split(',');
         var content = "<h1>" + artist.artist_name + "</h1><h4>Artist id: " + artist.artist_id + "</h4><h4>Artist's type: " + artist.artist_type + "</h4><h4>Artist's origin: " + artist.artist_origin_country + "</h4><h4>Artist's genres:</h4>";
         content += "<div class='row'>";
         for (var i = 0; i < genres.length; i++) {
@@ -104,16 +154,16 @@ function showArtistPage() {
         }
         content += "</div><h4>Artist's URLs:</h4>";
         for (i = 0; i < urls.length; i++) {
-            content += "<p><b>" + urls[i].type + ": </b>" + urls[i].artist_url + "</p>";
+            content += "<p><b>" + urls[i].type + ":&nbsp</b><a href=" + urls[i].artist_url + " target='_blank'>"+urls[i].artist_url+"</a></p>";
         }
         content += "<a id='addReview' data-toggle='modal' data-target='#add_comment_modal' data-original-title>" +
             "<B>Add  a review</B></a>";
         for (i = 0; i < revs.length; i++) {
-            content += "<div class='row reviewsRow'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:"
+            content += "<div class='row reviewsRow'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:&nbsp"
                 + revs[i].username + "</p><p>Artist: " + revs[i].artist_name + "</p><p>Ranking: "
-                + revs[i].star_rating + "</p><p>" + revs[i].review + "</p><button onClick='executeEdit(this.id)' " +
-                "id='editReview_" + revs[i].review_id + "'>Edit</button><button onClick='executeDelete(this.id)' " +
-                "id='deleteReview_" + revs[i].review_id + "'>Delete</button>";
+                + revs[i].star_rating + "</p><p>" + revs[i].review + "</p>" +
+                "<button onClick='chosenRevId = " + revs[i].review_id + "' data-toggle='modal' data-target='#edit_comment_modal' data-original-title>Edit</button>" +
+                "<button onClick='chosenRevId = " + revs[i].review_id + "' data-toggle='modal' data-target='#delete_comment_modal' data-original-title>Delete</button>";
 
             content += "</div>";
         }
@@ -169,8 +219,26 @@ $(document).ready(function () {
         var rank = document.getElementById('adding_rank').value;
         var comment = document.getElementById('adding_comment').value;
         executeAdd(usr, pass, rank, comment);
-
     });
 
+    //edit comment butten
+    $('#edit_btn').on("click", function () {
+        var usr = document.getElementById('edit_username').value;
+        var pass = document.getElementById('edit_password').value;
+        var rank = document.getElementById('edit_rank').value;
+        var comment = document.getElementById('edit_comment').value;
+        executeEdit(usr, pass, rank, comment);
+    });
+
+    $('#edit_comment_modal').on('hidden.bs.modal', function () {
+        $(this).find('#edit_username, #edit_rank, #edit_password, #edit_password').val('');
+    });
+
+    //delete comment butten
+    $('#delete_btn').on("click", function () {
+        var usr = document.getElementById('delete_username').value;
+        var pass = document.getElementById('delete_password').value;
+        executeDelete(usr, pass);
+    });
 });
 
