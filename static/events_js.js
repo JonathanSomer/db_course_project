@@ -41,9 +41,8 @@ function executeEventQuery(qNum, x) {
 
 function handleCallback() {
     $(".posts").empty();
-    console.log(eventss);
-    debugger;
     if (eventss) {
+        eventss = eventss.events;
         if (eventss.length > 0) {
             for (var i = 0; i < eventss.length; i++) {
                 var eventt = eventss[i];
@@ -96,6 +95,11 @@ $(document).ready(function () {
     $(".reviewsB").on("click", function () {
         // window.location.href = "Reviews.html";
         window.location.href = "/Reviews";
+    });
+    //signUp buttens
+    $(".signUpB").on("click", function () {
+        // window.location.href = "Artists.html";
+        window.location.href = "/SignUp";
     });
 
     // q1_get butten

@@ -26,6 +26,7 @@ body {
     margin-top: 15px;
     font-style: oblique;
     font-size: 18px;
+    margin-right: 10px;
 }
 
 .navbar-default .navbar-nav > li > button:hover {
@@ -66,12 +67,14 @@ button {
 
 #poweredBy {
     margin-top: 10px;
-    width: 30%;
+    width: 120px;
 }
 
-#main_container > .row {
-    margin-bottom: 30px;
+#lastRow{
+    margin-bottom: 100px;
 }
+
+
 
 
 

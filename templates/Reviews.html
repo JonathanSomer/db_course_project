@@ -61,15 +61,16 @@
                 <li>
                     <button class="artistB">Artists</button>
                 </li>
-                <li>
-                    <button class="reviewsB">Reviews</button>
-                </li>
+{#                <li>#}
+{#                    <button class="reviewsB">Reviews</button>#}
+{#                </li>#}
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="navbar-right nav navbar-nav" id="right_nav">
+                <li>
+                    <button class="signUpB">SignUp</button>
+                </li>
                 <!-- <li><img class="pull-right" src="../static/powered-by-songkick-white.png" id="poweredBy"></li> -->
-                <li><img class="pull-right" src="{{ url_for('static', filename='powered-by-songkick-white.png') }}"
-                         id="poweredBy"></li>
-
+                <li><img src="{{ url_for('static', filename='powered-by-songkick-white.png') }}" id="poweredBy"></li>
             </ul>
         </div>
     </div>

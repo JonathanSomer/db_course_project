@@ -34,21 +34,21 @@ body {
     font-weight: bold;
 }
 
+#poweredBy {
+    margin-top: 10px;
+    width: 120px;
+}
+
 #main_container {
-    width: 85%;
-    background: rgba(255, 255, 255, 0.77);
-    margin: 40px auto;
-    padding: 20px;
-    color: black
+    text-align: center;
+    margin-top: 5%;
 }
 
-.container > h1 {
-    font-size: 50px;
-    font-family: 'Tangerine', cursive;
+.formItem {
+    margin: 2%;
 }
 
-input {
-    margin-left: 32%;
+.formItem > input {
     font-style: italic;
     text-align: center;
     font-size: 1.3em;
@@ -56,9 +56,10 @@ input {
     padding: 7px 20px;
     border: double black;
     border-radius: 9px;
+    min-width: 220px;
 }
 
-.get_button {
+.formItem > button {
     background-color: purple;
     border: none;
     color: white;
@@ -67,15 +68,13 @@ input {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 9px;
-    min-width: 220px;
 }
 
-#poweredBy {
-    margin-top: 10px;
-    width: 120px;
-}
-
-.posts > .row {
-    border-bottom: solid 1px purple;
-    padding-bottom: 30px;
+.posts {
+    background-attachment: fixed;
+    background: rgba(255, 255, 255, 0.77);
+    margin: 40px auto;
+    padding: 20px;
+    color: black;
+    text-align: center;
 }

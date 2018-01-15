@@ -1,13 +1,12 @@
 
-
-body{
+body {
     background: url("https://cdn.barnimages.com/wp-content/uploads/2015/06/PG1906_BarnImages.com-10-1024x683@2x.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
 
-.navbar{
+.navbar {
     background: purple;
 }
 
@@ -27,13 +26,13 @@ body{
     margin-top: 15px;
     font-style: oblique;
     font-size: 18px;
+    margin-right: 10px;
 }
 
 .navbar-default .navbar-nav > li > button:hover {
     color: white;
     font-weight: bold;
 }
-
 
 #main_container {
     width: 85%;
@@ -43,11 +42,11 @@ body{
     color: black
 }
 
-.container>p{
+.container > p {
     font-size: 26px;
 }
 
-input{
+input {
     margin-left: 32%;
     font-style: italic;
     text-align: center;
@@ -72,11 +71,114 @@ input{
 
 #poweredBy {
     margin-top: 10px;
-    width: 30%;
+    width: 120px;
 }
 
-/*.posts>.row{*/
-    /*border-bottom: solid 1px purple;*/
-    /*padding-bottom: 30px;*/
-/*}*/
+#formContainer {
+    display: block;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.77);
+    color: white;
+    position: fixed;
+    /*width: 100%;*/
+}
+
+.reviewsRow > button {
+    background: none;
+    color: black;
+    border-color: purple;
+    border-radius: 9px;
+    margin-right: 10px;
+}
+
+.posts > .reviewsRow {
+    border-top: solid 1px purple;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 20px;
+}
+
+#addReview {
+    color: black;
+    font-size: 20px;
+
+}
+
+#adding_username {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#adding_password {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#adding_comment {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#adding_rank {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#adding_btn {
+    background: none;
+    color: black;
+    border-color: purple;
+    border-radius: 9px;
+    margin-right: 10px;
+    width: 100%;
+}
+
+#edit_username {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#edit_password {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#edit_comment {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#edit_rank {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#edit_btn {
+    background: none;
+    color: black;
+    border-color: purple;
+    border-radius: 9px;
+    margin-right: 10px;
+    width: 100%;
+}
+
+#delete_btn {
+    background: none;
+    color: black;
+    border-color: purple;
+    border-radius: 9px;
+    margin: 4%;
+    width: 90%;
+}
+
+#delete_username {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#delete_password {
+    margin-left: 0px;
+    width: 90%;
+}
+
 

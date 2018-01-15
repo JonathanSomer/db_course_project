@@ -2,9 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+
+    <title>BrainzKick - Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='SignUp_style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='signUp_js.js') }}"></script>
+    <link type="image/png" href="https://image.flaticon.com/icons/png/128/55/55864.png" rel="shortcut icon">
+
+
 </head>
 <body>
+<nav class="navbar navbar-default">
+    <!--gather the insides of the nav in a container-->
+    <div class="container">
+        <!--giving the header as a link, usually to home page as the brand's name-->
+        <div class="navbar-header">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-nav-demo" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <button class="navbar-brand">BrainzKick</button>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling, id matches the data-toggle in the toggle button-->
+        <div class="collapse navbar-collapse" id="bs-nav-demo">
+            <!--adding tags on the left side-->
+            <ul class="nav navbar-nav">
+                <!--each tag in the navbar-->
+                <li>
+                    <button class="eventsB">Events</button>
+                </li>
+                <li>
+                    <button class="locationB">Locations</button>
+                </li>
+                <li>
+                    <button class="artistB">Artists</button>
+                </li>
+                {#                <li>#}
+                {#                    <button class="reviewsB">Reviews</button>#}
+                {#                </li>#}
+            </ul>
+            <ul class="navbar-right nav navbar-nav" id="right_nav">
+                <li>
+                    <button class="signUpB">SignUp</button>
+                </li>
+                <!-- <li><img class="pull-right" src="../static/powered-by-songkick-white.png" id="poweredBy"></li> -->
+                <li><img src="{{ url_for('static', filename='powered-by-songkick-white.png') }}" id="poweredBy"></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="posts">
+    <h4>Join the family!</h4>
+</div>
+
+<div class="container" id="main_container">
+        <div class="formItem">
+            <input id='username' type='text' placeholder='User name'>
+        </div>
+        <div class="formItem">
+            <input id='password' type='password' placeholder='Password'>
+        </div>
+        <div class="formItem">
+            <input id='passwordValidation' type='password' placeholder='Password validation'>
+        </div>
+        <div class="formItem">
+            <button id="mainSignUpBtn">Sign Up</button>
+        </div>
+</div>
+
 
 </body>
 </html>
