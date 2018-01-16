@@ -7,13 +7,7 @@ import stub_data
 
 app = Flask(__name__)
 CORS(app)
-app.config.update(
-	MYSQL_HOST='127.0.0.1',
-	MYSQL_PORT=3306,
-	MYSQL_DB='DbMysql03',
-	MYSQL_PASSWORD='DbMysql03',
-	MYSQL_USER='DbMysql03'
-)
+app.config.from_envvar('SETTINGS')
 mysql = MySQL(app)
 
 '''
@@ -301,6 +295,7 @@ def serialized_results(query):
 	except:
 		print("The following query has failed: ")
 		print(query)
+		print("WE ARE AWARE THAT PRINTING THE QUERY WOULD NOT BE A GOOD IDEA IN PRODUCTION")
 		abort(400)
 
 def execute(query):
@@ -312,11 +307,10 @@ def execute(query):
 	except:
 		print("The following query has failed: ")
 		print(query)
+		print("WE ARE AWARE THAT PRINTING THE QUERY WOULD NOT BE A GOOD IDEA IN PRODUCTION")
 		abort(400)
 		
 
 
 def decode(string):
 	return " ".join(string.split("$"))
-
-# app.run(debug=True, use_debugger=False, use_reloader=False)
