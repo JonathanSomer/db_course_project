@@ -51,7 +51,7 @@ function handleCallback(q, x) {
             content += "<h4>Month:&nbsp&nbsp" + locationss.event_month + "," + locationss.event_year + "</h4>";
         }
         else {
-            a = x.split("-");
+            var a = x.split("-");
             content += "<h4>Month:&nbsp&nbsp" + a[1] + "," + a[0] + "</h4>";
         }
         if (q == 2 && locationss.number_of_genres) {
