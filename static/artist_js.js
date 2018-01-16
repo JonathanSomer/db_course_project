@@ -1,3 +1,5 @@
+//edit review
+
 var edit_message;
 function executeEdit(usr, pass, rank, comment) {
     $("#editionResult").empty();
@@ -21,7 +23,6 @@ function executeEdit(usr, pass, rank, comment) {
         }
     });
 }
-
 function postEditMessage() {
     $("#editionResult").append(edit_message);
     if (edit_message == "success") {
@@ -29,9 +30,12 @@ function postEditMessage() {
     }
 }
 
+
+//delete review
+
 var delete_message;
 function executeDelete(usr, pass) {
-        $("#deletionResult").empty();
+    $("#deletionResult").empty();
     $.ajax({
         type: "POST",
         url: "http://localhost:5000/delete_review",
@@ -54,6 +58,9 @@ function postDeleteMessage() {
         executeArtistQuery(artist.artist_name);
     }
 }
+
+
+//add review
 
 var add_message;
 function executeAdd(usr, pass, rank, comment) {
@@ -85,33 +92,66 @@ function postAddMessage() {
 }
 
 
-// var artistsList;
-// function executeFullTextArtistQuery(x) {
-//     x = x.split(' ').join('$');
-//     $(".posts").empty();
-//     $.getJSON("kjgbkhgkhbhbvl,v,jhvl,jvl,v,jvk,kk,jfjj,khcmgcjvj" + x, function (data1) {
-//         artistsList = data1
-//     });
-//     showArtistsList();
-// }
-//
-// function showArtistsList() {
-//
-// }
+//full query text
 
+var artistsList;
+function executeFullTextArtistQuery() {
+    chosenArtist = chosenArtist.split(' ').join('$');
+    $(".posts").empty();
+    $.getJSON("http://localhost:5000/artists_by_name/" + chosenArtist, function (data1) {
+        if (data1) {
+            artistsList = data1.artists;
+            showArtistsList();
+        }
+        else {
+            $(".posts").append("<h4>There seems we have problem with this request... (err1)</h4>");
+        }
+    });
+}
+
+
+// load artists list to page
+var btn;
+var t;
+function showArtistsList() {
+    btn=[];
+    t = [];
+    if (artistsList.length == 0) {
+        $(".posts").append("<h4>It seems there are no results for artists with that name, perhaps try something else...</h4>");
+    }
+    else {
+        var content = "<h4  class='resultsH'>Results: (press to see more)</h4>";
+        $(".posts").append(content);
+        for (var j = 0; j < artistsList.length; j++) {
+            btn.push(document.createElement("BUTTON"));
+            t.push(document.createTextNode(artistsList[j].artist_name));
+            btn[j].appendChild(t[j]);
+            btn[j].className = 'artistsNames';
+            btn[j].id = artistsList[j].artist_name.split(' ').join('$');
+            btn[j].onclick = function () {
+                chosenArtist = this.id;
+                executeArtistQuery();
+            }
+            $(".posts").append(btn[j]);
+        }
+    }
+}
+
+
+//artist details query
 
 var artist;
 var urls;
 var revs;
 var reviews;
-function executeArtistQuery(x) {
-    x = x.split(' ').join('$');
+function executeArtistQuery() {
+    chosenArtist = chosenArtist.split(' ').join('$');
     $(".posts").empty();
     $(".posts").append("<h4>Wait for it...</h4>");
-    if (x) {
-        $.getJSON("http://localhost:5000/artist_info/" + x, function (data1) {
+    if (chosenArtist) {
+        $.getJSON("http://localhost:5000/artist_info/" + chosenArtist, function (data1) {
             artist = data1[0];
-            continue_to_urls(x);
+            continue_to_urls();
         });
     }
     else {
@@ -119,11 +159,11 @@ function executeArtistQuery(x) {
         $(".posts").append("<h4>please enter artist's name</h4>");
     }
 }
-function continue_to_urls(x) {
+function continue_to_urls() {
     if (artist) {
-        $.getJSON("http://localhost:5000/urls/" + x, function (data2) {
+        $.getJSON("http://localhost:5000/urls/" + chosenArtist, function (data2) {
             urls = data2;
-            continue_to_revs(x);
+            continue_to_revs();
         });
     }
     else {
@@ -131,13 +171,15 @@ function continue_to_urls(x) {
         $(".posts").append("<h4>Artist not found in our database ):</h4>");
     }
 }
-
-function continue_to_revs(x) {
-    $.getJSON("http://localhost:5000/reviews/" + x, function (data3) {
+function continue_to_revs() {
+    $.getJSON("http://localhost:5000/reviews/" + chosenArtist, function (data3) {
         revs = data3;
         showArtistPage();
     });
 }
+
+
+//load artist details to page
 
 var chosenRevId;
 function showArtistPage() {
@@ -154,10 +196,10 @@ function showArtistPage() {
         }
         content += "</div><h4>Artist's URLs:</h4>";
         for (i = 0; i < urls.length; i++) {
-            content += "<p><b>" + urls[i].type + ":&nbsp</b><a href=" + urls[i].artist_url + " target='_blank'>"+urls[i].artist_url+"</a></p>";
+            content += "<p><b>" + urls[i].type + ":&nbsp</b><a href=" + urls[i].artist_url + " target='_blank'>" + urls[i].artist_url + "</a></p>";
         }
-        content += "<a id='addReview' data-toggle='modal' data-target='#add_comment_modal' data-original-title>" +
-            "<B>Add  a review</B></a>";
+        content += "<button id='addReview' data-toggle='modal' data-target='#add_comment_modal' data-original-title>" +
+            "<B>Add  a review</B></button>";
         for (i = 0; i < revs.length; i++) {
             content += "<div class='row reviewsRow'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:&nbsp"
                 + revs[i].username + "</p><p>Artist: " + revs[i].artist_name + "</p><p>Ranking: "
@@ -175,6 +217,7 @@ function showArtistPage() {
 }
 
 
+var chosenArtist;
 $(document).ready(function () {
     //events buttens
     $('.eventsB').on("click", function () {
@@ -201,16 +244,17 @@ $(document).ready(function () {
     });
     //_get butten
     $('#artist_btn').on("click", function () {
-        var x = document.getElementById('artist_input').value;
-        if (x) {
-            if (x.length < 4) {
-                executeArtistQuery(x)
+        chosenArtist = document.getElementById('artist_input').value;
+        if (chosenArtist) {
+            if (chosenArtist.length < 4) {
+                executeArtistQuery()
             }
             else {
-                executeFullTextArtistQuery(x);
+                executeFullTextArtistQuery();
             }
         }
     });
+
 
     //add comment butten
     $('#adding_btn').on("click", function () {
@@ -229,7 +273,7 @@ $(document).ready(function () {
         var comment = document.getElementById('edit_comment').value;
         executeEdit(usr, pass, rank, comment);
     });
-
+    // clear reviews modal
     $('#edit_comment_modal').on('hidden.bs.modal', function () {
         $(this).find('#edit_username, #edit_rank, #edit_password, #edit_password').val('');
     });
@@ -240,5 +284,10 @@ $(document).ready(function () {
         var pass = document.getElementById('delete_password').value;
         executeDelete(usr, pass);
     });
+
 });
+
+
+
+
 
