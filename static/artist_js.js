@@ -64,6 +64,7 @@ function postDeleteMessage() {
 
 var add_message;
 function executeAdd(usr, pass, rank, comment) {
+    $("#additionResult").empty();
     if (rank == "" || comment == "") {
         add_message = "Please enter rank and comment";
         postAddMessage();
@@ -200,6 +201,7 @@ function showArtistPage() {
         }
         content += "<button id='addReview' data-toggle='modal' data-target='#add_comment_modal' data-original-title>" +
             "<B>Add  a review</B></button>";
+        content += "<p>Not a user yet? sign up first in order to leave a comment</p><h3>Reviews:</h3>"
         for (i = 0; i < revs.length; i++) {
             content += "<div class='row reviewsRow'><h4> Review id: " + revs[i].review_id + "</h4><p>Username:&nbsp"
                 + revs[i].username + "</p><p>Artist: " + revs[i].artist_name + "</p><p>Ranking: "

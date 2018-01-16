@@ -19,8 +19,6 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
     <title>BrainzKick - Locations</title>
-    <!--<link rel="stylesheet" type="text/css" href="../static/Locations_style.css">
-    <script type="text/javascript" src="../static/locations_js.js"></script> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Locations_style.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='locations_js.js') }}"></script>
     <link type="image/png" href="https://image.flaticon.com/icons/png/128/55/55864.png" rel="shortcut icon">
@@ -67,19 +65,19 @@
                 <li>
                     <button class="signUpB">SignUp</button>
                 </li>
-                <!-- <li><img class="pull-right" src="../static/powered-by-songkick-white.png" id="poweredBy"></li> -->
                 <li><img src="{{ url_for('static', filename='powered-by-songkick-white.png') }}" id="poweredBy"></li>
             </ul>
         </div>
     </div>
 </nav>
 
-
+<!-- Main container -->
 <div class="container" id="main_container">
-
     <h1>Use our queries engine<br/>&nbsp discover best cities to visit
         <br/>&nbsp&nbsp and let the magic begin...<br/><br/>
     </h1>
+
+<!-- queres tabs buttons -->
     <div class="row">
         <div class="col-lg-4">
             <button class="tablink" onclick="openQuery('query2', this)" id="defaultOpen">The most diverse place you can
@@ -95,7 +93,7 @@
 
     </div>
 
-
+<!-- The queries tabs -->
     <div id="query2" class="tabcontent">
         <h3><br/>The most diverse place you can go</h3>
         <p>Discover which city has the largest number of different genres events in any month you want!</p>
@@ -116,10 +114,6 @@
     </div>
 
     <div class="posts"></div>
-
-
 </div>
-
-
 </body>
 </html>
