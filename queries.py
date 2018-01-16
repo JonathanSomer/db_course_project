@@ -162,7 +162,7 @@ def highest_rated_artist_events():
 	return """
 		SELECT 	event_name, event_type, popularity, age_res, event_url, event_date,
 				venue_name, country AS venue_country, city AS venue_city,
-				GROUP_CONCAT(artist_name) AS artists_list
+				GROUP_CONCAT(artist_name) AS artist_name
 		FROM 	eventim,venues, artists,artists_events,
 				(SELECT DISTINCT AE.event_id
 				FROM 			artists_events AS AE,
