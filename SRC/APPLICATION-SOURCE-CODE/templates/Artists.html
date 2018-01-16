@@ -73,14 +73,16 @@
     </div>
 </nav>
 
+<!-- Main container -->
 <div class="container" id="main_container">
     <h5>* If you will enter just one word of the name (longer than 3 letters), we will find it too (: </h5>
     <input id="artist_input" type="text" placeholder="Artist's name" required>
     <button class="get_button" id="artist_btn">Show me!</button>
 
+    <!-- The div the content will be injected to -->
     <div class="posts"></div>
 
-
+    <!-- Add comment modal -->
     <div class='modal fade' id='add_comment_modal' tabindex='-1' role='dialog' aria-labelledby='contactLabel'
          aria-hidden='true'>
         <div class='modal-dialog'>
@@ -123,7 +125,7 @@
         </div>
     </div>
 
-
+<!-- Edit comment modal -->
     <div class='modal fade' id='edit_comment_modal' tabindex='-1' role='dialog' aria-labelledby='contactLabel'
          aria-hidden='true'>
         <div class='modal-dialog'>
@@ -165,6 +167,7 @@
         </div>
     </div>
 
+    <!-- Delete comment modal -->
     <div class='modal fade' id='delete_comment_modal' tabindex='-1' role='dialog' aria-labelledby='contactLabel'
          aria-hidden='true'>
         <div class='modal-dialog'>

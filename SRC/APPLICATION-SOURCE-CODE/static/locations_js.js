@@ -1,3 +1,5 @@
+// Open query tab function
+
 function openQuery(queryNum) {
     // Hide all elements with class="tabcontent" by default */
     var i, tabcontent, tablinks;
@@ -10,6 +12,7 @@ function openQuery(queryNum) {
     document.getElementById(queryNum).style.display = "block";
 }
 
+// Execution of a query
 
 var locationss;
 function executeLocationQuery(qNum, x) {
@@ -37,6 +40,7 @@ function executeLocationQuery(qNum, x) {
             break;
     }
 }
+//showing query results on page
 
 function handleCallback(q, x) {
     $(".posts").empty();
@@ -81,11 +85,6 @@ $(document).ready(function () {
         // window.location.href = "Artists.html";
         window.location.href = "/SignUp";
     });
-    //reviews buttens
-    // $(".reviewsB").on("click", function () {
-    //     // window.location.href = "Reviews.html";
-    //     window.location.href = "/Reviews";
-    // });
 
     // q2_get butten
     $('#q2_get').on("click", function () {

@@ -132,7 +132,7 @@ function showArtistsList() {
             btn[j].onclick = function () {
                 chosenArtist = this.id;
                 executeArtistQuery();
-            }
+            };
             $(".posts").append(btn[j]);
         }
     }
@@ -223,25 +223,21 @@ var chosenArtist;
 $(document).ready(function () {
     //events buttens
     $('.eventsB').on("click", function () {
-        // window.location.href = "Events.html";
         window.location.href = "/Events";
 
     });
     //location buttens
     $(".locationB").on("click", function () {
-        // window.location.href = "Locations.html";
         window.location.href = "/Locations";
 
     });
     //home buttens
     $(".navbar-brand").on("click", function () {
-        // window.location.href = "Home.html";
         window.location.href = "/";
 
     });
     //signUp buttens
     $(".signUpB").on("click", function () {
-        // window.location.href = "Artists.html";
         window.location.href = "/SignUp";
     });
     //_get butten
@@ -256,7 +252,6 @@ $(document).ready(function () {
             }
         }
     });
-
 
     //add comment butten
     $('#adding_btn').on("click", function () {
