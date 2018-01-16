@@ -126,9 +126,10 @@ def similar_artists_events(artist_string):
 				GROUP_CONCAT(artist_name) AS artist_name
 		FROM 	eventim,venues, artists,artists_events,
 				(SELECT DISTINCT AE.event_id
-				FROM 	artists_events AS AE,
+				FROM 	eventim,artists_events AS AE,
 						(SELECT DISTINCT artists.artist_id
 						FROM artists,artist_genre,
+
 								(SELECT artist_genre.Genre
 								FROM 	artists, artist_genre
 								WHERE 	artists.artist_name = {artist_string} AND
@@ -136,14 +137,18 @@ def similar_artists_events(artist_string):
 						WHERE 	artists.artist_id = artist_genre.artist_id AND 
 								artist_genre.genre = genres_of_artist.Genre
 						)AS artsits_alike
-				WHERE 	AE.artist_id=artsits_alike.artist_id) AS events_alike
-		WHERE 	artists_events.event_id = events_alike.event_id AND
+				WHERE 	AE.artist_id=artsits_alike.artist_id AND
+						AE.event_id = eventim.event_id
+				ORDER BY popularity DESC
+				LIMIT 50
+				) AS events_alike
+		WHERE 	event_date >= CURDATE() AND
+				artists_events.event_id = events_alike.event_id AND
 				eventim.event_id = artists_events.event_id AND
 				artists.artist_id = artists_events.artist_id AND
 				venues.venue_id = eventim.venue_id
 		GROUP BY eventim.event_id
 		ORDER BY popularity DESC
-		LIMIT 50
 		""".format(artist_string = "\'" + artist_string + "\'")
 
 ###### query 6 #####
@@ -157,7 +162,7 @@ def highest_rated_artist_events():
 	return """
 		SELECT 	event_name, event_type, popularity, age_res, event_url, event_date,
 				venue_name, country AS venue_country, city AS venue_city,
-				GROUP_CONCAT(artist_name) AS artist_name
+				GROUP_CONCAT(artist_name) AS artists_list
 		FROM 	eventim,venues, artists,artists_events,
 				(SELECT DISTINCT AE.event_id
 				FROM 			artists_events AS AE,
@@ -250,8 +255,9 @@ def delete_review(review_id):
 def artist_info(artist):
 	return """
 	SELECT 	artists.artist_id ,artist_name,artist_origin_country,artist_type,group_concat(genre) as artist_genres_list 
-	FROM 	artists,artist_genre
-	where 	artist_name = {artist_string} And artists.artist_id = artist_genre.artist_id 
+	FROM 	artists left join  artist_genre
+	on artists.artist_id = artist_genre.artist_id 
+	where artist_name = {artist_string}
 	group by artist_genre.artist_id
 	""".format(artist_string = "\'" + artist + "\'")
 
