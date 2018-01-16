@@ -92,7 +92,7 @@ input {
 }
 
 .posts > .reviewsRow {
-    border-top: solid 1px purple;
+    border-bottom: solid 1px purple;
     padding-top: 20px;
     padding-bottom: 10px;
     margin-left: 10px;
@@ -195,6 +195,11 @@ input {
 
 .resultsH {
     text-align: center;
+}
+
+.resultsOfModals {
+    text-align: center;
+    color: red;
 }
 
 

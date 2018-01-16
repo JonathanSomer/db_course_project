@@ -21,8 +21,6 @@
 
 
     <title>BrainzKick - Home</title>
-    <!--<link rel="stylesheet" type="text/css" href="../static/Home_style.css">
-    <script type="text/javascript" src="../static/home_js.js"></script> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Home_style.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='home_js.js') }}"></script>
     <link type="image/png" href="https://image.flaticon.com/icons/png/128/55/55864.png" rel="shortcut icon">
@@ -61,15 +59,11 @@
                 <li>
                     <button class="artistB">Artists</button>
                 </li>
-                {#                <li>#}
-                {#                    <button class="reviewsB">Reviews</button>#}
-                {#                </li>#}
             </ul>
             <ul class="navbar-right nav navbar-nav" id="right_nav">
                 <li>
                     <button class="signUpB">SignUp</button>
                 </li>
-                <!-- <li><img class="pull-right" src="../static/powered-by-songkick-white.png" id="poweredBy"></li> -->
                 <li><img src="{{ url_for('static', filename='powered-by-songkick-white.png') }}" id="poweredBy"></li>
             </ul>
         </div>
@@ -77,6 +71,7 @@
 </nav>
 
 
+<!-- Main container -->
 <div class="container" id="main_container">
     <!--outsource icon+header-->
     <h1 id="brand">BrainzKick</h1>
@@ -91,8 +86,6 @@
                 <button class="eventsB">View details &raquo;</button>
             </p>
         </div>
-    </div>
-    <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-5">
             <h2>Locations</h2>
@@ -103,6 +96,9 @@
             </p>
         </div>
     </div>
+    <div class="row">
+
+    </div>
     <div class="row" id="lastRow">
         <div class="col-lg-1"></div>
         <div class="col-lg-5">
@@ -111,6 +107,15 @@
             <h4>Watch details and reviews<br/> <B>and share what you think!</B></h4>
             <p>
                 <button class="artistB">View details &raquo;</button>
+            </p>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            <h2>Sign Up</h2>
+            <h4>Join the dark side (:</h4>
+            <h4>Sign up to our website<br/> <B> and add your own reviews</B></h4>
+            <p>
+                <button class="signUpB">View details &raquo;</button>
             </p>
         </div>
 
