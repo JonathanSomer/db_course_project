@@ -186,14 +186,16 @@ var chosenRevId;
 function showArtistPage() {
     $(".posts").empty();
     if (artist) {
-        var genres = artist.artist_genres_list.split(',');
         var content = "<h1>" + artist.artist_name + "</h1><h4>Artist id: " + artist.artist_id + "</h4><h4>Artist's type: " + artist.artist_type + "</h4><h4>Artist's origin: " + artist.artist_origin_country + "</h4><h4>Artist's genres:</h4>";
         content += "<div class='row'>";
-        for (var i = 0; i < genres.length; i++) {
-            if (i != 0 && i % 6 == 0) {
-                content += "</div><div class='row'>";
+        if (artist.artist_genres_list) {
+            var genres = artist.artist_genres_list.split(',');
+            for (var i = 0; i < genres.length; i++) {
+                if (i != 0 && i % 6 == 0) {
+                    content += "</div><div class='row'>";
+                }
+                content += "<div class='col-lg-2'><p>" + genres[i] + "</p></div>";
             }
-            content += "<div class='col-lg-2'><p>" + genres[i] + "</p></div>";
         }
         content += "</div><h4>Artist's URLs:</h4>";
         for (i = 0; i < urls.length; i++) {
