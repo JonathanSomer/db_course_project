@@ -3,6 +3,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    background-position: center;
 }
 
 .navbar {
@@ -59,7 +60,7 @@ body {
     font-size: 17px;
     width: 100%;
     border-radius: 0%;
-
+    margin-top: 2px;
 }
 
 /* Change background color of buttons on hover */
