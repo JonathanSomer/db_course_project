@@ -1,5 +1,5 @@
 body {
-    background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/NyK9kaHKxik18z0d7/city-girl-tourist-carefully-studying-a-map_slqmgyobl_thumbnail-full01.png");
+    background-image: url(/static/location_background.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

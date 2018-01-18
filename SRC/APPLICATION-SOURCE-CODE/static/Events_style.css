@@ -1,6 +1,6 @@
 
 body {
-    background: url("http://3.bp.blogspot.com/-8hlNavxtVDQ/VD8c5Eqb7oI/AAAAAAAAHZI/CYhXK3VZSjk/s1600/concert-crowd.jpg");
+    background-image: url(/static/events_background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

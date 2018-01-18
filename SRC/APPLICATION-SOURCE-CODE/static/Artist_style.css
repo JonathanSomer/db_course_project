@@ -1,6 +1,6 @@
 
 body {
-    background: url("https://cdn.barnimages.com/wp-content/uploads/2015/06/PG1906_BarnImages.com-10-1024x683@2x.jpg");
+    background-image: url(/static/artist_background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

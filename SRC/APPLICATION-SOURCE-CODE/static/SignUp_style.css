@@ -1,6 +1,6 @@
 
 body {
-    background: url("http://www.brandandmortar.com/wp-content/uploads/2016/01/man-person-apple-iphone-940x523.jpg");
+    background-image: url(/static/sign_up_background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

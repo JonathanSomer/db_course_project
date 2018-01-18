@@ -1,6 +1,6 @@
 
 body {
-    background: url("https://image.redbull.com/rbcom/010/2016-08-01/1331809697834_1/0010/1/1500/1000/1/a-fan-takes-centre-stage-at-lollapalooza-2016-music-festival.jpg");
+    background-image: url(/static/home_background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
